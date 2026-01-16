@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Genio Visión</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        .btn-secondary {
+            background: #718096;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        input[type="text"], select {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .week-section {
+            margin-bottom: 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .week-header {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .week-header h2 {
+            font-size: 1.5em;
+        }
+
+        .week-info {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            flex-wrap: wrap;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            background: #f7fafc;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            color: #2d3748;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .package-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .package-5 {
+            background: #3182ce;
+        }
+
+        .package-6 {
+            background: #805ad5;
+        }
+
+        .attendance-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 100px;
+        }
+
+        .attendance-yes {
+            background: #48bb78;
+            color: white;
+        }
+
+        .attendance-no {
+            background: #f56565;
+            color: white;
+        }
+
+        .attendance-none {
+            background: #e2e8f0;
+            color: #718096;
+        }
+
+        .attendance-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .payment-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 120px;
+        }
+
+        .payment-paid {
+            background: #48bb78;
+            color: white;
+        }
+
+        .payment-pending {
+            background: #f56565;
+            color: white;
+        }
+
+        .payment-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .date-display {
+            font-size: 11px;
+            color: #718096;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .delete-btn {
+            background: #f56565;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #e53e3e;
+            transform: scale(1.05);
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .summary {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .summary-item {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .summary-item h3 {
+            font-size: 0.9em;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+
+        .summary-item p {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        .archived-section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 3px solid #e2e8f0;
+        }
+
+        .archived-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 Calendario Genio Visión</h1>
+            <p>Sistema de Registro y Control de Pagos</p>
+        </header>
+
+        <div class="main-content">
+            <div class="controls">
+                <button class="btn btn-primary" onclick="openAddStudentModal()">➕ Agregar Estudiante</button>
+                <button class="btn btn-success" onclick="createNewWeek()">📆 Nueva Semana</button>
+                <button class="btn btn-secondary" onclick="toggleArchived()">📂 Ver Historial</button>
+            </div>
+
+            <div id="currentWeekSection"></div>
+            
+            <div id="archivedSection" class="archived-section" style="display: none;">
+                <h2>📂 Historial de Semanas Anteriores</h2>
+                <div class="filters">
+                    <input type="text" id="searchStudent" placeholder="🔍 Buscar estudiante..." oninput="filterArchived()">
+                    <select id="filterPayment" onchange="filterArchived()">
+                        <option value="all">Todos los pagos</option>
+                        <option value="paid">Pagados</option>
+                        <option value="pending">Pendientes</option>
+                    </select>
+                </div>
+                <div id="archivedWeeks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar estudiante -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <h2 class="modal-header">Agregar Nuevo Estudiante</h2>
+            <div class="form-group">
+                <label for="studentName">Nombre del estudiante:</label>
+                <input type="text" id="studentName" placeholder="Ingrese el nombre completo">
+            </div>
+            <div class="form-group">
+                <label for="studentPackage">Paquete:</label>
+                <select id="studentPackage">
+                    <option value="5">5€ por semana</option>
+                    <option value="6">6€ por semana</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeAddStudentModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="addStudent()">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let weeks = [];
+        let currentWeekId = null;
+
+        // Cargar datos al iniciar
+        window.onload = function() {
+            loadData();
+            if (weeks.length === 0) {
+                createNewWeek();
+            } else {
+                renderCurrentWeek();
+                renderArchivedWeeks();
+            }
+        };
+
+        function loadData() {
+            const savedData = localStorage.getItem('calendarioGenioVision');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                weeks = data.weeks || [];
+                currentWeekId = data.currentWeekId || null;
+            }
+        }
+
+        function saveData() {
+            const data = {
+                weeks: weeks,
+                currentWeekId: currentWeekId
+            };
+            localStorage.setItem('calendarioGenioVision', JSON.stringify(data));
+        }
+
+        function getMonday(d) {
+            d = new Date(d);
+            const day = d.getDay();
+            const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+            return new Date(d.setDate(diff));
+        }
+
+        function formatDate(date) {
+            const d = new Date(date);
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+
+        function createNewWeek() {
+            const monday = getMonday(new Date());
+            const weekDates = [];
+            
+            for (let i = 0; i < 5; i++) {
+                const date = new Date(monday);
+                date.setDate(monday.getDate() + i);
+                weekDates.push(date.toISOString());
+            }
+
+            // Archivar semana actual si existe
+            if (currentWeekId !== null) {
+                const currentWeek = weeks.find(w => w.id === currentWeekId);
+                if (currentWeek) {
+                    currentWeek.archived = true;
+                }
+            }
+
+            const newWeek = {
+                id: Date.now(),
+                startDate: monday.toISOString(),
+                weekDates: weekDates,
+                students: [],
+                archived: false
+            };
+
+            // Copiar estudiantes activos de la semana anterior
+            if (currentWeekId !== null) {
+                const previousWeek = weeks.find(w => w.id === currentWeekId);
+                if (previousWeek) {
+                    newWeek.students = previousWeek.students.map(s => ({
+                        id: Date.now() + Math.random(),
+                        name: s.name,
+                        package: s.package,
+                        attendance: [{}, {}, {}, {}, {}],
+                        paid: false
+                    }));
+                }
+            }
+
+            weeks.push(newWeek);
+            currentWeekId = newWeek.id;
+            saveData();
+            renderCurrentWeek();
+            renderArchivedWeeks();
+        }
+
+        function openAddStudentModal() {
+            document.getElementById('studentModal').style.display = 'block';
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentPackage').value = '5';
+        }
+
+        function closeAddStudentModal() {
+            document.getElementById('studentModal').style.display = 'none';
+        }
+
+        function addStudent() {
+            const name = document.getElementById('studentName').value.trim();
+            const packageType = document.getElementById('studentPackage').value;
+
+            if (!name) {
+                alert('Por favor ingrese el nombre del estudiante');
+                return;
+            }
+
+            const currentWeek = weeks.find(w => w.id === currentWeekId);
+            if (!currentWeek) {
+                alert('No hay una semana activa');
+                return;
+            }
+
+            const newStudent = {
+                id: Date.now(),
+                name: name,
+                package: packageType,
+                attendance: [{}, {}, {}, {}, {}],
+                paid: false
+            };
+
+            currentWeek.students.push(newStudent);
+            saveData();
+            renderCurrentWeek();
+            closeAddStudentModal();
+        }
+
+        function deleteStudent(studentId) {
+            if (!confirm('¿Está seguro de eliminar este estudiante?')) {
+                return;
+            }
+
+            const currentWeek = weeks.find(w => w.id === currentWeekId);
+            if (currentWeek) {
+                currentWeek.students = currentWeek.students.filter(s => s.id !== studentId);
+                saveData();
+                renderCurrentWeek();
+            }
+        }
+
+        function toggleAttendance(studentId, dayIndex) {
+            const currentWeek = weeks.find(w => w.id === currentWeekId);
+            if (!currentWeek) return;
+
+            const student = currentWeek.students.find(s => s.id === studentId);
+            if (!student) return;
+
+            const current = student.attendance[dayIndex].status;
+            
+            if (!current || current === 'none') {
+                student.attendance[dayIndex] = { status: 'yes', date: currentWeek.weekDates[dayIndex] };
+            } else if (current === 'yes') {
+                student.attendance[dayIndex] = { status: 'no', date: currentWeek.weekDates[dayIndex] };
+            } else {
+                student.attendance[dayIndex] = { status: 'none' };
+            }
+
+            saveData();
+            renderCurrentWeek();
+        }
+
+        function togglePayment(studentId) {
+            const currentWeek = weeks.find(w => w.id === currentWeekId);
+            if (!currentWeek) return;
+
+            const student = currentWeek.students.find(s => s.id === studentId);
+            if (!student) return;
+
+            student.paid = !student.paid;
+            saveData();
+            renderCurrentWeek();
+        }
+
+        function renderCurrentWeek() {
+            const currentWeek = weeks.find(w => w.id === currentWeekId);
+            if (!currentWeek) return;
+
+            const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+            
+            const totalPaid = currentWeek.students.filter(s => s.paid).length;
+            const totalPending = currentWeek.students.filter(s => !s.paid).length;
+            const totalAmount = currentWeek.students.reduce((sum, s) => sum + (s.paid ? parseInt(s.package) : 0), 0);
+
+            let html = `
+                <div class="week-section">
+                    <div class="week-header">
+                        <h2>Semana Actual</h2>
+                        <div class="week-info">
+                            <span>📅 ${formatDate(currentWeek.startDate)}</span>
+                            <span>👥 ${currentWeek.students.length} estudiantes</span>
+                            <span>✅ ${totalPaid} pagados</span>
+                            <span>⏳ ${totalPending} pendientes</span>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Estudiante</th>
+                                    <th>Paquete</th>
+                                    ${weekDays.map((day, i) => `
+                                        <th>${day}<br><span class="date-display">${formatDate(currentWeek.weekDates[i])}</span></th>
+                                    `).join('')}
+                                    <th>Estado de Pago</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+
+            currentWeek.students.forEach(student => {
+                html += `
+                    <tr>
+                        <td class="student-name">${student.name}</td>
+                        <td><span class="package-badge package-${student.package}">${student.package}€</span></td>
+                `;
+
+                for (let i = 0; i < 5; i++) {
+                    const att = student.attendance[i] || { status: 'none' };
+                    const btnClass = att.status === 'yes' ? 'attendance-yes' : 
+                                   att.status === 'no' ? 'attendance-no' : 'attendance-none';
+                    const btnText = att.status === 'yes' ? '✓ Asistió' : 
+                                  att.status === 'no' ? '✗ No asistió' : '- -';
+                    
+                    html += `
+                        <td>
+                            <button class="attendance-btn ${btnClass}" onclick="toggleAttendance(${student.id}, ${i})">
+                                ${btnText}
+                            </button>
+                        </td>
+                    `;
+                }
+
+                html += `
+                        <td>
+                            <button class="payment-btn ${student.paid ? 'payment-paid' : 'payment-pending'}" 
+                                    onclick="togglePayment(${student.id})">
+                                ${student.paid ? '✓ Pagado' : '⏳ Pendiente'}
+                            </button>
+                        </td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteStudent(${student.id})">🗑️ Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="summary">
+                        <div class="summary-item">
+                            <h3>Total Pagado</h3>
+                            <p>${totalAmount}€</p>
+                        </div>
+                        <div class="summary-item">
+                            <h3>Pagados</h3>
+                            <p>${totalPaid}</p>
+                        </div>
+                        <div class="summary-item">
+                            <h3>Pendientes</h3>
+                            <p>${totalPending}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('currentWeekSection').innerHTML = html;
+        }
+
+        function renderArchivedWeeks() {
+            const archivedWeeks = weeks.filter(w => w.archived).reverse();
+            const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+
+            let html = '';
+
+            archivedWeeks.forEach(week => {
+                const totalPaid = week.students.filter(s => s.paid).length;
+                const totalPending = week.students.filter(s => !s.paid).length;
+                const totalAmount = week.students.reduce((sum, s) => sum + (s.paid ? parseInt(s.package) : 0), 0);
+
+                html += `
+                    <div class="week-section" data-week-id="${week.id}">
+                        <div class="week-header" style="background: linear-gradient(135deg, #718096 0%, #4a5568 100%);">
+                            <h2>Semana del ${formatDate(week.startDate)}</h2>
+                            <div class="week-info">
+                                <span>👥 ${week.students.length} estudiantes</span>
+                                <span>✅ ${totalPaid} pagados</span>
+                                <span>⏳ ${totalPending} pendientes</span>
+                                <span>💰 ${totalAmount}€</span>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Estudiante</th>
+                                        <th>Paquete</th>
+                                        ${weekDays.map((day, i) => `
+                                            <th>${day}<br><span class="date-display">${formatDate(week.weekDates[i])}</span></th>
+                                        `).join('')}
+                                        <th>Estado de Pago</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                `;
+
+                week.students.forEach(student => {
+                    html += `
+                        <tr class="student-row" data-student-name="${student.name.toLowerCase()}" data-payment-status="${student.paid ? 'paid' : 'pending'}">
+                            <td class="student-name">${student.name}</td>
+                            <td><span class="package-badge package-${student.package}">${student.package}€</span></td>
+                    `;
+
+                    for (let i = 0; i < 5; i++) {
+                        const att = student.attendance[i] || { status: 'none' };
+                        const btnClass = att.status === 'yes' ? 'attendance-yes' : 
+                                       att.status === 'no' ? 'attendance-no' : 'attendance-none';
+                        const btnText = att.status === 'yes' ? '✓ Asistió' : 
+                                      att.status === 'no' ? '✗ No asistió' : '- -';
+                        
+                        html += `
+                            <td>
+                                <button class="attendance-btn ${btnClass}" disabled>
+                                    ${btnText}
+                                </button>
+                            </td>
+                        `;
+                    }
+
+                    html += `
+                            <td>
+                                <button class="payment-btn ${student.paid ? 'payment-paid' : 'payment-pending'}" disabled>
+                                    ${student.paid ? '✓ Pagado' : '⏳ Pendiente'}
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="summary">
+                            <div class="summary-item">
+                                <h3>Total Pagado</h3>
+                                <p>${totalAmount}€</p>
+                            </div>
+                            <div class="summary-item">
+                                <h3>Pagados</h3>
+                                <p>${totalPaid}</p>
+                            </div>
+                            <div class="summary-item">
+                                <h3>Pendientes</h3>
+                                <p>${totalPending}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('archivedWeeks').innerHTML = html || '<p style="text-align: center; color: #718096; padding: 40px;">No hay semanas archivadas aún.</p>';
+        }
+
+        function toggleArchived() {
+            const section = document.getElementById('archivedSection');
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function filterArchived() {
+            const searchText = document.getElementById('searchStudent').value.toLowerCase();
+            const paymentFilter = document.getElementById('filterPayment').value;
+            const rows = document.querySelectorAll('#archivedWeeks .student-row');
+
+            rows.forEach(row => {
+                const studentName = row.getAttribute('data-student-name');
+                const paymentStatus = row.getAttribute('data-payment-status');
+
+                const matchesSearch = studentName.includes(searchText);
+                const matchesPayment = paymentFilter === 'all' || paymentStatus === paymentFilter;
+
+                row.style.display = matchesSearch && matchesPayment ? '' : 'none';
+            });
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('studentModal');
+            if (event.target === modal) {
+                closeAddStudentModal();
+            }
+        };
+    </script>
+</body>
+</html>
