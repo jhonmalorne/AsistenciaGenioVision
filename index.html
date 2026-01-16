@@ -1,866 +1,996 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario Genio Visión</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <title>Calendario Genio Visión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --accent: #22c55e;
+      --accent-soft: #16a34a;
+      --danger: #ef4444;
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border: #1f2937;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #1e293b, #020617);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
+    .app {
+      max-width: 1200px;
+      width: 100%;
+      padding: 16px;
+    }
 
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
+    .card {
+      background: linear-gradient(145deg, #020617, #020617, #020617);
+      border-radius: 16px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      padding: 20px;
+    }
 
-        header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
 
-        .main-content {
-            padding: 30px;
-        }
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
 
-        .controls {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+    h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #e5e7eb;
+      text-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+    }
 
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
+    .subtitle {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
 
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
+    .week-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
 
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
+    .week-info span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-        .btn-success {
-            background: #48bb78;
-            color: white;
-        }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.78rem;
+      background: rgba(37, 99, 235, 0.15);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #bfdbfe;
+    }
 
-        .btn-success:hover {
-            background: #38a169;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
-        }
+    .controls-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
 
-        .btn-secondary {
-            background: #718096;
-            color: white;
-        }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
 
-        .btn-secondary:hover {
-            background: #4a5568;
-        }
+    button.primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+    }
 
-        .input-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
+    button.primary:hover {
+      background: linear-gradient(135deg, var(--primary-dark), #1e40af);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.6);
+    }
 
-        input[type="text"], select {
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
+    button.secondary {
+      background: rgba(148, 163, 184, 0.1);
+      color: var(--text-soft);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
 
-        input[type="text"]:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
+    button.secondary:hover {
+      background: rgba(148, 163, 184, 0.18);
+      transform: translateY(-1px);
+    }
 
-        .week-section {
-            margin-bottom: 40px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            overflow: hidden;
-        }
+    button.danger {
+      background: rgba(239, 68, 68, 0.14);
+      color: #fecaca;
+      border: 1px solid rgba(239, 68, 68, 0.6);
+    }
 
-        .week-header {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+    button.danger:hover {
+      background: rgba(239, 68, 68, 0.22);
+      transform: translateY(-1px);
+    }
 
-        .week-header h2 {
-            font-size: 1.5em;
-        }
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
 
-        .week-info {
-            display: flex;
-            gap: 20px;
-            font-size: 0.9em;
-            flex-wrap: wrap;
-        }
+    .table-wrapper {
+      margin-top: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: rgba(15, 23, 42, 0.95);
+    }
 
-        .table-container {
-            overflow-x: auto;
-        }
+    .table-scroll {
+      max-height: 420px;
+      overflow: auto;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 900px;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      min-width: 860px;
+    }
 
-        th {
-            background: #f7fafc;
-            padding: 15px 10px;
-            text-align: left;
-            font-weight: 600;
-            color: #2d3748;
-            border-bottom: 2px solid #e2e8f0;
-            font-size: 14px;
-        }
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 1px 0 rgba(30, 64, 175, 0.7);
+    }
 
-        td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #e2e8f0;
-        }
+    th, td {
+      padding: 8px 6px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.85);
+      text-align: left;
+      vertical-align: top;
+    }
 
-        tr:hover {
-            background: #f7fafc;
-        }
+    th {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-soft);
+    }
 
-        .student-name {
-            font-weight: 600;
-            color: #2d3748;
-        }
+    tr:nth-child(even) td {
+      background: rgba(15, 23, 42, 0.8);
+    }
 
-        .package-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            color: white;
-        }
+    tr:hover td {
+      background: rgba(30, 64, 175, 0.22);
+    }
 
-        .package-5 {
-            background: #3182ce;
-        }
+    .student-name-input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 0.82rem;
+      color: var(--text);
+      outline: none;
+    }
 
-        .package-6 {
-            background: #805ad5;
-        }
+    .student-name-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.6);
+    }
 
-        .attendance-btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.3s;
-            width: 100%;
-            max-width: 100px;
-        }
+    .day-cell {
+      min-width: 140px;
+    }
 
-        .attendance-yes {
-            background: #48bb78;
-            color: white;
-        }
+    .day-header {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
 
-        .attendance-no {
-            background: #f56565;
-            color: white;
-        }
+    .day-title {
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
 
-        .attendance-none {
-            background: #e2e8f0;
-            color: #718096;
-        }
+    .day-date {
+      font-size: 0.7rem;
+      color: var(--text-soft);
+    }
 
-        .attendance-btn:hover {
-            transform: scale(1.05);
-        }
+    .attendance-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
 
-        .payment-btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-            width: 100%;
-            max-width: 120px;
-        }
+    .attendance-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        .payment-paid {
-            background: #48bb78;
-            color: white;
-        }
+    select, input[type="time"], input[type="date"] {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 6px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 4px 6px;
+      font-size: 0.78rem;
+      color: var(--text);
+      outline: none;
+    }
 
-        .payment-pending {
-            background: #f56565;
-            color: white;
-        }
+    select:focus, input[type="time"]:focus, input[type="date"]:focus {
+      border-color: var(--primary);
+    }
 
-        .payment-btn:hover {
-            transform: scale(1.05);
-        }
+    .status-select {
+      min-width: 90px;
+    }
 
-        .date-display {
-            font-size: 11px;
-            color: #718096;
-            display: block;
-            margin-top: 2px;
-        }
+    .time-input {
+      width: 80px;
+    }
 
-        .delete-btn {
-            background: #f56565;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
+    .paid-col {
+      min-width: 100px;
+    }
 
-        .delete-btn:hover {
-            background: #e53e3e;
-            transform: scale(1.05);
-        }
+    .pay-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-soft);
+      transition: all 0.15s;
+    }
 
-        .filters {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
+    .pay-chip.active {
+      background: rgba(34, 197, 94, 0.16);
+      border-color: rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    }
 
-        .summary {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    .pay-chip.pending {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(248, 113, 113, 0.7);
+      color: #fecaca;
+    }
 
-        .summary-item {
-            flex: 1;
-            min-width: 150px;
-        }
+    .amount-select {
+      min-width: 100px;
+    }
 
-        .summary-item h3 {
-            font-size: 0.9em;
-            color: #718096;
-            margin-bottom: 5px;
-        }
+    .row-actions {
+      display: flex;
+      gap: 6px;
+    }
 
-        .summary-item p {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #2d3748;
-        }
+    .tiny-btn {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.85);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-soft);
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            animation: fadeIn 0.3s;
-        }
+    .tiny-btn:hover {
+      background: rgba(30, 64, 175, 0.4);
+      color: #e5e7eb;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .footer-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(30, 64, 175, 0.6);
+    }
 
-        .modal-content {
-            background: white;
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 500px;
-            animation: slideDown 0.3s;
-        }
+    .history {
+      margin-top: 16px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), #020617 60%);
+      max-height: 260px;
+      overflow: auto;
+      font-size: 0.8rem;
+    }
 
-        @keyframes slideDown {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+    .history-title {
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .modal-header {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #2d3748;
-        }
+    .history-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .history-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 8px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #2d3748;
-        }
+    .history-item:hover {
+      background: rgba(30, 64, 175, 0.24);
+      border-color: rgba(59, 130, 246, 0.7);
+    }
 
-        .form-group input, .form-group select {
-            width: 100%;
-        }
+    .history-main {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
 
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 25px;
-        }
+    .history-week-label {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
 
-        .archived-section {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 3px solid #e2e8f0;
-        }
+    .history-sub {
+      color: var(--text-soft);
+      font-size: 0.78rem;
+    }
 
-        .archived-section h2 {
-            color: #2d3748;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
+    .history-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+    }
 
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 15px;
-            }
+    .pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      border: 1px solid rgba(75, 85, 99, 0.8);
+      color: var(--text-soft);
+    }
 
-            header h1 {
-                font-size: 1.8em;
-            }
+    .pill.green {
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #bbf7d0;
+    }
 
-            .controls {
-                flex-direction: column;
-            }
+    .pill.red {
+      border-color: rgba(239, 68, 68, 0.9);
+      color: #fecaca;
+    }
 
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+    .week-nav {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+      .header {
+        align-items: flex-start;
+      }
+      .table-wrapper {
+        border-radius: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📅 Calendario Genio Visión</h1>
-            <p>Sistema de Registro y Control de Pagos</p>
-        </header>
-
-        <div class="main-content">
-            <div class="controls">
-                <button class="btn btn-primary" onclick="openAddStudentModal()">➕ Agregar Estudiante</button>
-                <button class="btn btn-success" onclick="createNewWeek()">📆 Nueva Semana</button>
-                <button class="btn btn-secondary" onclick="toggleArchived()">📂 Ver Historial</button>
-            </div>
-
-            <div id="currentWeekSection"></div>
-            
-            <div id="archivedSection" class="archived-section" style="display: none;">
-                <h2>📂 Historial de Semanas Anteriores</h2>
-                <div class="filters">
-                    <input type="text" id="searchStudent" placeholder="🔍 Buscar estudiante..." oninput="filterArchived()">
-                    <select id="filterPayment" onchange="filterArchived()">
-                        <option value="all">Todos los pagos</option>
-                        <option value="paid">Pagados</option>
-                        <option value="pending">Pendientes</option>
-                    </select>
-                </div>
-                <div id="archivedWeeks"></div>
-            </div>
-        </div>
+<div class="app">
+  <div class="card">
+    <div class="header">
+      <div class="title-block">
+        <h1>Calendario Genio Visión</h1>
+        <p class="subtitle">
+          Control semanal de asistencia y pagos por estudiante (5 € / 6 €).
+        </p>
+      </div>
+      <div class="week-info">
+        <span>
+          Semana actual:
+          <strong id="weekLabel"></strong>
+        </span>
+        <span class="badge">
+          <span style="font-size:10px;">●</span>
+          Guardado automático en este dispositivo
+        </span>
+      </div>
     </div>
 
-    <!-- Modal para agregar estudiante -->
-    <div id="studentModal" class="modal">
-        <div class="modal-content">
-            <h2 class="modal-header">Agregar Nuevo Estudiante</h2>
-            <div class="form-group">
-                <label for="studentName">Nombre del estudiante:</label>
-                <input type="text" id="studentName" placeholder="Ingrese el nombre completo">
-            </div>
-            <div class="form-group">
-                <label for="studentPackage">Paquete:</label>
-                <select id="studentPackage">
-                    <option value="5">5€ por semana</option>
-                    <option value="6">6€ por semana</option>
-                </select>
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-secondary" onclick="closeAddStudentModal()">Cancelar</button>
-                <button class="btn btn-primary" onclick="addStudent()">Agregar</button>
-            </div>
-        </div>
+    <div class="controls-top">
+      <button class="primary" id="addStudentBtn">+ Agregar estudiante</button>
+      <button class="secondary" id="autoDatesBtn">Auto-fechas de la semana</button>
+      <button class="secondary" id="clearWeekBtn">Limpiar semana actual</button>
     </div>
 
-    <script>
-        let weeks = [];
-        let currentWeekId = null;
+    <div class="table-wrapper">
+      <div class="table-scroll">
+        <table>
+          <thead>
+          <tr>
+            <th>Estudiante</th>
+            <th class="day-cell">
+              <div class="day-header">
+                <span class="day-title">Lunes</span>
+                <span class="day-date" id="dateHeaderMon"></span>
+              </div>
+            </th>
+            <th class="day-cell">
+              <div class="day-header">
+                <span class="day-title">Martes</span>
+                <span class="day-date" id="dateHeaderTue"></span>
+              </div>
+            </th>
+            <th class="day-cell">
+              <div class="day-header">
+                <span class="day-title">Miércoles</span>
+                <span class="day-date" id="dateHeaderWed"></span>
+              </div>
+            </th>
+            <th class="day-cell">
+              <div class="day-header">
+                <span class="day-title">Jueves</span>
+                <span class="day-date" id="dateHeaderThu"></span>
+              </div>
+            </th>
+            <th class="day-cell">
+              <div class="day-header">
+                <span class="day-title">Viernes</span>
+                <span class="day-date" id="dateHeaderFri"></span>
+              </div>
+            </th>
+            <th class="paid-col">Pagado</th>
+            <th>Monto</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody id="studentsBody">
+          <!-- Filas dinámicas -->
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-        // Cargar datos al iniciar
-        window.onload = function() {
-            loadData();
-            if (weeks.length === 0) {
-                createNewWeek();
-            } else {
-                renderCurrentWeek();
-                renderArchivedWeeks();
-            }
-        };
+    <div class="footer-bar">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <button class="primary" id="saveWeekBtn">Guardar semana</button>
+        <button class="secondary" id="newWeekBtn">Iniciar nueva semana</button>
+      </div>
+      <div style="font-size:0.78rem;color:var(--text-soft);text-align:right;">
+        - Marque asistencia, horarios, pagado/pendiente y monto para cada niño.<br>
+        - Las semanas anteriores quedan en el historial con opción de editar pagos atrasados.
+      </div>
+    </div>
 
-        function loadData() {
-            const savedData = localStorage.getItem('calendarioGenioVision');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                weeks = data.weeks || [];
-                currentWeekId = data.currentWeekId || null;
-            }
-        }
+    <div class="history">
+      <div class="history-title">
+        <span>Historial de semanas</span>
+        <button class="tiny-btn" id="deleteAllBtn">Borrar todo el historial</button>
+      </div>
+      <ul class="history-list" id="historyList"></ul>
+    </div>
+  </div>
+</div>
 
-        function saveData() {
-            const data = {
-                weeks: weeks,
-                currentWeekId: currentWeekId
-            };
-            localStorage.setItem('calendarioGenioVision', JSON.stringify(data));
-        }
+<script>
+  // ====== Utilidades de fechas ======
+  function getMonday(d) {
+    const date = new Date(d);
+    const day = date.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    date.setDate(date.getDate() + diff);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  }
 
-        function getMonday(d) {
-            d = new Date(d);
-            const day = d.getDay();
-            const diff = d.getDate() - day + (day === 0 ? -6 : 1);
-            return new Date(d.setDate(diff));
-        }
+  function formatDateShort(d) {
+    return d.toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "2-digit"
+    });
+  }
 
-        function formatDate(date) {
-            const d = new Date(date);
-            const day = String(d.getDate()).padStart(2, '0');
-            const month = String(d.getMonth() + 1).padStart(2, '0');
-            const year = d.getFullYear();
-            return `${day}/${month}/${year}`;
-        }
+  function formatFullDate(d) {
+    return d.toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+  }
 
-        function createNewWeek() {
-            const monday = getMonday(new Date());
-            const weekDates = [];
-            
-            for (let i = 0; i < 5; i++) {
-                const date = new Date(monday);
-                date.setDate(monday.getDate() + i);
-                weekDates.push(date.toISOString());
-            }
+  function weekKeyFromMonday(mondayDate) {
+    const d = new Date(mondayDate);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
 
-            // Archivar semana actual si existe
-            if (currentWeekId !== null) {
-                const currentWeek = weeks.find(w => w.id === currentWeekId);
-                if (currentWeek) {
-                    currentWeek.archived = true;
-                }
-            }
+  // ====== Estructura de datos ======
+  // weekData = {
+  //   weekKey: "YYYY-MM-DD" (lunes),
+  //   mondayDate: string,
+  //   days: [dateLunes..dateViernes],
+  //   students: [
+  //     {
+  //       id,
+  //       name,
+  //       amount: 5 | 6,
+  //       paid: true/false,
+  //       attendance: [
+  //         {date, status, inTime, outTime} * 5
+  //       ]
+  //     }
+  //   ]
+  // }
 
-            const newWeek = {
-                id: Date.now(),
-                startDate: monday.toISOString(),
-                weekDates: weekDates,
-                students: [],
-                archived: false
-            };
+  let currentWeekKey = null;
+  let weekData = null;
 
-            // Copiar estudiantes activos de la semana anterior
-            if (currentWeekId !== null) {
-                const previousWeek = weeks.find(w => w.id === currentWeekId);
-                if (previousWeek) {
-                    newWeek.students = previousWeek.students.map(s => ({
-                        id: Date.now() + Math.random(),
-                        name: s.name,
-                        package: s.package,
-                        attendance: [{}, {}, {}, {}, {}],
-                        paid: false
-                    }));
-                }
-            }
+  const STORAGE_KEY = "calendario-genio-vision-weeks";
 
-            weeks.push(newWeek);
-            currentWeekId = newWeek.id;
-            saveData();
-            renderCurrentWeek();
-            renderArchivedWeeks();
-        }
+  function loadAllWeeks() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    try {
+      return JSON.parse(raw);
+    } catch (e) {
+      return {};
+    }
+  }
 
-        function openAddStudentModal() {
-            document.getElementById('studentModal').style.display = 'block';
-            document.getElementById('studentName').value = '';
-            document.getElementById('studentPackage').value = '5';
-        }
+  function saveAllWeeks(allWeeks) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allWeeks));
+  }
 
-        function closeAddStudentModal() {
-            document.getElementById('studentModal').style.display = 'none';
-        }
+  function saveCurrentWeek() {
+    if (!weekData || !currentWeekKey) return;
+    const allWeeks = loadAllWeeks();
+    allWeeks[currentWeekKey] = weekData;
+    saveAllWeeks(allWeeks);
+    renderHistory();
+  }
 
-        function addStudent() {
-            const name = document.getElementById('studentName').value.trim();
-            const packageType = document.getElementById('studentPackage').value;
+  function createEmptyWeek(baseDate) {
+    const monday = getMonday(baseDate || new Date());
+    const days = [];
+    for (let i = 0; i < 5; i++) {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      days.push(d.toISOString());
+    }
+    currentWeekKey = weekKeyFromMonday(monday);
+    weekData = {
+      weekKey: currentWeekKey,
+      mondayDate: monday.toISOString(),
+      days,
+      students: []
+    };
+  }
 
-            if (!name) {
-                alert('Por favor ingrese el nombre del estudiante');
-                return;
-            }
+  function setWeekHeaders() {
+    if (!weekData) return;
+    const [mon, tue, wed, thu, fri] = weekData.days.map(d => new Date(d));
+    document.getElementById("dateHeaderMon").textContent = formatDateShort(mon);
+    document.getElementById("dateHeaderTue").textContent = formatDateShort(tue);
+    document.getElementById("dateHeaderWed").textContent = formatDateShort(wed);
+    document.getElementById("dateHeaderThu").textContent = formatDateShort(thu);
+    document.getElementById("dateHeaderFri").textContent = formatDateShort(fri);
 
-            const currentWeek = weeks.find(w => w.id === currentWeekId);
-            if (!currentWeek) {
-                alert('No hay una semana activa');
-                return;
-            }
+    const startLabel = formatFullDate(mon);
+    const endLabel = formatFullDate(fri);
+    document.getElementById("weekLabel").textContent = `${startLabel} a ${endLabel}`;
+  }
 
-            const newStudent = {
-                id: Date.now(),
-                name: name,
-                package: packageType,
-                attendance: [{}, {}, {}, {}, {}],
-                paid: false
-            };
+  function renderStudents() {
+    const tbody = document.getElementById("studentsBody");
+    tbody.innerHTML = "";
 
-            currentWeek.students.push(newStudent);
-            saveData();
-            renderCurrentWeek();
-            closeAddStudentModal();
-        }
+    if (!weekData) return;
 
-        function deleteStudent(studentId) {
-            if (!confirm('¿Está seguro de eliminar este estudiante?')) {
-                return;
-            }
+    weekData.students.forEach(student => {
+      const tr = document.createElement("tr");
 
-            const currentWeek = weeks.find(w => w.id === currentWeekId);
-            if (currentWeek) {
-                currentWeek.students = currentWeek.students.filter(s => s.id !== studentId);
-                saveData();
-                renderCurrentWeek();
-            }
-        }
+      // Columna nombre
+      const tdName = document.createElement("td");
+      const nameInput = document.createElement("input");
+      nameInput.type = "text";
+      nameInput.className = "student-name-input";
+      nameInput.placeholder = "Nombre del niño";
+      nameInput.value = student.name || "";
+      nameInput.addEventListener("input", () => {
+        student.name = nameInput.value;
+        saveCurrentWeek();
+      });
+      tdName.appendChild(nameInput);
+      tr.appendChild(tdName);
 
-        function toggleAttendance(studentId, dayIndex) {
-            const currentWeek = weeks.find(w => w.id === currentWeekId);
-            if (!currentWeek) return;
+      // Columnas de días
+      for (let i = 0; i < 5; i++) {
+        const att = student.attendance[i];
+        const tdDay = document.createElement("td");
+        tdDay.className = "day-cell";
+        const block = document.createElement("div");
+        block.className = "attendance-block";
 
-            const student = currentWeek.students.find(s => s.id === studentId);
-            if (!student) return;
+        const row1 = document.createElement("div");
+        row1.className = "attendance-row";
 
-            const current = student.attendance[dayIndex].status;
-            
-            if (!current || current === 'none') {
-                student.attendance[dayIndex] = { status: 'yes', date: currentWeek.weekDates[dayIndex] };
-            } else if (current === 'yes') {
-                student.attendance[dayIndex] = { status: 'no', date: currentWeek.weekDates[dayIndex] };
-            } else {
-                student.attendance[dayIndex] = { status: 'none' };
-            }
+        const statusSelect = document.createElement("select");
+        statusSelect.className = "status-select";
+        ["", "Asistió", "No asistió"].forEach(optVal => {
+          const opt = document.createElement("option");
+          opt.value = optVal;
+          opt.textContent = optVal === "" ? "Estado" : optVal;
+          statusSelect.appendChild(opt);
+        });
+        statusSelect.value = att.status || "";
+        statusSelect.addEventListener("change", () => {
+          att.status = statusSelect.value;
+          saveCurrentWeek();
+        });
 
-            saveData();
-            renderCurrentWeek();
-        }
+        const inTime = document.createElement("input");
+        inTime.type = "time";
+        inTime.className = "time-input";
+        inTime.value = att.inTime || "";
+        inTime.addEventListener("change", () => {
+          att.inTime = inTime.value;
+          saveCurrentWeek();
+        });
 
-        function togglePayment(studentId) {
-            const currentWeek = weeks.find(w => w.id === currentWeekId);
-            if (!currentWeek) return;
+        const outTime = document.createElement("input");
+        outTime.type = "time";
+        outTime.className = "time-input";
+        outTime.value = att.outTime || "";
+        outTime.addEventListener("change", () => {
+          att.outTime = outTime.value;
+          saveCurrentWeek();
+        });
 
-            const student = currentWeek.students.find(s => s.id === studentId);
-            if (!student) return;
+        row1.appendChild(statusSelect);
+        row1.appendChild(inTime);
+        row1.appendChild(outTime);
+        block.appendChild(row1);
+        tdDay.appendChild(block);
+        tr.appendChild(tdDay);
+      }
 
-            student.paid = !student.paid;
-            saveData();
-            renderCurrentWeek();
-        }
+      // Pagado
+      const tdPaid = document.createElement("td");
+      tdPaid.className = "paid-col";
+      const payBtn = document.createElement("div");
+      payBtn.className = "pay-chip" + (student.paid ? " active" : " pending");
+      payBtn.textContent = student.paid ? "Pagado" : "Pendiente";
+      payBtn.addEventListener("click", () => {
+        student.paid = !student.paid;
+        payBtn.textContent = student.paid ? "Pagado" : "Pendiente";
+        payBtn.className = "pay-chip" + (student.paid ? " active" : " pending");
+        saveCurrentWeek();
+      });
+      tdPaid.appendChild(payBtn);
+      tr.appendChild(tdPaid);
 
-        function renderCurrentWeek() {
-            const currentWeek = weeks.find(w => w.id === currentWeekId);
-            if (!currentWeek) return;
+      // Monto
+      const tdAmount = document.createElement("td");
+      const amountSelect = document.createElement("select");
+      amountSelect.className = "amount-select";
+      [5, 6].forEach(val => {
+        const opt = document.createElement("option");
+        opt.value = val;
+        opt.textContent = val + " €";
+        amountSelect.appendChild(opt);
+      });
+      amountSelect.value = student.amount || 5;
+      amountSelect.addEventListener("change", () => {
+        student.amount = parseInt(amountSelect.value, 10);
+        saveCurrentWeek();
+      });
+      tdAmount.appendChild(amountSelect);
+      tr.appendChild(tdAmount);
 
-            const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
-            
-            const totalPaid = currentWeek.students.filter(s => s.paid).length;
-            const totalPending = currentWeek.students.filter(s => !s.paid).length;
-            const totalAmount = currentWeek.students.reduce((sum, s) => sum + (s.paid ? parseInt(s.package) : 0), 0);
+      // Acciones
+      const tdActions = document.createElement("td");
+      const actions = document.createElement("div");
+      actions.className = "row-actions";
 
-            let html = `
-                <div class="week-section">
-                    <div class="week-header">
-                        <h2>Semana Actual</h2>
-                        <div class="week-info">
-                            <span>📅 ${formatDate(currentWeek.startDate)}</span>
-                            <span>👥 ${currentWeek.students.length} estudiantes</span>
-                            <span>✅ ${totalPaid} pagados</span>
-                            <span>⏳ ${totalPending} pendientes</span>
-                        </div>
-                    </div>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Estudiante</th>
-                                    <th>Paquete</th>
-                                    ${weekDays.map((day, i) => `
-                                        <th>${day}<br><span class="date-display">${formatDate(currentWeek.weekDates[i])}</span></th>
-                                    `).join('')}
-                                    <th>Estado de Pago</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            `;
+      const dupBtn = document.createElement("button");
+      dupBtn.className = "tiny-btn";
+      dupBtn.textContent = "Duplicar";
+      dupBtn.addEventListener("click", () => {
+        const copy = JSON.parse(JSON.stringify(student));
+        copy.id = "s-" + Date.now() + "-" + Math.random().toString(16).slice(2);
+        weekData.students.push(copy);
+        renderStudents();
+        saveCurrentWeek();
+      });
 
-            currentWeek.students.forEach(student => {
-                html += `
-                    <tr>
-                        <td class="student-name">${student.name}</td>
-                        <td><span class="package-badge package-${student.package}">${student.package}€</span></td>
-                `;
+      const delBtn = document.createElement("button");
+      delBtn.className = "tiny-btn";
+      delBtn.textContent = "Eliminar";
+      delBtn.addEventListener("click", () => {
+        if (!confirm("¿Eliminar este estudiante de la semana?")) return;
+        weekData.students = weekData.students.filter(s => s.id !== student.id);
+        renderStudents();
+        saveCurrentWeek();
+      });
 
-                for (let i = 0; i < 5; i++) {
-                    const att = student.attendance[i] || { status: 'none' };
-                    const btnClass = att.status === 'yes' ? 'attendance-yes' : 
-                                   att.status === 'no' ? 'attendance-no' : 'attendance-none';
-                    const btnText = att.status === 'yes' ? '✓ Asistió' : 
-                                  att.status === 'no' ? '✗ No asistió' : '- -';
-                    
-                    html += `
-                        <td>
-                            <button class="attendance-btn ${btnClass}" onclick="toggleAttendance(${student.id}, ${i})">
-                                ${btnText}
-                            </button>
-                        </td>
-                    `;
-                }
+      actions.appendChild(dupBtn);
+      actions.appendChild(delBtn);
+      tdActions.appendChild(actions);
+      tr.appendChild(tdActions);
 
-                html += `
-                        <td>
-                            <button class="payment-btn ${student.paid ? 'payment-paid' : 'payment-pending'}" 
-                                    onclick="togglePayment(${student.id})">
-                                ${student.paid ? '✓ Pagado' : '⏳ Pendiente'}
-                            </button>
-                        </td>
-                        <td>
-                            <button class="delete-btn" onclick="deleteStudent(${student.id})">🗑️ Eliminar</button>
-                        </td>
-                    </tr>
-                `;
-            });
+      tbody.appendChild(tr);
+    });
+  }
 
-            html += `
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="summary">
-                        <div class="summary-item">
-                            <h3>Total Pagado</h3>
-                            <p>${totalAmount}€</p>
-                        </div>
-                        <div class="summary-item">
-                            <h3>Pagados</h3>
-                            <p>${totalPaid}</p>
-                        </div>
-                        <div class="summary-item">
-                            <h3>Pendientes</h3>
-                            <p>${totalPending}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
+  function renderHistory() {
+    const list = document.getElementById("historyList");
+    list.innerHTML = "";
+    const allWeeks = loadAllWeeks();
+    const entries = Object.values(allWeeks).sort((a, b) =>
+      new Date(b.mondayDate) - new Date(a.mondayDate)
+    );
 
-            document.getElementById('currentWeekSection').innerHTML = html;
-        }
+    entries.forEach(w => {
+      const li = document.createElement("li");
+      li.className = "history-item";
 
-        function renderArchivedWeeks() {
-            const archivedWeeks = weeks.filter(w => w.archived).reverse();
-            const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+      const main = document.createElement("div");
+      main.className = "history-main";
+      const mon = new Date(w.mondayDate);
+      const fri = new Date(mon);
+      fri.setDate(mon.getDate() + 4);
 
-            let html = '';
+      const label = document.createElement("span");
+      label.className = "history-week-label";
+      label.textContent =
+        formatFullDate(mon) + " → " + formatFullDate(fri);
 
-            archivedWeeks.forEach(week => {
-                const totalPaid = week.students.filter(s => s.paid).length;
-                const totalPending = week.students.filter(s => !s.paid).length;
-                const totalAmount = week.students.reduce((sum, s) => sum + (s.paid ? parseInt(s.package) : 0), 0);
+      const sub = document.createElement("span");
+      sub.className = "history-sub";
+      const totalStudents = w.students.length;
+      const paidCount = w.students.filter(s => s.paid).length;
+      const pendingCount = totalStudents - paidCount;
+      sub.textContent =
+        "Estudiantes: " +
+        totalStudents +
+        " | Pagados: " +
+        paidCount +
+        " | Pendientes: " +
+        pendingCount;
 
-                html += `
-                    <div class="week-section" data-week-id="${week.id}">
-                        <div class="week-header" style="background: linear-gradient(135deg, #718096 0%, #4a5568 100%);">
-                            <h2>Semana del ${formatDate(week.startDate)}</h2>
-                            <div class="week-info">
-                                <span>👥 ${week.students.length} estudiantes</span>
-                                <span>✅ ${totalPaid} pagados</span>
-                                <span>⏳ ${totalPending} pendientes</span>
-                                <span>💰 ${totalAmount}€</span>
-                            </div>
-                        </div>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Estudiante</th>
-                                        <th>Paquete</th>
-                                        ${weekDays.map((day, i) => `
-                                            <th>${day}<br><span class="date-display">${formatDate(week.weekDates[i])}</span></th>
-                                        `).join('')}
-                                        <th>Estado de Pago</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                `;
+      main.appendChild(label);
+      main.appendChild(sub);
 
-                week.students.forEach(student => {
-                    html += `
-                        <tr class="student-row" data-student-name="${student.name.toLowerCase()}" data-payment-status="${student.paid ? 'paid' : 'pending'}">
-                            <td class="student-name">${student.name}</td>
-                            <td><span class="package-badge package-${student.package}">${student.package}€</span></td>
-                    `;
+      const badges = document.createElement("div");
+      badges.className = "history-badges";
 
-                    for (let i = 0; i < 5; i++) {
-                        const att = student.attendance[i] || { status: 'none' };
-                        const btnClass = att.status === 'yes' ? 'attendance-yes' : 
-                                       att.status === 'no' ? 'attendance-no' : 'attendance-none';
-                        const btnText = att.status === 'yes' ? '✓ Asistió' : 
-                                      att.status === 'no' ? '✗ No asistió' : '- -';
-                        
-                        html += `
-                            <td>
-                                <button class="attendance-btn ${btnClass}" disabled>
-                                    ${btnText}
-                                </button>
-                            </td>
-                        `;
-                    }
+      const pillPaid = document.createElement("span");
+      pillPaid.className = "pill green";
+      pillPaid.textContent = "Pagos OK: " + paidCount;
 
-                    html += `
-                            <td>
-                                <button class="payment-btn ${student.paid ? 'payment-paid' : 'payment-pending'}" disabled>
-                                    ${student.paid ? '✓ Pagado' : '⏳ Pendiente'}
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
+      const pillPend = document.createElement("span");
+      pillPend.className = "pill red";
+      pillPend.textContent = "Pendientes: " + pendingCount;
 
-                html += `
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="summary">
-                            <div class="summary-item">
-                                <h3>Total Pagado</h3>
-                                <p>${totalAmount}€</p>
-                            </div>
-                            <div class="summary-item">
-                                <h3>Pagados</h3>
-                                <p>${totalPaid}</p>
-                            </div>
-                            <div class="summary-item">
-                                <h3>Pendientes</h3>
-                                <p>${totalPending}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
+      badges.appendChild(pillPaid);
+      badges.appendChild(pillPend);
 
-            document.getElementById('archivedWeeks').innerHTML = html || '<p style="text-align: center; color: #718096; padding: 40px;">No hay semanas archivadas aún.</p>';
-        }
+      const nav = document.createElement("div");
+      nav.className = "week-nav";
+      const loadBtn = document.createElement("button");
+      loadBtn.className = "tiny-btn";
+      loadBtn.textContent = "Cargar semana";
+      loadBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        loadWeek(w.weekKey);
+      });
 
-        function toggleArchived() {
-            const section = document.getElementById('archivedSection');
-            section.style.display = section.style.display === 'none' ? 'block' : 'none';
-        }
+      nav.appendChild(loadBtn);
 
-        function filterArchived() {
-            const searchText = document.getElementById('searchStudent').value.toLowerCase();
-            const paymentFilter = document.getElementById('filterPayment').value;
-            const rows = document.querySelectorAll('#archivedWeeks .student-row');
+      li.appendChild(main);
+      li.appendChild(badges);
+      li.appendChild(nav);
 
-            rows.forEach(row => {
-                const studentName = row.getAttribute('data-student-name');
-                const paymentStatus = row.getAttribute('data-payment-status');
+      li.addEventListener("click", () => loadWeek(w.weekKey));
 
-                const matchesSearch = studentName.includes(searchText);
-                const matchesPayment = paymentFilter === 'all' || paymentStatus === paymentFilter;
+      list.appendChild(li);
+    });
+  }
 
-                row.style.display = matchesSearch && matchesPayment ? '' : 'none';
-            });
-        }
+  function loadWeek(key) {
+    const allWeeks = loadAllWeeks();
+    if (!allWeeks[key]) return;
+    currentWeekKey = key;
+    weekData = allWeeks[key];
+    setWeekHeaders();
+    renderStudents();
+  }
 
-        // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
-            const modal = document.getElementById('studentModal');
-            if (event.target === modal) {
-                closeAddStudentModal();
-            }
-        };
-    </script>
+  function addStudent() {
+    const newStudent = {
+      id: "s-" + Date.now() + "-" + Math.random().toString(16).slice(2),
+      name: "",
+      amount: 5,
+      paid: false,
+      attendance: weekData.days.map(d => ({
+        date: d,
+        status: "",
+        inTime: "",
+        outTime: ""
+      }))
+    };
+    weekData.students.push(newStudent);
+    renderStudents();
+    saveCurrentWeek();
+  }
+
+  function autoFillWeekDates() {
+    if (!weekData) return;
+    const monday = getMonday(new Date());
+    weekData.mondayDate = monday.toISOString();
+    weekData.days = [];
+    for (let i = 0; i < 5; i++) {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      weekData.days.push(d.toISOString());
+    }
+    if (weekData.students) {
+      weekData.students.forEach(st => {
+        st.attendance = weekData.days.map((d, idx) => {
+          const prev = st.attendance[idx] || {};
+          return {
+            date: d,
+            status: prev.status || "",
+            inTime: prev.inTime || "",
+            outTime: prev.outTime || ""
+          };
+        });
+      });
+    }
+    setWeekHeaders();
+    renderStudents();
+    saveCurrentWeek();
+  }
+
+  function clearCurrentWeek() {
+    if (!weekData) return;
+    if (!confirm("Esto limpiará todos los datos de la semana actual (asistencia y pagos), ¿continuar?")) return;
+    weekData.students.forEach(st => {
+      st.paid = false;
+      st.attendance.forEach(att => {
+        att.status = "";
+        att.inTime = "";
+        att.outTime = "";
+      });
+    });
+    renderStudents();
+    saveCurrentWeek();
+  }
+
+  function startNewWeek() {
+    if (!confirm("Se guardará la semana actual y se creará una nueva. ¿Continuar?")) return;
+    saveCurrentWeek();
+    createEmptyWeek(new Date());
+    setWeekHeaders();
+    renderStudents();
+    saveCurrentWeek();
+  }
+
+  function init() {
+    const allWeeks = loadAllWeeks();
+    const todayMonday = getMonday(new Date());
+    const todayKey = weekKeyFromMonday(todayMonday);
+
+    if (allWeeks[todayKey]) {
+      currentWeekKey = todayKey;
+      weekData = allWeeks[todayKey];
+    } else {
+      createEmptyWeek(new Date());
+    }
+
+    setWeekHeaders();
+    renderStudents();
+    renderHistory();
+
+    document.getElementById("addStudentBtn").addEventListener("click", addStudent);
+    document.getElementById("autoDatesBtn").addEventListener("click", autoFillWeekDates);
+    document.getElementById("clearWeekBtn").addEventListener("click", clearCurrentWeek);
+    document.getElementById("saveWeekBtn").addEventListener("click", saveCurrentWeek);
+    document.getElementById("newWeekBtn").addEventListener("click", startNewWeek);
+    document.getElementById("deleteAllBtn").addEventListener("click", () => {
+      if (!confirm("¿Borrar TODO el historial de semanas? Esta acción no se puede deshacer.")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      createEmptyWeek(new Date());
+      setWeekHeaders();
+      renderStudents();
+      renderHistory();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+</script>
 </body>
 </html>
