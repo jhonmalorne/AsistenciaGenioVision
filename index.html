@@ -1,996 +1,626 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Calendario Genio Visión</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --bg: #0f172a;
-      --bg-soft: #111827;
-      --accent: #22c55e;
-      --accent-soft: #16a34a;
-      --danger: #ef4444;
-      --text: #e5e7eb;
-      --text-soft: #9ca3af;
-      --border: #1f2937;
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top, #1e293b, #020617);
-      color: var(--text);
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .app {
-      max-width: 1200px;
-      width: 100%;
-      padding: 16px;
-    }
-
-    .card {
-      background: linear-gradient(145deg, #020617, #020617, #020617);
-      border-radius: 16px;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      padding: 20px;
-    }
-
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .title-block {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: #e5e7eb;
-      text-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
-    }
-
-    .subtitle {
-      margin: 0;
-      font-size: 0.85rem;
-      color: var(--text-soft);
-    }
-
-    .week-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 0.85rem;
-      color: var(--text-soft);
-    }
-
-    .week-info span {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.78rem;
-      background: rgba(37, 99, 235, 0.15);
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(37, 99, 235, 0.4);
-      color: #bfdbfe;
-    }
-
-    .controls-top {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 7px 14px;
-      font-size: 0.82rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
-      white-space: nowrap;
-    }
-
-    button.primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-    }
-
-    button.primary:hover {
-      background: linear-gradient(135deg, var(--primary-dark), #1e40af);
-      transform: translateY(-1px);
-      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.6);
-    }
-
-    button.secondary {
-      background: rgba(148, 163, 184, 0.1);
-      color: var(--text-soft);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
-    button.secondary:hover {
-      background: rgba(148, 163, 184, 0.18);
-      transform: translateY(-1px);
-    }
-
-    button.danger {
-      background: rgba(239, 68, 68, 0.14);
-      color: #fecaca;
-      border: 1px solid rgba(239, 68, 68, 0.6);
-    }
-
-    button.danger:hover {
-      background: rgba(239, 68, 68, 0.22);
-      transform: translateY(-1px);
-    }
-
-    button:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
-
-    .table-wrapper {
-      margin-top: 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .table-scroll {
-      max-height: 420px;
-      overflow: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-      min-width: 860px;
-    }
-
-    thead {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      background: rgba(15, 23, 42, 0.98);
-      box-shadow: 0 1px 0 rgba(30, 64, 175, 0.7);
-    }
-
-    th, td {
-      padding: 8px 6px;
-      border-bottom: 1px solid rgba(31, 41, 55, 0.85);
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--text-soft);
-    }
-
-    tr:nth-child(even) td {
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    tr:hover td {
-      background: rgba(30, 64, 175, 0.22);
-    }
-
-    .student-name-input {
-      width: 100%;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      border-radius: 8px;
-      padding: 6px 8px;
-      font-size: 0.82rem;
-      color: var(--text);
-      outline: none;
-    }
-
-    .student-name-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.6);
-    }
-
-    .day-cell {
-      min-width: 140px;
-    }
-
-    .day-header {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .day-title {
-      font-size: 0.78rem;
-      color: #e5e7eb;
-    }
-
-    .day-date {
-      font-size: 0.7rem;
-      color: var(--text-soft);
-    }
-
-    .attendance-block {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .attendance-row {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    select, input[type="time"], input[type="date"] {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 6px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      padding: 4px 6px;
-      font-size: 0.78rem;
-      color: var(--text);
-      outline: none;
-    }
-
-    select:focus, input[type="time"]:focus, input[type="date"]:focus {
-      border-color: var(--primary);
-    }
-
-    .status-select {
-      min-width: 90px;
-    }
-
-    .time-input {
-      width: 80px;
-    }
-
-    .paid-col {
-      min-width: 100px;
-    }
-
-    .pay-chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-soft);
-      transition: all 0.15s;
-    }
-
-    .pay-chip.active {
-      background: rgba(34, 197, 94, 0.16);
-      border-color: rgba(34, 197, 94, 0.7);
-      color: #bbf7d0;
-      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
-    }
-
-    .pay-chip.pending {
-      background: rgba(239, 68, 68, 0.12);
-      border-color: rgba(248, 113, 113, 0.7);
-      color: #fecaca;
-    }
-
-    .amount-select {
-      min-width: 100px;
-    }
-
-    .row-actions {
-      display: flex;
-      gap: 6px;
-    }
-
-    .tiny-btn {
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.85);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-soft);
-      font-size: 0.7rem;
-      cursor: pointer;
-    }
-
-    .tiny-btn:hover {
-      background: rgba(30, 64, 175, 0.4);
-      color: #e5e7eb;
-    }
-
-    .footer-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(30, 64, 175, 0.6);
-    }
-
-    .history {
-      margin-top: 16px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), #020617 60%);
-      max-height: 260px;
-      overflow: auto;
-      font-size: 0.8rem;
-    }
-
-    .history-title {
-      font-size: 0.84rem;
-      color: var(--text-soft);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .history-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .history-item {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 7px 8px;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      margin-bottom: 6px;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
-    }
-
-    .history-item:hover {
-      background: rgba(30, 64, 175, 0.24);
-      border-color: rgba(59, 130, 246, 0.7);
-    }
-
-    .history-main {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .history-week-label {
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    .history-sub {
-      color: var(--text-soft);
-      font-size: 0.78rem;
-    }
-
-    .history-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      align-items: center;
-    }
-
-    .pill {
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      border: 1px solid rgba(75, 85, 99, 0.8);
-      color: var(--text-soft);
-    }
-
-    .pill.green {
-      border-color: rgba(34, 197, 94, 0.9);
-      color: #bbf7d0;
-    }
-
-    .pill.red {
-      border-color: rgba(239, 68, 68, 0.9);
-      color: #fecaca;
-    }
-
-    .week-nav {
-      display: flex;
-      gap: 6px;
-      margin-top: 4px;
-      font-size: 0.78rem;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 1.3rem;
-      }
-      .header {
-        align-items: flex-start;
-      }
-      .table-wrapper {
-        border-radius: 10px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Guayos · Digital · Foro abierto</title>
+    <!-- Font Awesome 6 (gratuito) para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: tipografía limpia y moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fb;
+            color: #1e2f4d;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -10px rgba(0,30,50,0.15);
+            padding: 2rem 2.5rem;
+        }
+        /* header estilo imagen referencia */
+        .header-brand {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #e7edf4;
+            padding-bottom: 1.5rem;
+        }
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-losguayos {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            color: #0b2d4b;
+        }
+        .logo-losguayos span {
+            font-weight: 300;
+            color: #4a7c5f;
+            display: inline-block;
+            margin-left: 0.2rem;
+        }
+        .logo-digital {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #5e6f8d;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-top: 0.2rem;
+        }
+        .signature {
+            font-size: 1rem;
+            color: #a0b3c9;
+            font-style: italic;
+            margin-top: 0.25rem;
+        }
+        .btn-volver {
+            background-color: #f0f4fa;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            font-weight: 600;
+            color: #1e3a5f;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #cbd6e4;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+        .btn-volver i {
+            font-size: 1rem;
+        }
+        .btn-volver:hover {
+            background-color: #e1e9f2;
+            border-color: #9bb0c9;
+            transform: scale(1.02);
+        }
+        /* Áreas (grilla de botones) */
+        .areas-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.9rem;
+            margin-bottom: 3rem;
+        }
+        .area-card {
+            background: #ffffff;
+            border: 1px solid #dee7f0;
+            border-radius: 20px;
+            padding: 1rem 0.8rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .area-card:hover {
+            border-color: #8ab3cf;
+            box-shadow: 0 12px 18px -8px rgba(20,60,100,0.15);
+            transform: translateY(-3px);
+        }
+        .area-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+        .area-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1e3a5f;
+        }
+        .area-btn {
+            background: none;
+            border: 1px solid #b6c9dd;
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1e3a5f;
+            cursor: pointer;
+            transition: 0.15s;
+            margin-top: 0.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .area-btn:hover {
+            background-color: #1e3a5f;
+            color: white;
+            border-color: #1e3a5f;
+        }
+        /* Foro semanal */
+        .forum-section {
+            background: linear-gradient(145deg, #f9fcff, #edf3f9);
+            border-radius: 2rem;
+            padding: 2rem 2rem 2.2rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #dae3ee;
+        }
+        .forum-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        .forum-header h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #15304c;
+        }
+        .pregunta-semana {
+            background: #ffffffc9;
+            backdrop-filter: blur(4px);
+            padding: 1.2rem 2rem;
+            border-radius: 60px;
+            border: 1px solid #bfd4e9;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .pregunta-semana i {
+            color: #2b6c4b;
+            margin-right: 0.8rem;
+        }
+        .forum-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 2rem;
+        }
+        @media (max-width: 780px) {
+            .forum-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .form-opinion {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            box-shadow: 0 8px 18px rgba(0, 40, 70, 0.08);
+        }
+        .form-opinion h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.3rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #2a405c;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1.5px solid #d7e1ec;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            background: #ffffff;
+            transition: 0.15s;
+        }
+        .form-group textarea {
+            border-radius: 28px;
+            resize: vertical;
+            min-height: 90px;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #2d6f4b;
+            box-shadow: 0 0 0 3px rgba(45,111,75,0.2);
+        }
+        .checkbox-interes {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 1.2rem 0 0.8rem;
+        }
+        .checkbox-interes input {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: #2d6f4b;
+        }
+        .btn-enviar {
+            background: #1e3a5f;
+            color: white;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid #143250;
+        }
+        .btn-enviar:hover {
+            background: #143250;
+            transform: scale(1.02);
+        }
+        .opiniones-list {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            box-shadow: 0 8px 18px rgba(0, 40, 70, 0.08);
+            max-height: 550px;
+            overflow-y: auto;
+        }
+        .opiniones-list h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .opinion-item {
+            background: #f6faff;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid #3d7b62;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .opinion-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .opinion-nombre {
+            font-weight: 700;
+            color: #0b2d4b;
+        }
+        .opinion-sector {
+            background: #d9e7f2;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f4c73;
+        }
+        .opinion-texto {
+            margin: 0.6rem 0 0.3rem;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .opinion-interes {
+            display: inline-block;
+            background: #fbedcf;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #8a6100;
+            margin-top: 0.4rem;
+        }
+        .opinion-timestamp {
+            font-size: 0.7rem;
+            color: #7d95b0;
+            margin-top: 0.3rem;
+            text-align: right;
+        }
+        .whatsapp-contact {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 14px rgba(37,211,102,0.3);
+            transition: 0.15s;
+            border: 1px solid #1da959;
+        }
+        .btn-whatsapp:hover {
+            background: #1da959;
+            transform: scale(1.02);
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 2.2rem;
+            color: #7b8da3;
+            font-size: 0.9rem;
+            border-top: 1px dashed #cbd6e4;
+            padding-top: 2rem;
+        }
+        .btn-volver-small {
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .vacío-msg {
+            color: #8da0b8;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
 </head>
 <body>
-<div class="app">
-  <div class="card">
-    <div class="header">
-      <div class="title-block">
-        <h1>Calendario Genio Visión</h1>
-        <p class="subtitle">
-          Control semanal de asistencia y pagos por estudiante (5 € / 6 €).
-        </p>
-      </div>
-      <div class="week-info">
-        <span>
-          Semana actual:
-          <strong id="weekLabel"></strong>
-        </span>
-        <span class="badge">
-          <span style="font-size:10px;">●</span>
-          Guardado automático en este dispositivo
-        </span>
-      </div>
+<div class="container">
+    <!-- HEADER con estilo "LOS GUAYOS DIGITAL / Orleny Gestim" -->
+    <div class="header-brand">
+        <div class="logo-area">
+            <div class="logo-losguayos">LOS GUAYOS <span>◉</span></div>
+            <div class="logo-digital">DIGITAL</div>
+            <div class="signature">Orleny Gestim</div>
+        </div>
+        <a href="https://losguayosdigital.com/" class="btn-volver" id="btnVolver">
+            <i class="fas fa-arrow-left"></i> Volver al sitio
+        </a>
     </div>
 
-    <div class="controls-top">
-      <button class="primary" id="addStudentBtn">+ Agregar estudiante</button>
-      <button class="secondary" id="autoDatesBtn">Auto-fechas de la semana</button>
-      <button class="secondary" id="clearWeekBtn">Limpiar semana actual</button>
+    <!-- ÁREAS: 11 botones visibles (cada área con su botón) -->
+    <div class="areas-title">
+        <i class="fas fa-th-large" style="color: #2f6b4b;"></i> Áreas de Los Guayos
+    </div>
+    <div class="areas-grid" id="areasGrid">
+        <!-- datos inyectados por JS pero podemos maquetar directamente -->
     </div>
 
-    <div class="table-wrapper">
-      <div class="table-scroll">
-        <table>
-          <thead>
-          <tr>
-            <th>Estudiante</th>
-            <th class="day-cell">
-              <div class="day-header">
-                <span class="day-title">Lunes</span>
-                <span class="day-date" id="dateHeaderMon"></span>
-              </div>
-            </th>
-            <th class="day-cell">
-              <div class="day-header">
-                <span class="day-title">Martes</span>
-                <span class="day-date" id="dateHeaderTue"></span>
-              </div>
-            </th>
-            <th class="day-cell">
-              <div class="day-header">
-                <span class="day-title">Miércoles</span>
-                <span class="day-date" id="dateHeaderWed"></span>
-              </div>
-            </th>
-            <th class="day-cell">
-              <div class="day-header">
-                <span class="day-title">Jueves</span>
-                <span class="day-date" id="dateHeaderThu"></span>
-              </div>
-            </th>
-            <th class="day-cell">
-              <div class="day-header">
-                <span class="day-title">Viernes</span>
-                <span class="day-date" id="dateHeaderFri"></span>
-              </div>
-            </th>
-            <th class="paid-col">Pagado</th>
-            <th>Monto</th>
-            <th>Acciones</th>
-          </tr>
-          </thead>
-          <tbody id="studentsBody">
-          <!-- Filas dinámicas -->
-          </tbody>
-        </table>
-      </div>
+    <!-- SECCIÓN FORO SEMANAL -->
+    <div class="forum-section">
+        <div class="forum-header">
+            <h2><i class="fas fa-comments"></i> Foro abierto</h2>
+            <span class="pregunta-etiqueta"># Opinión ciudadana</span>
+        </div>
+
+        <!-- Pregunta de la semana (fija) -->
+        <div class="pregunta-semana">
+            <i class="fas fa-calendar-week"></i> 
+            <strong>Pregunta de esta semana:</strong> “Efecto de la situación actual política, económica y social en la educación de los niños de Los Guayos”
+        </div>
+
+        <!-- Grid: formulario + opiniones -->
+        <div class="forum-grid">
+            <!-- IZQUIERDA: formulario para opinar -->
+            <div class="form-opinion">
+                <h3><i class="fas fa-pen-alt"></i> Deja tu opinión</h3>
+                <form id="opinionForm">
+                    <div class="form-group">
+                        <label>Nombre completo</label>
+                        <input type="text" id="nombre" placeholder="Ej. María Rodríguez" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Sector / comunidad</label>
+                        <input type="text" id="sector" placeholder="Ej. Centro, Barrio San José, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tu opinión sobre la pregunta</label>
+                        <textarea id="opinion" placeholder="Escribe con respeto y objetividad..." required></textarea>
+                    </div>
+                    <div class="checkbox-interes">
+                        <input type="checkbox" id="interesLiderar">
+                        <label for="interesLiderar" style="font-weight: 500;">✔ Estoy interesado en liderar iniciativas (me pueden contactar)</label>
+                    </div>
+                    <button type="submit" class="btn-enviar"><i class="fas fa-paper-plane"></i> Enviar opinión</button>
+                </form>
+                <!-- aviso sutil -->
+                <p style="font-size:0.8rem; color:#6f8aaa; margin-top:1rem;"><i class="fas fa-info-circle"></i> Tu opinión será visible para la comunidad. Foro responsable.</p>
+            </div>
+
+            <!-- DERECHA: listado de opiniones en tiempo real (almacenadas localmente) -->
+            <div class="opiniones-list">
+                <h3><i class="fas fa-history"></i> Historial de respuestas</h3>
+                <div id="opinionesContainer">
+                    <!-- Se renderiza con JS -->
+                    <div class="vacío-msg">Cargando opiniones...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón destacado whatsapp para reclutar / contacto -->
+        <div class="whatsapp-contact">
+            <a href="https://wa.me/584244525765?text=Hola%2C%20me%20interesa%20ser%20parte%20de%20una%20iniciativa%20en%20Los%20Guayos%20Digital" target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Contáctanos para liderar (0424-4525765)
+            </a>
+        </div>
     </div>
 
-    <div class="footer-bar">
-      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
-        <button class="primary" id="saveWeekBtn">Guardar semana</button>
-        <button class="secondary" id="newWeekBtn">Iniciar nueva semana</button>
-      </div>
-      <div style="font-size:0.78rem;color:var(--text-soft);text-align:right;">
-        - Marque asistencia, horarios, pagado/pendiente y monto para cada niño.<br>
-        - Las semanas anteriores quedan en el historial con opción de editar pagos atrasados.
-      </div>
+    <!-- footer sencillo -->
+    <div class="footer-note">
+        <i class="far fa-heart" style="color:#b8646e;"></i> Los Guayos Digital · Construyendo comunidad desde cada área
     </div>
-
-    <div class="history">
-      <div class="history-title">
-        <span>Historial de semanas</span>
-        <button class="tiny-btn" id="deleteAllBtn">Borrar todo el historial</button>
-      </div>
-      <ul class="history-list" id="historyList"></ul>
-    </div>
-  </div>
 </div>
 
 <script>
-  // ====== Utilidades de fechas ======
-  function getMonday(d) {
-    const date = new Date(d);
-    const day = date.getDay();
-    const diff = day === 0 ? -6 : 1 - day;
-    date.setDate(date.getDate() + diff);
-    date.setHours(0, 0, 0, 0);
-    return date;
-  }
+    (function() {
+        // ---------- CONFIGURACIÓN DE ÁREAS (11) con iconos y botón ----------
+        const areas = [
+            { nombre: "Directorio", icono: "🔹", color: "#2e7a94" },
+            { nombre: "Educación", icono: "📚", color: "#3c6e47" },
+            { nombre: "Deportes", icono: "🏃‍♂️", color: "#c96b2c" },
+            { nombre: "Industrias", icono: "🏭", color: "#6a4c8c" },
+            { nombre: "Flora y Fauna", icono: "🌿", color: "#2d8562" },
+            { nombre: "Agricultura", icono: "🌱", color: "#a78b3f" },
+            { nombre: "Turismo", icono: "🌄", color: "#cc7843" },
+            { nombre: "Proyectos", icono: "📊", color: "#4e6e9e" },
+            { nombre: "Noticias", icono: "📰", color: "#b3444a" },
+            { nombre: "Cultura y Religión", icono: "🎭", color: "#b5784b" },
+            { nombre: "Ecología", icono: "♻️", color: "#3f8f6b" }
+        ];
 
-  function formatDateShort(d) {
-    return d.toLocaleDateString("es-ES", {
-      day: "2-digit",
-      month: "2-digit"
-    });
-  }
+        const areasGrid = document.getElementById('areasGrid');
+        areasGrid.innerHTML = areas.map(area => `
+            <div class="area-card">
+                <span class="area-icon">${area.icono}</span>
+                <span class="area-name">${area.nombre}</span>
+                <button class="area-btn" onclick="alert('Área ${area.nombre}: pronto más información')"><i class="fas fa-arrow-right"></i> Ver área</button>
+            </div>
+        `).join('');
 
-  function formatFullDate(d) {
-    return d.toLocaleDateString("es-ES", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    });
-  }
+        // ---------- GESTIÓN DEL FORO (localStorage para persistencia) ----------
+        const STORAGE_KEY = 'losguayos_forum_v1';
+        let opiniones = [];
 
-  function weekKeyFromMonday(mondayDate) {
-    const d = new Date(mondayDate);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    return `${y}-${m}-${day}`;
-  }
+        // Elementos DOM
+        const form = document.getElementById('opinionForm');
+        const inputNombre = document.getElementById('nombre');
+        const inputSector = document.getElementById('sector');
+        const textareaOpinion = document.getElementById('opinion');
+        const chkInteres = document.getElementById('interesLiderar');
+        const containerOpiniones = document.getElementById('opinionesContainer');
 
-  // ====== Estructura de datos ======
-  // weekData = {
-  //   weekKey: "YYYY-MM-DD" (lunes),
-  //   mondayDate: string,
-  //   days: [dateLunes..dateViernes],
-  //   students: [
-  //     {
-  //       id,
-  //       name,
-  //       amount: 5 | 6,
-  //       paid: true/false,
-  //       attendance: [
-  //         {date, status, inTime, outTime} * 5
-  //       ]
-  //     }
-  //   ]
-  // }
+        // Cargar datos guardados
+        function cargarOpiniones() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    opiniones = JSON.parse(stored);
+                } else {
+                    // datos de ejemplo amigables para que no se vea vacío
+                    opiniones = [
+                        { nombre: "Ana Karina", sector: "Urbanización La Granja", opinion: "La falta de recursos afecta la concentración de los niños, pero los maestros ponen empeño. Hace falta más apoyo municipal.", interes: true, timestamp: Date.now() - 86400000 },
+                        { nombre: "Carlos Ledezma", sector: "Barrio Unión", opinion: "La situación económica limita el acceso a útiles y tecnología. Los muchachos pierden motivación.", interes: false, timestamp: Date.now() - 3600000 },
+                        { nombre: "Diana Rojas", sector: "Centro", opinion: "A pesar del contexto, hay iniciativas comunitarias de refuerzo escolar. Los niños necesitan espacios seguros.", interes: true, timestamp: Date.now() - 7200000 }
+                    ];
+                }
+            } catch (e) {
+                opiniones = [];
+            }
+            // ordenar por timestamp descendente (más reciente primero)
+            opiniones.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+            renderOpiniones();
+        }
 
-  let currentWeekKey = null;
-  let weekData = null;
+        // Guardar en localStorage
+        function guardarOpiniones() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(opiniones));
+        }
 
-  const STORAGE_KEY = "calendario-genio-vision-weeks";
+        // Renderizar lista de opiniones
+        function renderOpiniones() {
+            if (!containerOpiniones) return;
+            if (opiniones.length === 0) {
+                containerOpiniones.innerHTML = `<div class="vacío-msg"><i class="far fa-smile"></i> Sé el primero en opinar</div>`;
+                return;
+            }
+            let html = '';
+            opiniones.forEach(op => {
+                const fecha = op.timestamp ? new Date(op.timestamp).toLocaleString('es-VE', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) : 'recientemente';
+                const interesBadge = op.interes ? '<span class="opinion-interes"><i class="fas fa-star"></i> Interesado en liderar</span>' : '';
+                html += `
+                    <div class="opinion-item">
+                        <div class="opinion-header">
+                            <span class="opinion-nombre"><i class="fas fa-user-circle"></i> ${escapeHTML(op.nombre)}</span>
+                            <span class="opinion-sector">${escapeHTML(op.sector)}</span>
+                        </div>
+                        <div class="opinion-texto">“${escapeHTML(op.opinion)}”</div>
+                        ${interesBadge}
+                        <div class="opinion-timestamp"><i class="far fa-clock"></i> ${fecha}</div>
+                    </div>
+                `;
+            });
+            containerOpiniones.innerHTML = html;
+        }
 
-  function loadAllWeeks() {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return {};
-    try {
-      return JSON.parse(raw);
-    } catch (e) {
-      return {};
-    }
-  }
+        // escaping simple para evitar XSS
+        function escapeHTML(str) {
+            return String(str).replace(/[&<>"]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                if (m === '"') return '&quot;';
+                return m;
+            });
+        }
 
-  function saveAllWeeks(allWeeks) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(allWeeks));
-  }
+        // Manejar nuevo envío
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-  function saveCurrentWeek() {
-    if (!weekData || !currentWeekKey) return;
-    const allWeeks = loadAllWeeks();
-    allWeeks[currentWeekKey] = weekData;
-    saveAllWeeks(allWeeks);
-    renderHistory();
-  }
+            const nombre = inputNombre.value.trim();
+            const sector = inputSector.value.trim();
+            const opinionText = textareaOpinion.value.trim();
+            if (!nombre || !sector || !opinionText) {
+                alert('Por favor completa nombre, sector y opinión.');
+                return;
+            }
 
-  function createEmptyWeek(baseDate) {
-    const monday = getMonday(baseDate || new Date());
-    const days = [];
-    for (let i = 0; i < 5; i++) {
-      const d = new Date(monday);
-      d.setDate(monday.getDate() + i);
-      days.push(d.toISOString());
-    }
-    currentWeekKey = weekKeyFromMonday(monday);
-    weekData = {
-      weekKey: currentWeekKey,
-      mondayDate: monday.toISOString(),
-      days,
-      students: []
-    };
-  }
+            const nuevaOpinion = {
+                nombre: nombre,
+                sector: sector,
+                opinion: opinionText,
+                interes: chkInteres.checked,
+                timestamp: Date.now()
+            };
 
-  function setWeekHeaders() {
-    if (!weekData) return;
-    const [mon, tue, wed, thu, fri] = weekData.days.map(d => new Date(d));
-    document.getElementById("dateHeaderMon").textContent = formatDateShort(mon);
-    document.getElementById("dateHeaderTue").textContent = formatDateShort(tue);
-    document.getElementById("dateHeaderWed").textContent = formatDateShort(wed);
-    document.getElementById("dateHeaderThu").textContent = formatDateShort(thu);
-    document.getElementById("dateHeaderFri").textContent = formatDateShort(fri);
+            opiniones.unshift(nuevaOpinion);  // agregar al inicio para que sea el primero
+            // mantener un máximo razonable (últimas 50)
+            if (opiniones.length > 50) opiniones.pop();
 
-    const startLabel = formatFullDate(mon);
-    const endLabel = formatFullDate(fri);
-    document.getElementById("weekLabel").textContent = `${startLabel} a ${endLabel}`;
-  }
+            guardarOpiniones();
+            renderOpiniones();
 
-  function renderStudents() {
-    const tbody = document.getElementById("studentsBody");
-    tbody.innerHTML = "";
-
-    if (!weekData) return;
-
-    weekData.students.forEach(student => {
-      const tr = document.createElement("tr");
-
-      // Columna nombre
-      const tdName = document.createElement("td");
-      const nameInput = document.createElement("input");
-      nameInput.type = "text";
-      nameInput.className = "student-name-input";
-      nameInput.placeholder = "Nombre del niño";
-      nameInput.value = student.name || "";
-      nameInput.addEventListener("input", () => {
-        student.name = nameInput.value;
-        saveCurrentWeek();
-      });
-      tdName.appendChild(nameInput);
-      tr.appendChild(tdName);
-
-      // Columnas de días
-      for (let i = 0; i < 5; i++) {
-        const att = student.attendance[i];
-        const tdDay = document.createElement("td");
-        tdDay.className = "day-cell";
-        const block = document.createElement("div");
-        block.className = "attendance-block";
-
-        const row1 = document.createElement("div");
-        row1.className = "attendance-row";
-
-        const statusSelect = document.createElement("select");
-        statusSelect.className = "status-select";
-        ["", "Asistió", "No asistió"].forEach(optVal => {
-          const opt = document.createElement("option");
-          opt.value = optVal;
-          opt.textContent = optVal === "" ? "Estado" : optVal;
-          statusSelect.appendChild(opt);
-        });
-        statusSelect.value = att.status || "";
-        statusSelect.addEventListener("change", () => {
-          att.status = statusSelect.value;
-          saveCurrentWeek();
+            // reset formulario
+            form.reset();
+            // opcional dejar foco en nombre
+            inputNombre.focus();
         });
 
-        const inTime = document.createElement("input");
-        inTime.type = "time";
-        inTime.className = "time-input";
-        inTime.value = att.inTime || "";
-        inTime.addEventListener("change", () => {
-          att.inTime = inTime.value;
-          saveCurrentWeek();
+        // Inicializar
+        cargarOpiniones();
+
+        // Simular "real-time" no hay backend, pero cada nueva opinión de este navegador se agrega al instante
+        // y se conserva en localStorage. Para experiencia entre pestañas, se podría escuchar storageEvent,
+        // pero para este alcance es suficiente.
+        window.addEventListener('storage', function(e) {
+            if (e.key === STORAGE_KEY) {
+                cargarOpiniones(); // si otra pestaña modificó, actualizamos
+            }
         });
 
-        const outTime = document.createElement("input");
-        outTime.type = "time";
-        outTime.className = "time-input";
-        outTime.value = att.outTime || "";
-        outTime.addEventListener("change", () => {
-          att.outTime = outTime.value;
-          saveCurrentWeek();
-        });
-
-        row1.appendChild(statusSelect);
-        row1.appendChild(inTime);
-        row1.appendChild(outTime);
-        block.appendChild(row1);
-        tdDay.appendChild(block);
-        tr.appendChild(tdDay);
-      }
-
-      // Pagado
-      const tdPaid = document.createElement("td");
-      tdPaid.className = "paid-col";
-      const payBtn = document.createElement("div");
-      payBtn.className = "pay-chip" + (student.paid ? " active" : " pending");
-      payBtn.textContent = student.paid ? "Pagado" : "Pendiente";
-      payBtn.addEventListener("click", () => {
-        student.paid = !student.paid;
-        payBtn.textContent = student.paid ? "Pagado" : "Pendiente";
-        payBtn.className = "pay-chip" + (student.paid ? " active" : " pending");
-        saveCurrentWeek();
-      });
-      tdPaid.appendChild(payBtn);
-      tr.appendChild(tdPaid);
-
-      // Monto
-      const tdAmount = document.createElement("td");
-      const amountSelect = document.createElement("select");
-      amountSelect.className = "amount-select";
-      [5, 6].forEach(val => {
-        const opt = document.createElement("option");
-        opt.value = val;
-        opt.textContent = val + " €";
-        amountSelect.appendChild(opt);
-      });
-      amountSelect.value = student.amount || 5;
-      amountSelect.addEventListener("change", () => {
-        student.amount = parseInt(amountSelect.value, 10);
-        saveCurrentWeek();
-      });
-      tdAmount.appendChild(amountSelect);
-      tr.appendChild(tdAmount);
-
-      // Acciones
-      const tdActions = document.createElement("td");
-      const actions = document.createElement("div");
-      actions.className = "row-actions";
-
-      const dupBtn = document.createElement("button");
-      dupBtn.className = "tiny-btn";
-      dupBtn.textContent = "Duplicar";
-      dupBtn.addEventListener("click", () => {
-        const copy = JSON.parse(JSON.stringify(student));
-        copy.id = "s-" + Date.now() + "-" + Math.random().toString(16).slice(2);
-        weekData.students.push(copy);
-        renderStudents();
-        saveCurrentWeek();
-      });
-
-      const delBtn = document.createElement("button");
-      delBtn.className = "tiny-btn";
-      delBtn.textContent = "Eliminar";
-      delBtn.addEventListener("click", () => {
-        if (!confirm("¿Eliminar este estudiante de la semana?")) return;
-        weekData.students = weekData.students.filter(s => s.id !== student.id);
-        renderStudents();
-        saveCurrentWeek();
-      });
-
-      actions.appendChild(dupBtn);
-      actions.appendChild(delBtn);
-      tdActions.appendChild(actions);
-      tr.appendChild(tdActions);
-
-      tbody.appendChild(tr);
-    });
-  }
-
-  function renderHistory() {
-    const list = document.getElementById("historyList");
-    list.innerHTML = "";
-    const allWeeks = loadAllWeeks();
-    const entries = Object.values(allWeeks).sort((a, b) =>
-      new Date(b.mondayDate) - new Date(a.mondayDate)
-    );
-
-    entries.forEach(w => {
-      const li = document.createElement("li");
-      li.className = "history-item";
-
-      const main = document.createElement("div");
-      main.className = "history-main";
-      const mon = new Date(w.mondayDate);
-      const fri = new Date(mon);
-      fri.setDate(mon.getDate() + 4);
-
-      const label = document.createElement("span");
-      label.className = "history-week-label";
-      label.textContent =
-        formatFullDate(mon) + " → " + formatFullDate(fri);
-
-      const sub = document.createElement("span");
-      sub.className = "history-sub";
-      const totalStudents = w.students.length;
-      const paidCount = w.students.filter(s => s.paid).length;
-      const pendingCount = totalStudents - paidCount;
-      sub.textContent =
-        "Estudiantes: " +
-        totalStudents +
-        " | Pagados: " +
-        paidCount +
-        " | Pendientes: " +
-        pendingCount;
-
-      main.appendChild(label);
-      main.appendChild(sub);
-
-      const badges = document.createElement("div");
-      badges.className = "history-badges";
-
-      const pillPaid = document.createElement("span");
-      pillPaid.className = "pill green";
-      pillPaid.textContent = "Pagos OK: " + paidCount;
-
-      const pillPend = document.createElement("span");
-      pillPend.className = "pill red";
-      pillPend.textContent = "Pendientes: " + pendingCount;
-
-      badges.appendChild(pillPaid);
-      badges.appendChild(pillPend);
-
-      const nav = document.createElement("div");
-      nav.className = "week-nav";
-      const loadBtn = document.createElement("button");
-      loadBtn.className = "tiny-btn";
-      loadBtn.textContent = "Cargar semana";
-      loadBtn.addEventListener("click", e => {
-        e.stopPropagation();
-        loadWeek(w.weekKey);
-      });
-
-      nav.appendChild(loadBtn);
-
-      li.appendChild(main);
-      li.appendChild(badges);
-      li.appendChild(nav);
-
-      li.addEventListener("click", () => loadWeek(w.weekKey));
-
-      list.appendChild(li);
-    });
-  }
-
-  function loadWeek(key) {
-    const allWeeks = loadAllWeeks();
-    if (!allWeeks[key]) return;
-    currentWeekKey = key;
-    weekData = allWeeks[key];
-    setWeekHeaders();
-    renderStudents();
-  }
-
-  function addStudent() {
-    const newStudent = {
-      id: "s-" + Date.now() + "-" + Math.random().toString(16).slice(2),
-      name: "",
-      amount: 5,
-      paid: false,
-      attendance: weekData.days.map(d => ({
-        date: d,
-        status: "",
-        inTime: "",
-        outTime: ""
-      }))
-    };
-    weekData.students.push(newStudent);
-    renderStudents();
-    saveCurrentWeek();
-  }
-
-  function autoFillWeekDates() {
-    if (!weekData) return;
-    const monday = getMonday(new Date());
-    weekData.mondayDate = monday.toISOString();
-    weekData.days = [];
-    for (let i = 0; i < 5; i++) {
-      const d = new Date(monday);
-      d.setDate(monday.getDate() + i);
-      weekData.days.push(d.toISOString());
-    }
-    if (weekData.students) {
-      weekData.students.forEach(st => {
-        st.attendance = weekData.days.map((d, idx) => {
-          const prev = st.attendance[idx] || {};
-          return {
-            date: d,
-            status: prev.status || "",
-            inTime: prev.inTime || "",
-            outTime: prev.outTime || ""
-          };
-        });
-      });
-    }
-    setWeekHeaders();
-    renderStudents();
-    saveCurrentWeek();
-  }
-
-  function clearCurrentWeek() {
-    if (!weekData) return;
-    if (!confirm("Esto limpiará todos los datos de la semana actual (asistencia y pagos), ¿continuar?")) return;
-    weekData.students.forEach(st => {
-      st.paid = false;
-      st.attendance.forEach(att => {
-        att.status = "";
-        att.inTime = "";
-        att.outTime = "";
-      });
-    });
-    renderStudents();
-    saveCurrentWeek();
-  }
-
-  function startNewWeek() {
-    if (!confirm("Se guardará la semana actual y se creará una nueva. ¿Continuar?")) return;
-    saveCurrentWeek();
-    createEmptyWeek(new Date());
-    setWeekHeaders();
-    renderStudents();
-    saveCurrentWeek();
-  }
-
-  function init() {
-    const allWeeks = loadAllWeeks();
-    const todayMonday = getMonday(new Date());
-    const todayKey = weekKeyFromMonday(todayMonday);
-
-    if (allWeeks[todayKey]) {
-      currentWeekKey = todayKey;
-      weekData = allWeeks[todayKey];
-    } else {
-      createEmptyWeek(new Date());
-    }
-
-    setWeekHeaders();
-    renderStudents();
-    renderHistory();
-
-    document.getElementById("addStudentBtn").addEventListener("click", addStudent);
-    document.getElementById("autoDatesBtn").addEventListener("click", autoFillWeekDates);
-    document.getElementById("clearWeekBtn").addEventListener("click", clearCurrentWeek);
-    document.getElementById("saveWeekBtn").addEventListener("click", saveCurrentWeek);
-    document.getElementById("newWeekBtn").addEventListener("click", startNewWeek);
-    document.getElementById("deleteAllBtn").addEventListener("click", () => {
-      if (!confirm("¿Borrar TODO el historial de semanas? Esta acción no se puede deshacer.")) return;
-      localStorage.removeItem(STORAGE_KEY);
-      createEmptyWeek(new Date());
-      setWeekHeaders();
-      renderStudents();
-      renderHistory();
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", init);
+        // botón volver ya es un link normal.
+        // Asegurar que el botón "volver" no se comporte como simple link (ya lo es).
+    })();
 </script>
+<!-- Pequeña nota: para un foro completamente multi-usuario en tiempo real se necesitaría backend (Firebase, etc). 
+     Esta versión usa localStorage para persistencia local y simula inmediatez en el mismo navegador. -->
 </body>
 </html>
