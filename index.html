@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los Guayos · Digital · Foro abierto</title>
-    <!-- Font Awesome 6 (gratuito) para iconos -->
+    <title>Los Guayos · Educación · Comunidad educativa</title>
+    <!-- Font Awesome 6 (gratis) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: tipografía limpia y moderna -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter + Open Sans (versátil) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,552 +15,598 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f7fb;
-            color: #1e2f4d;
+            font-family: 'Inter', 'Open Sans', sans-serif;
+            background-color: #f8fafd;
+            color: #1d2b3f;
             line-height: 1.5;
-            padding: 2rem 1.5rem;
         }
-        .container {
+        /* contenedor general */
+        .page {
             max-width: 1400px;
             margin: 0 auto;
             background: white;
-            border-radius: 2rem;
-            box-shadow: 0 20px 40px -10px rgba(0,30,50,0.15);
-            padding: 2rem 2.5rem;
+            box-shadow: 0 20px 40px -15px rgba(0,30,60,0.1);
+            border-radius: 2rem 2rem 0 0;
+            overflow: hidden;
         }
-        /* header estilo imagen referencia */
-        .header-brand {
+        /* header con logo y botón volver */
+        .header-educacion {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2.5rem;
-            border-bottom: 2px solid #e7edf4;
-            padding-bottom: 1.5rem;
+            padding: 1.5rem 2.5rem;
+            background: linear-gradient(98deg, #f0f7fc 0%, #ffffff 80%);
+            border-bottom: 3px solid #bbd5e8;
         }
         .logo-area {
             display: flex;
             flex-direction: column;
         }
-        .logo-losguayos {
-            font-size: 2.2rem;
+        .logo-main {
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            color: #0b2d4b;
+            color: #0f3b5e;
+            letter-spacing: -0.5px;
         }
-        .logo-losguayos span {
-            font-weight: 300;
-            color: #4a7c5f;
+        .logo-main span {
+            color: #4c9f70;
+            font-weight: 400;
+        }
+        .subtitulo-area {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #256c4b;
+            background: #e2f0e9;
             display: inline-block;
-            margin-left: 0.2rem;
-        }
-        .logo-digital {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #5e6f8d;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-top: 0.2rem;
-        }
-        .signature {
-            font-size: 1rem;
-            color: #a0b3c9;
-            font-style: italic;
-            margin-top: 0.25rem;
+            padding: 0.2rem 1.5rem;
+            border-radius: 40px;
+            margin-top: 0.5rem;
+            border: 1px solid #b7dbc9;
         }
         .btn-volver {
-            background-color: #f0f4fa;
-            border-radius: 40px;
+            background-color: #ffffffd9;
+            backdrop-filter: blur(4px);
+            border: 1px solid #b2c9de;
+            border-radius: 50px;
             padding: 0.7rem 1.8rem;
             font-weight: 600;
-            color: #1e3a5f;
+            color: #1d4468;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            border: 1px solid #cbd6e4;
-            transition: all 0.2s;
-            font-size: 1rem;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
         }
         .btn-volver i {
             font-size: 1rem;
         }
         .btn-volver:hover {
-            background-color: #e1e9f2;
-            border-color: #9bb0c9;
+            background-color: #ffffff;
+            border-color: #7fa3c2;
             transform: scale(1.02);
         }
-        /* Áreas (grilla de botones) */
-        .areas-title {
-            font-size: 1.8rem;
-            font-weight: 700;
+
+        /* HERO con imagen educativa */
+        .hero-educacion {
+            position: relative;
+            background: linear-gradient(105deg, #112b44d9, #183f5cd9), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 35%;
+            padding: 5rem 3rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .hero-texto {
+            max-width: 600px;
+        }
+        .hero-etiqueta {
+            background: #f5b041cc;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
             margin-bottom: 1.2rem;
+            backdrop-filter: blur(2px);
+            border: 1px solid #ffd58c;
+        }
+        .hero-texto h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .hero-texto p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+        .hero-stats {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            gap: 2rem;
+            background: #ffffff20;
+            backdrop-filter: blur(8px);
+            padding: 1.5rem 2.5rem;
+            border-radius: 3rem;
+            border: 1px solid #ffffff70;
         }
-        .areas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 0.9rem;
-            margin-bottom: 3rem;
-        }
-        .area-card {
-            background: #ffffff;
-            border: 1px solid #dee7f0;
-            border-radius: 20px;
-            padding: 1rem 0.8rem;
+        .stat-item {
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
         }
-        .area-card:hover {
-            border-color: #8ab3cf;
-            box-shadow: 0 12px 18px -8px rgba(20,60,100,0.15);
-            transform: translateY(-3px);
-        }
-        .area-icon {
+        .stat-num {
             font-size: 2.2rem;
-            line-height: 1;
+            font-weight: 800;
+            color: #ffecb3;
         }
-        .area-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: #1e3a5f;
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .area-btn {
-            background: none;
-            border: 1px solid #b6c9dd;
+
+        /* sección de proyectos destacados */
+        .proyectos-seccion {
+            padding: 3.5rem 2.5rem;
+            background: #ffffff;
+        }
+        .seccion-titulo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #153e5a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .seccion-titulo i {
+            color: #479f6b;
+            background: #def3e6;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        .proyectos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .proyecto-card {
+            background: #f6fafe;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 8px 18px -6px rgba(0,60,90,0.1);
+            transition: all 0.25s;
+            border: 1px solid #d3e4f2;
+        }
+        .proyecto-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 28px -8px #1e4f6e33;
+        }
+        .proyecto-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+        }
+        .proyecto-content {
+            padding: 1.5rem;
+        }
+        .proyecto-tag {
+            background: #a1c9e7;
+            color: #153e5a;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 1rem;
             border-radius: 30px;
-            padding: 0.3rem 1rem;
-            font-size: 0.75rem;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        .proyecto-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .proyecto-content p {
+            color: #355e7a;
+            margin-bottom: 1rem;
+        }
+        .btn-apoyar {
+            background: none;
+            border: 1.5px solid #30755b;
+            color: #30755b;
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
             font-weight: 600;
-            color: #1e3a5f;
             cursor: pointer;
-            transition: 0.15s;
-            margin-top: 0.2rem;
+            transition: 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 0.3rem;
         }
-        .area-btn:hover {
-            background-color: #1e3a5f;
+        .btn-apoyar:hover {
+            background: #30755b;
             color: white;
-            border-color: #1e3a5f;
         }
-        /* Foro semanal */
-        .forum-section {
-            background: linear-gradient(145deg, #f9fcff, #edf3f9);
-            border-radius: 2rem;
-            padding: 2rem 2rem 2.2rem;
-            margin: 2rem 0 1.5rem;
-            border: 1px solid #dae3ee;
+
+        /* FORO - similar al anterior pero con identidad educativa */
+        .foro-educacion {
+            background: #e6f2fa;
+            padding: 3rem 2.5rem;
+            border-radius: 3rem 3rem 0 0;
+            margin-top: 1rem;
         }
-        .forum-header {
+        .foro-header {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.2rem;
-        }
-        .forum-header h2 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            color: #15304c;
-        }
-        .pregunta-semana {
-            background: #ffffffc9;
-            backdrop-filter: blur(4px);
-            padding: 1.2rem 2rem;
-            border-radius: 60px;
-            border: 1px solid #bfd4e9;
-            font-size: 1.2rem;
-            font-weight: 500;
+            flex-direction: column;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
         }
-        .pregunta-semana i {
-            color: #2b6c4b;
+        .foro-pregunta {
+            background: white;
+            border-radius: 60px;
+            padding: 1.3rem 2.2rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-left: 8px solid #287955;
+            box-shadow: 0 10px 20px rgba(0, 50, 70, 0.1);
+            margin-bottom: 1.5rem;
+        }
+        .foro-pregunta i {
+            color: #287955;
             margin-right: 0.8rem;
         }
-        .forum-grid {
+        .foro-grid {
             display: grid;
-            grid-template-columns: 1fr 1.8fr;
+            grid-template-columns: 1fr 1.7fr;
             gap: 2rem;
         }
         @media (max-width: 780px) {
-            .forum-grid {
-                grid-template-columns: 1fr;
-            }
+            .foro-grid { grid-template-columns: 1fr; }
         }
         .form-opinion {
             background: white;
-            border-radius: 1.8rem;
-            padding: 1.8rem;
-            box-shadow: 0 8px 18px rgba(0, 40, 70, 0.08);
+            border-radius: 2.2rem;
+            padding: 2rem;
+            box-shadow: 0 12px 28px -10px #1a4863;
         }
         .form-opinion h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #0b3f31;
+        }
+        .grupo {
             margin-bottom: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-        .form-group {
-            margin-bottom: 1.3rem;
-        }
-        .form-group label {
+        .grupo label {
             font-weight: 600;
-            font-size: 0.9rem;
-            color: #2a405c;
+            color: #1e4a6b;
             display: block;
             margin-bottom: 0.3rem;
         }
-        .form-group input, .form-group textarea, .form-group select {
+        .grupo input, .grupo textarea, .grupo select {
             width: 100%;
-            padding: 0.9rem 1.2rem;
-            border: 1.5px solid #d7e1ec;
-            border-radius: 40px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            background: #ffffff;
-            transition: 0.15s;
+            padding: 0.9rem 1.5rem;
+            border: 1.5px solid #c6dcee;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.2s;
         }
-        .form-group textarea {
-            border-radius: 28px;
+        .grupo textarea {
+            border-radius: 30px;
             resize: vertical;
-            min-height: 90px;
         }
-        .form-group input:focus, .form-group textarea:focus {
+        .grupo input:focus, .grupo textarea:focus {
+            border-color: #2b7553;
             outline: none;
-            border-color: #2d6f4b;
-            box-shadow: 0 0 0 3px rgba(45,111,75,0.2);
+            box-shadow: 0 0 0 4px #2b755330;
         }
-        .checkbox-interes {
+        .check-interes {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            margin: 1.2rem 0 0.8rem;
+            gap: 0.8rem;
+            margin: 1.4rem 0;
+            background: #e8f2f9;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
         }
-        .checkbox-interes input {
-            width: 1.2rem;
-            height: 1.2rem;
+        .check-interes input {
+            width: 1.3rem;
+            height: 1.3rem;
             accent-color: #2d6f4b;
         }
         .btn-enviar {
-            background: #1e3a5f;
-            color: white;
+            background: #1d5b3e;
             border: none;
-            padding: 0.9rem 2.2rem;
-            border-radius: 50px;
+            color: white;
+            padding: 1rem;
+            border-radius: 60px;
             font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.15s;
+            font-size: 1.2rem;
             width: 100%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            border: 1px solid #143250;
+            gap: 0.8rem;
+            transition: 0.2s;
         }
         .btn-enviar:hover {
-            background: #143250;
+            background: #0f422d;
             transform: scale(1.02);
         }
         .opiniones-list {
             background: white;
-            border-radius: 1.8rem;
-            padding: 1.8rem;
-            box-shadow: 0 8px 18px rgba(0, 40, 70, 0.08);
+            border-radius: 2.2rem;
+            padding: 2rem;
             max-height: 550px;
             overflow-y: auto;
-        }
-        .opiniones-list h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
+            box-shadow: 0 12px 28px -10px #1a4863;
         }
         .opinion-item {
-            background: #f6faff;
-            border-radius: 1.5rem;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 1rem;
-            border-left: 5px solid #3d7b62;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            background: #f1f9ff;
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #34986b;
         }
         .opinion-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
         }
         .opinion-nombre {
             font-weight: 700;
-            color: #0b2d4b;
+            color: #143550;
         }
         .opinion-sector {
-            background: #d9e7f2;
+            background: #cdddec;
             padding: 0.2rem 1rem;
             border-radius: 30px;
             font-size: 0.8rem;
             font-weight: 600;
-            color: #1f4c73;
         }
         .opinion-texto {
-            margin: 0.6rem 0 0.3rem;
             font-size: 1rem;
-            line-height: 1.4;
+            margin: 0.8rem 0;
         }
         .opinion-interes {
-            display: inline-block;
-            background: #fbedcf;
-            padding: 0.25rem 1rem;
+            background: #feebc8;
+            color: #8d5f00;
+            padding: 0.2rem 1.2rem;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            color: #8a6100;
-            margin-top: 0.4rem;
+            display: inline-block;
         }
         .opinion-timestamp {
             font-size: 0.7rem;
-            color: #7d95b0;
-            margin-top: 0.3rem;
+            color: #6a7e99;
             text-align: right;
+            margin-top: 0.5rem;
         }
-        .whatsapp-contact {
-            margin-top: 2rem;
+        .whatsapp-educacion {
+            margin-top: 2.5rem;
             display: flex;
             justify-content: center;
         }
         .btn-whatsapp {
             background: #25D366;
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 1.1rem 3rem;
             border-radius: 60px;
             font-weight: 700;
+            font-size: 1.3rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
-            font-size: 1.2rem;
-            box-shadow: 0 6px 14px rgba(37,211,102,0.3);
+            gap: 1rem;
+            box-shadow: 0 8px 16px #25d36680;
             transition: 0.15s;
-            border: 1px solid #1da959;
         }
         .btn-whatsapp:hover {
             background: #1da959;
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
-        .footer-note {
+        .footer-educacion {
+            background: #112f44;
+            color: #b3d0e8;
+            padding: 2rem 2.5rem;
             text-align: center;
-            margin-top: 2.2rem;
-            color: #7b8da3;
-            font-size: 0.9rem;
-            border-top: 1px dashed #cbd6e4;
-            padding-top: 2rem;
-        }
-        .btn-volver-small {
-            display: inline-block;
-            margin-top: 1rem;
-        }
-        .vacío-msg {
-            color: #8da0b8;
-            font-style: italic;
-            text-align: center;
-            padding: 2rem;
+            border-radius: 2rem 2rem 0 0;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- HEADER con estilo "LOS GUAYOS DIGITAL / Orleny Gestim" -->
-    <div class="header-brand">
+<div class="page">
+    <!-- HEADER con volver -->
+    <div class="header-educacion">
         <div class="logo-area">
-            <div class="logo-losguayos">LOS GUAYOS <span>◉</span></div>
-            <div class="logo-digital">DIGITAL</div>
-            <div class="signature">Orleny Gestim</div>
+            <div class="logo-main">LOS GUAYOS <span>◉</span></div>
+            <div class="subtitulo-area">Área Educación</div>
         </div>
         <a href="https://losguayosdigital.com/" class="btn-volver" id="btnVolver">
-            <i class="fas fa-arrow-left"></i> Volver al sitio
+            <i class="fas fa-arrow-left"></i> Volver al inicio
         </a>
     </div>
 
-    <!-- ÁREAS: 11 botones visibles (cada área con su botón) -->
-    <div class="areas-title">
-        <i class="fas fa-th-large" style="color: #2f6b4b;"></i> Áreas de Los Guayos
-    </div>
-    <div class="areas-grid" id="areasGrid">
-        <!-- datos inyectados por JS pero podemos maquetar directamente -->
+    <!-- HERO con imagen inspiradora (educación) -->
+    <div class="hero-educacion">
+        <div class="hero-texto">
+            <span class="hero-etiqueta"><i class="fas fa-chalkboard-teacher"></i>  Comunidad que educa</span>
+            <h1>La educación es la esperanza de Los Guayos</h1>
+            <p>Cada escuela, cada docente y cada niño construye el futuro del municipio. Aquí visibilizamos, organizamos y fortalecemos el tejido educativo.</p>
+            <!-- mini estadísticas ficticias para dar fuerza visual -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">24</div>
+                    <div class="stat-label">escuelas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">158</div>
+                    <div class="stat-label">docentes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">3.2k</div>
+                    <div class="stat-label">estudiantes</div>
+                </div>
+            </div>
+        </div>
+        <!-- elemento decorativo opcional: imagen pequeña flotante no la ponemos para no recargar -->
     </div>
 
-    <!-- SECCIÓN FORO SEMANAL -->
-    <div class="forum-section">
-        <div class="forum-header">
-            <h2><i class="fas fa-comments"></i> Foro abierto</h2>
-            <span class="pregunta-etiqueta"># Opinión ciudadana</span>
+    <!-- PROYECTOS DESTACADOS / INICIATIVAS (para reclutar apoyo) -->
+    <div class="proyectos-seccion">
+        <div class="seccion-titulo">
+            <i class="fas fa-lightbulb"></i> Proyectos educativos activos
+        </div>
+        <p style="color: #386282; margin-bottom: 1rem;">Conoce las iniciativas que necesitan tu apoyo. ¡Elige una y sé parte del cambio!</p>
+        <div class="proyectos-grid">
+            <div class="proyecto-card">
+                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&auto=format&fit=crop');"></div>
+                <div class="proyecto-content">
+                    <span class="proyecto-tag">REFUERZO ESCOLAR</span>
+                    <h3>Manos a la obra</h3>
+                    <p>Voluntarios apoyan tareas en comunidades. Se buscan facilitadores y donantes de útiles.</p>
+                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
+                </div>
+            </div>
+            <div class="proyecto-card">
+                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&auto=format&fit=crop');"></div>
+                <div class="proyecto-content">
+                    <span class="proyecto-tag">BIBLIOTECA COMUNITARIA</span>
+                    <h3>Lectura Viva</h3>
+                    <p>Creación de un espacio de lectura en la Casa Comunal. Necesitamos libros y narradores.</p>
+                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
+                </div>
+            </div>
+            <div class="proyecto-card">
+                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop');"></div>
+                <div class="proyecto-content">
+                    <span class="proyecto-tag">FORMACIÓN DOCENTE</span>
+                    <h3>Maestros al día</h3>
+                    <p>Talleres para educadores sobre nuevas metodologías. Convocatoria abierta a facilitadores.</p>
+                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
+                </div>
+            </div>
+            <div class="proyecto-card">
+                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef1887f3a4?w=600&auto=format&fit=crop');"></div>
+                <div class="proyecto-content">
+                    <span class="proyecto-tag">HUERTO ESCOLAR</span>
+                    <h3>Sembrando aprendizaje</h3>
+                    <p>Proyecto agroecológico en 3 escuelas. Se buscan agrónomos voluntarios y semillas.</p>
+                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORO DE OPINIÓN SEMANAL (educación) con reclutamiento -->
+    <div class="foro-educacion">
+        <div class="foro-header">
+            <div class="foro-pregunta">
+                <i class="fas fa-question-circle"></i> 
+                <strong>Pregunta de la semana:</strong> “Efecto de la situación actual política, económica y social en la educación de los niños de Los Guayos”
+            </div>
         </div>
 
-        <!-- Pregunta de la semana (fija) -->
-        <div class="pregunta-semana">
-            <i class="fas fa-calendar-week"></i> 
-            <strong>Pregunta de esta semana:</strong> “Efecto de la situación actual política, económica y social en la educación de los niños de Los Guayos”
-        </div>
-
-        <!-- Grid: formulario + opiniones -->
-        <div class="forum-grid">
-            <!-- IZQUIERDA: formulario para opinar -->
+        <div class="foro-grid">
+            <!-- FORMULARIO DE OPINIÓN -->
             <div class="form-opinion">
-                <h3><i class="fas fa-pen-alt"></i> Deja tu opinión</h3>
-                <form id="opinionForm">
-                    <div class="form-group">
+                <h3><i class="fas fa-pencil-alt"></i> Deja tu opinión</h3>
+                <form id="opinionFormEducacion">
+                    <div class="grupo">
                         <label>Nombre completo</label>
-                        <input type="text" id="nombre" placeholder="Ej. María Rodríguez" required>
+                        <input type="text" id="nombreEdu" placeholder="Ej. Carmen Ortega" required>
                     </div>
-                    <div class="form-group">
+                    <div class="grupo">
                         <label>Sector / comunidad</label>
-                        <input type="text" id="sector" placeholder="Ej. Centro, Barrio San José, etc." required>
+                        <input type="text" id="sectorEdu" placeholder="Ej. Barrio San José, Urbanización Los Mangos" required>
                     </div>
-                    <div class="form-group">
-                        <label>Tu opinión sobre la pregunta</label>
-                        <textarea id="opinion" placeholder="Escribe con respeto y objetividad..." required></textarea>
+                    <div class="grupo">
+                        <label>Opinión (objetiva y responsable)</label>
+                        <textarea id="opinionEdu" rows="4" placeholder="Comparte tu punto de vista..." required></textarea>
                     </div>
-                    <div class="checkbox-interes">
-                        <input type="checkbox" id="interesLiderar">
-                        <label for="interesLiderar" style="font-weight: 500;">✔ Estoy interesado en liderar iniciativas (me pueden contactar)</label>
+                    <div class="check-interes">
+                        <input type="checkbox" id="interesLiderarEdu">
+                        <label for="interesLiderarEdu" style="font-weight: 500;">✅ Quiero apoyar proyectos educativos o liderar iniciativas (me pueden contactar)</label>
                     </div>
                     <button type="submit" class="btn-enviar"><i class="fas fa-paper-plane"></i> Enviar opinión</button>
                 </form>
-                <!-- aviso sutil -->
-                <p style="font-size:0.8rem; color:#6f8aaa; margin-top:1rem;"><i class="fas fa-info-circle"></i> Tu opinión será visible para la comunidad. Foro responsable.</p>
+                <p style="margin-top: 1.2rem; font-size:0.85rem; color:#2a5777;"><i class="fas fa-shield-alt"></i> Todas las opiniones son visibles y ayudan a construir comunidad.</p>
             </div>
 
-            <!-- DERECHA: listado de opiniones en tiempo real (almacenadas localmente) -->
+            <!-- LISTA DE OPINIONES EN VIVO -->
             <div class="opiniones-list">
-                <h3><i class="fas fa-history"></i> Historial de respuestas</h3>
-                <div id="opinionesContainer">
-                    <!-- Se renderiza con JS -->
-                    <div class="vacío-msg">Cargando opiniones...</div>
+                <h3 style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;"><i class="fas fa-comments"></i> Voces de la comunidad</h3>
+                <div id="opinionesContainerEducacion">
+                    <!-- dinámico con JS -->
+                    <div style="text-align:center; color:#577e9c;">Cargando opiniones...</div>
                 </div>
             </div>
         </div>
 
-        <!-- Botón destacado whatsapp para reclutar / contacto -->
-        <div class="whatsapp-contact">
-            <a href="https://wa.me/584244525765?text=Hola%2C%20me%20interesa%20ser%20parte%20de%20una%20iniciativa%20en%20Los%20Guayos%20Digital" target="_blank" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> Contáctanos para liderar (0424-4525765)
+        <!-- BOTÓN WHATSAPP PARA RECLUTAR DIRECTAMENTE (además del checkbox) -->
+        <div class="whatsapp-educacion">
+            <a href="https://wa.me/584244525765?text=Hola%2C%20quiero%20apoyar%20proyectos%20educativos%20en%20Los%20Guayos%20Digital" target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i>  ¿Quieres liderar? ¡Escríbenos!
             </a>
         </div>
     </div>
 
-    <!-- footer sencillo -->
-    <div class="footer-note">
-        <i class="far fa-heart" style="color:#b8646e;"></i> Los Guayos Digital · Construyendo comunidad desde cada área
+    <!-- FOOTER alusivo -->
+    <div class="footer-educacion">
+        <p><i class="fas fa-school"></i> Los Guayos Digital · Área Educación · Construyendo futuro desde las aulas y las comunidades.</p>
+        <p style="margin-top: 0.8rem; font-size:0.9rem;">Con el apoyo de la ciudadanía organizada · #EducaciónParaTodos</p>
     </div>
 </div>
 
 <script>
     (function() {
-        // ---------- CONFIGURACIÓN DE ÁREAS (11) con iconos y botón ----------
-        const areas = [
-            { nombre: "Directorio", icono: "🔹", color: "#2e7a94" },
-            { nombre: "Educación", icono: "📚", color: "#3c6e47" },
-            { nombre: "Deportes", icono: "🏃‍♂️", color: "#c96b2c" },
-            { nombre: "Industrias", icono: "🏭", color: "#6a4c8c" },
-            { nombre: "Flora y Fauna", icono: "🌿", color: "#2d8562" },
-            { nombre: "Agricultura", icono: "🌱", color: "#a78b3f" },
-            { nombre: "Turismo", icono: "🌄", color: "#cc7843" },
-            { nombre: "Proyectos", icono: "📊", color: "#4e6e9e" },
-            { nombre: "Noticias", icono: "📰", color: "#b3444a" },
-            { nombre: "Cultura y Religión", icono: "🎭", color: "#b5784b" },
-            { nombre: "Ecología", icono: "♻️", color: "#3f8f6b" }
-        ];
-
-        const areasGrid = document.getElementById('areasGrid');
-        areasGrid.innerHTML = areas.map(area => `
-            <div class="area-card">
-                <span class="area-icon">${area.icono}</span>
-                <span class="area-name">${area.nombre}</span>
-                <button class="area-btn" onclick="alert('Área ${area.nombre}: pronto más información')"><i class="fas fa-arrow-right"></i> Ver área</button>
-            </div>
-        `).join('');
-
-        // ---------- GESTIÓN DEL FORO (localStorage para persistencia) ----------
-        const STORAGE_KEY = 'losguayos_forum_v1';
+        // ---------- FORO CON PERSISTENCIA LOCAL (clave específica educación) ----------
+        const STORAGE_EDU = 'losguayos_foro_educacion';
         let opiniones = [];
 
-        // Elementos DOM
-        const form = document.getElementById('opinionForm');
-        const inputNombre = document.getElementById('nombre');
-        const inputSector = document.getElementById('sector');
-        const textareaOpinion = document.getElementById('opinion');
-        const chkInteres = document.getElementById('interesLiderar');
-        const containerOpiniones = document.getElementById('opinionesContainer');
+        // Elementos del formulario educación
+        const formEdu = document.getElementById('opinionFormEducacion');
+        const inputNombre = document.getElementById('nombreEdu');
+        const inputSector = document.getElementById('sectorEdu');
+        const textareaOpinion = document.getElementById('opinionEdu');
+        const chkInteres = document.getElementById('interesLiderarEdu');
+        const containerOpiniones = document.getElementById('opinionesContainerEducacion');
 
-        // Cargar datos guardados
+        // Cargar o inicializar con datos de ejemplo (para que no esté vacío)
         function cargarOpiniones() {
             try {
-                const stored = localStorage.getItem(STORAGE_KEY);
+                const stored = localStorage.getItem(STORAGE_EDU);
                 if (stored) {
                     opiniones = JSON.parse(stored);
                 } else {
-                    // datos de ejemplo amigables para que no se vea vacío
+                    // opiniones de ejemplo relacionadas con educación
                     opiniones = [
-                        { nombre: "Ana Karina", sector: "Urbanización La Granja", opinion: "La falta de recursos afecta la concentración de los niños, pero los maestros ponen empeño. Hace falta más apoyo municipal.", interes: true, timestamp: Date.now() - 86400000 },
-                        { nombre: "Carlos Ledezma", sector: "Barrio Unión", opinion: "La situación económica limita el acceso a útiles y tecnología. Los muchachos pierden motivación.", interes: false, timestamp: Date.now() - 3600000 },
-                        { nombre: "Diana Rojas", sector: "Centro", opinion: "A pesar del contexto, hay iniciativas comunitarias de refuerzo escolar. Los niños necesitan espacios seguros.", interes: true, timestamp: Date.now() - 7200000 }
+                        { nombre: "Mireya Rojas", sector: "Comunidad Los Naranjos", opinion: "Los niños pierden motivación por falta de materiales. Los maestros hacen lo que pueden, pero necesitamos apoyo psicológico también.", interes: true, timestamp: Date.now() - 172800000 },
+                        { nombre: "Jesús Quintero", sector: "Sector Centro", opinion: "La crisis económica limita el acceso a internet. Muchos estudiantes no pueden conectar con las tareas digitales.", interes: false, timestamp: Date.now() - 86400000 },
+                        { nombre: "Fabiola Marcano", sector: "Barrio San Antonio", opinion: "Los valores se están perdiendo, la familia desestructurada afecta el rendimiento escolar. Hace falta escuela para padres.", interes: true, timestamp: Date.now() - 3600000 }
                     ];
                 }
+                // ordenar más reciente primero
+                opiniones.sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
             } catch (e) {
                 opiniones = [];
             }
-            // ordenar por timestamp descendente (más reciente primero)
-            opiniones.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
             renderOpiniones();
         }
 
-        // Guardar en localStorage
         function guardarOpiniones() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(opiniones));
+            localStorage.setItem(STORAGE_EDU, JSON.stringify(opiniones));
         }
 
-        // Renderizar lista de opiniones
-        function renderOpiniones() {
-            if (!containerOpiniones) return;
-            if (opiniones.length === 0) {
-                containerOpiniones.innerHTML = `<div class="vacío-msg"><i class="far fa-smile"></i> Sé el primero en opinar</div>`;
-                return;
-            }
-            let html = '';
-            opiniones.forEach(op => {
-                const fecha = op.timestamp ? new Date(op.timestamp).toLocaleString('es-VE', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) : 'recientemente';
-                const interesBadge = op.interes ? '<span class="opinion-interes"><i class="fas fa-star"></i> Interesado en liderar</span>' : '';
-                html += `
-                    <div class="opinion-item">
-                        <div class="opinion-header">
-                            <span class="opinion-nombre"><i class="fas fa-user-circle"></i> ${escapeHTML(op.nombre)}</span>
-                            <span class="opinion-sector">${escapeHTML(op.sector)}</span>
-                        </div>
-                        <div class="opinion-texto">“${escapeHTML(op.opinion)}”</div>
-                        ${interesBadge}
-                        <div class="opinion-timestamp"><i class="far fa-clock"></i> ${fecha}</div>
-                    </div>
-                `;
-            });
-            containerOpiniones.innerHTML = html;
-        }
-
-        // escaping simple para evitar XSS
         function escapeHTML(str) {
             return String(str).replace(/[&<>"]/g, function(m) {
                 if (m === '&') return '&amp;';
@@ -571,56 +617,73 @@
             });
         }
 
-        // Manejar nuevo envío
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+        function renderOpiniones() {
+            if (!containerOpiniones) return;
+            if (opiniones.length === 0) {
+                containerOpiniones.innerHTML = '<div class="vacío-msg" style="padding:2rem; text-align:center;">💬 Aún no hay opiniones. ¡Sé el primero en comentar!</div>';
+                return;
+            }
+            let html = '';
+            opiniones.forEach(op => {
+                const fecha = op.timestamp ? new Date(op.timestamp).toLocaleString('es-VE', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) : 'fecha reciente';
+                const badgeInteres = op.interes ? '<span class="opinion-interes"><i class="fas fa-hand-holding-heart"></i> Interesado en apoyar/liderar</span>' : '';
+                html += `
+                    <div class="opinion-item">
+                        <div class="opinion-header">
+                            <span class="opinion-nombre"><i class="fas fa-user"></i> ${escapeHTML(op.nombre)}</span>
+                            <span class="opinion-sector">${escapeHTML(op.sector)}</span>
+                        </div>
+                        <div class="opinion-texto">“${escapeHTML(op.opinion)}”</div>
+                        ${badgeInteres}
+                        <div class="opinion-timestamp"><i class="far fa-calendar-alt"></i> ${fecha}</div>
+                    </div>
+                `;
+            });
+            containerOpiniones.innerHTML = html;
+        }
 
+        // Envío del formulario
+        formEdu.addEventListener('submit', function(e) {
+            e.preventDefault();
             const nombre = inputNombre.value.trim();
             const sector = inputSector.value.trim();
             const opinionText = textareaOpinion.value.trim();
             if (!nombre || !sector || !opinionText) {
-                alert('Por favor completa nombre, sector y opinión.');
+                alert('Por favor completa todos los campos (nombre, sector y opinión).');
                 return;
             }
-
-            const nuevaOpinion = {
+            const nueva = {
                 nombre: nombre,
                 sector: sector,
                 opinion: opinionText,
                 interes: chkInteres.checked,
                 timestamp: Date.now()
             };
-
-            opiniones.unshift(nuevaOpinion);  // agregar al inicio para que sea el primero
-            // mantener un máximo razonable (últimas 50)
-            if (opiniones.length > 50) opiniones.pop();
-
+            opiniones.unshift(nueva);
+            if (opiniones.length > 50) opiniones.pop(); // mantener límite
             guardarOpiniones();
             renderOpiniones();
-
-            // reset formulario
-            form.reset();
-            // opcional dejar foco en nombre
+            formEdu.reset();
             inputNombre.focus();
         });
 
         // Inicializar
         cargarOpiniones();
 
-        // Simular "real-time" no hay backend, pero cada nueva opinión de este navegador se agrega al instante
-        // y se conserva en localStorage. Para experiencia entre pestañas, se podría escuchar storageEvent,
-        // pero para este alcance es suficiente.
+        // Escuchar cambios en localStorage (entre pestañas)
         window.addEventListener('storage', function(e) {
-            if (e.key === STORAGE_KEY) {
-                cargarOpiniones(); // si otra pestaña modificó, actualizamos
-            }
+            if (e.key === STORAGE_EDU) cargarOpiniones();
         });
 
-        // botón volver ya es un link normal.
-        // Asegurar que el botón "volver" no se comporte como simple link (ya lo es).
+        // Botones de "Quiero apoyar" en proyectos (simulan interés y abren WhatsApp con mensaje predefinido)
+        document.querySelectorAll('.btn-apoyar').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const proyecto = this.closest('.proyecto-card')?.querySelector('h3')?.innerText || 'proyecto educativo';
+                const mensaje = `Hola, me interesa apoyar el proyecto "${proyecto}" en Los Guayos. ¿Cómo puedo colaborar?`;
+                window.open(`https://wa.me/584244525765?text=${encodeURIComponent(mensaje)}`, '_blank');
+            });
+        });
     })();
 </script>
-<!-- Pequeña nota: para un foro completamente multi-usuario en tiempo real se necesitaría backend (Firebase, etc). 
-     Esta versión usa localStorage para persistencia local y simula inmediatez en el mismo navegador. -->
 </body>
 </html>
