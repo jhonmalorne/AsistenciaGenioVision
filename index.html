@@ -3,1631 +3,1465 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>AAS · Atención Avanzada en Salud | Secretaría Nacional de Salud — Concertación Ciudadana</title>
-<meta name="description" content="Proyecto AAS: Atención Avanzada en Salud. Un modelo de salud domiciliaria impulsado por la Secretaría Nacional de Salud de Concertación Ciudadana, propuesta para el Gobierno de Transición de Venezuela.">
-<meta name="keywords" content="AAS, Atención Avanzada en Salud, Concertación Ciudadana, salud domiciliaria, telemedicina, Venezuela, gobierno de transición, líderes focales de salud">
-<meta name="author" content="Secretaría Nacional de Salud, Concertación Ciudadana">
-<meta name="theme-color" content="#003B95">
+<title>Proyecto AAS · Atención Avanzada en Salud | Concertación Ciudadana</title>
+<meta name="description" content="Proyecto AAS: Atención Avanzada en Salud. Modelo descentralizado de contención primaria domiciliaria para la transición de Venezuela. Una propuesta de Concertación Ciudadana y Orden y Gestión.">
+<meta name="keywords" content="AAS, Atención Avanzada en Salud, Concertación Ciudadana, Orden y Gestión, Venezuela, salud, gobierno de transición, telemedicina">
+<meta name="author" content="Concertación Ciudadana">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jhonmalorne.github.io/ConcertacionAAS/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="AAS · Atención Avanzada en Salud">
-<meta property="og:description" content="Transformando la salud pública desde el hogar del paciente. Un proyecto de la Secretaría Nacional de Salud de Concertación Ciudadana.">
-<meta property="og:image" content="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg">
+<meta property="og:title" content="Proyecto AAS · Atención Avanzada en Salud">
+<meta property="og:description" content="Transformando la salud pública desde el hogar del paciente. Una propuesta de Concertación Ciudadana para el Gobierno de Transición de Venezuela.">
+<meta property="og:image" content="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/AAS.jpg?raw=true">
 <meta property="og:url" content="https://jhonmalorne.github.io/ConcertacionAAS/">
 <meta property="og:locale" content="es_VE">
 
-<!-- Twitter Card -->
+<!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AAS · Atención Avanzada en Salud">
-<meta name="twitter:description" content="Transformando la salud pública desde el hogar del paciente.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg">
+<meta name="twitter:title" content="Proyecto AAS · Atención Avanzada en Salud">
+<meta name="twitter:description" content="Modelo descentralizado de contención primaria domiciliaria para Venezuela.">
+<meta name="twitter:image" content="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/AAS.jpg?raw=true">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png">
+<link rel="icon" type="image/png" href="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/logo%20ass%20sin%20fondo.png?raw=true">
 
-<!-- Preload critical assets -->
-<link rel="preload" as="image" href="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg">
+<!-- Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-<!-- AOS (scroll animations) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<!-- AOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
 
-<!-- Animate.css (used sparingly for CTA emphasis) -->
+<!-- Animate.css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 <style>
-/* ==========================================================================
-   0. DESIGN TOKENS
-   ========================================================================== */
+/* ============================================================
+   PROYECTO AAS — DESIGN TOKENS
+   Paleta: Azul Concertación / Verde Concertación / Neutros
+   Tipografía: Montserrat (display) · Poppins (UI/headings) · Inter (body/data)
+   ============================================================ */
 :root{
-  /* Identidad Concertación */
-  --azul:#003B95;
-  --azul-brillante:#2D6CDF;
-  --azul-oscuro:#001B3D;
-  --verde:#0F9D6B;
-  --verde-claro:#34C38F;
+  --c-blue-900:#0a2540;
+  --c-blue-800:#0e3a63;
+  --c-blue-700:#12508a;
+  --c-blue-600:#1668b3;
+  --c-blue-500:#1e88e5;
+  --c-blue-100:#e8f2fc;
+  --c-green-700:#0f7a4f;
+  --c-green-600:#14915f;
+  --c-green-500:#1aac70;
+  --c-green-100:#e5f8ef;
+  --c-white:#ffffff;
+  --c-gray-50:#f7f9fb;
+  --c-gray-100:#eef2f6;
+  --c-gray-200:#dde4ea;
+  --c-gray-400:#93a1ae;
+  --c-gray-600:#5c6b78;
+  --c-gray-800:#28323a;
 
-  /* Neutros — modo claro */
-  --bg:#F5F7FB;
-  --bg-alt:#FFFFFF;
-  --surface:rgba(255,255,255,.66);
-  --surface-solid:#FFFFFF;
-  --borde:rgba(11,27,51,.08);
-  --texto:#0B1B33;
-  --texto-suave:#5B6780;
-  --sombra:0 20px 50px rgba(11,27,51,.10);
-  --sombra-sm:0 8px 20px rgba(11,27,51,.08);
-
-  --radio-lg:26px;
-  --radio-md:18px;
-  --radio-sm:12px;
-  --maxw:1240px;
-
-  --ff-display:'Poppins',sans-serif;
-  --ff-label:'Montserrat',sans-serif;
-  --ff-body:'Inter',sans-serif;
+  --bg:var(--c-gray-50);
+  --bg-elev:var(--c-white);
+  --text:#122033;
+  --text-soft:var(--c-gray-600);
+  --border:var(--c-gray-200);
+  --glass-bg:rgba(255,255,255,0.6);
+  --glass-border:rgba(255,255,255,0.35);
+  --shadow-sm:0 2px 8px rgba(10,37,64,0.06);
+  --shadow-md:0 8px 30px rgba(10,37,64,0.10);
+  --shadow-lg:0 20px 60px rgba(10,37,64,0.16);
+  --grad-primary:linear-gradient(135deg,var(--c-blue-700) 0%,var(--c-blue-500) 55%,var(--c-green-600) 100%);
+  --grad-soft:linear-gradient(180deg,var(--c-blue-100) 0%,rgba(232,242,252,0) 100%);
+  --radius-sm:10px;
+  --radius-md:18px;
+  --radius-lg:28px;
+  --font-display:'Montserrat',sans-serif;
+  --font-head:'Poppins',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --header-h:82px;
 }
 [data-theme="dark"]{
-  --bg:#04122A;
-  --bg-alt:#071A33;
-  --surface:rgba(255,255,255,.06);
-  --surface-solid:#0B2244;
-  --borde:rgba(255,255,255,.10);
-  --texto:#EAF0FB;
-  --texto-suave:#93A2C2;
-  --sombra:0 20px 50px rgba(0,0,0,.45);
-  --sombra-sm:0 8px 20px rgba(0,0,0,.35);
+  --bg:#0a1420;
+  --bg-elev:#0f1e2e;
+  --text:#eaf1f8;
+  --text-soft:#93a7b8;
+  --border:#1c3348;
+  --glass-bg:rgba(15,30,46,0.6);
+  --glass-border:rgba(255,255,255,0.08);
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md:0 8px 30px rgba(0,0,0,0.4);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.55);
+  --grad-soft:linear-gradient(180deg,#0e2338 0%,rgba(14,35,56,0) 100%);
+  --c-gray-100:#132639;
+  --c-gray-200:#1c3348;
 }
 
-*{box-sizing:border-box;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  margin:0;
+  font-family:var(--font-body);
   background:var(--bg);
-  color:var(--texto);
-  font-family:var(--ff-body);
+  color:var(--text);
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  transition:background .35s ease, color .35s ease;
   overflow-x:hidden;
+  transition:background .4s ease,color .4s ease;
 }
-img,video{max-width:100%;display:block;}
+img{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
-ul{margin:0;padding:0;list-style:none;}
-button{font-family:inherit;}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-section{padding:110px 0;position:relative;}
-h1,h2,h3,h4{font-family:var(--ff-display);margin:0;line-height:1.1;color:var(--texto);}
-p{line-height:1.65;color:var(--texto-suave);margin:0;}
-
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select,textarea{font-family:inherit;}
+.container{width:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);}
+section{position:relative;padding:clamp(70px,10vw,130px) 0;}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;letter-spacing:-0.01em;color:var(--text);}
 .eyebrow{
-  font-family:var(--ff-label);font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  font-size:.76rem;color:var(--verde);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--c-blue-600);background:var(--c-blue-100);
+  padding:7px 16px;border-radius:100px;margin-bottom:18px;
 }
-.eyebrow::before{content:"";width:24px;height:2px;background:var(--azul-brillante);display:inline-block;}
-.section-head{max-width:680px;margin:0 auto 56px;text-align:center;}
-.section-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:14px;}
-.section-head p{font-size:1.05rem;}
-.section-head.left{margin-left:0;text-align:left;}
-
-/* Botones */
+[data-theme="dark"] .eyebrow{background:rgba(30,136,229,0.15);color:#5ba8e8;}
+.eyebrow.green{color:var(--c-green-700);background:var(--c-green-100);}
+[data-theme="dark"] .eyebrow.green{background:rgba(26,172,112,0.15);color:#4bd394;}
+.section-head{max-width:720px;margin-bottom:56px;}
+.section-head h2{font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.15;}
+.section-head p{margin-top:16px;font-size:1.08rem;color:var(--text-soft);}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.grad-text{background:var(--grad-primary);-webkit-background-clip:text;background-clip:text;color:transparent;}
 .btn{
-  display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;
-  font-family:var(--ff-label);font-weight:700;letter-spacing:.02em;font-size:.92rem;
-  border:2px solid transparent;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;border-radius:100px;font-weight:600;font-size:.95rem;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease,background .25s ease;
+  white-space:nowrap;
 }
-.btn:hover{transform:translateY(-3px);}
-.btn-primario{background:linear-gradient(135deg,var(--azul),var(--azul-brillante));color:#fff;box-shadow:0 14px 30px rgba(0,59,149,.32);}
-.btn-primario:hover{box-shadow:0 18px 36px rgba(0,59,149,.42);}
-.btn-verde{background:linear-gradient(135deg,var(--verde),var(--verde-claro));color:#fff;box-shadow:0 14px 30px rgba(15,157,107,.30);}
-.btn-verde:hover{box-shadow:0 18px 36px rgba(15,157,107,.4);}
-.btn-fantasma{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);color:#fff;backdrop-filter:blur(6px);}
-.btn-fantasma:hover{background:rgba(255,255,255,.22);}
-.btn-outline{background:transparent;border-color:var(--azul);color:var(--azul);}
-.btn-outline:hover{background:var(--azul);color:#fff;}
-.btn-sm{padding:10px 20px;font-size:.8rem;}
+.btn-primary{background:var(--grad-primary);color:#fff;box-shadow:0 10px 25px rgba(22,104,179,0.35);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(22,104,179,0.45);}
+.btn-ghost{background:var(--glass-bg);backdrop-filter:blur(12px);border:1px solid var(--border);color:var(--text);}
+.btn-ghost:hover{transform:translateY(-3px);border-color:var(--c-blue-500);}
+.btn-outline-white{border:1.5px solid rgba(255,255,255,0.6);color:#fff;background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);}
+.btn-outline-white:hover{background:rgba(255,255,255,0.18);transform:translateY(-3px);}
+.btn-sm{padding:10px 20px;font-size:.85rem;}
 
-/* Glassmorphism card base */
+/* ---------- glass card ---------- */
 .glass{
-  background:var(--surface);
-  border:1px solid var(--borde);
-  border-radius:var(--radio-lg);
+  background:var(--glass-bg);
   backdrop-filter:blur(18px) saturate(160%);
   -webkit-backdrop-filter:blur(18px) saturate(160%);
-  box-shadow:var(--sombra-sm);
-  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-}
-.glass:hover{transform:translateY(-6px);box-shadow:var(--sombra);border-color:rgba(45,108,223,.3);}
-
-.pildora{
-  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
-  background:rgba(15,157,107,.12);color:var(--verde);font-family:var(--ff-label);font-weight:700;
-  font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-md);
 }
 
-/* ==========================================================================
-   1. HEADER
-   ========================================================================== */
-#volver-arriba{
-  position:fixed;right:24px;bottom:24px;z-index:900;width:52px;height:52px;border-radius:50%;
-  background:linear-gradient(135deg,var(--azul),var(--azul-brillante));color:#fff;border:none;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 26px rgba(0,59,149,.4);
-  opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .25s ease, transform .25s ease;
+/* ================= HEADER ================= */
+#site-header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--header-h);
+  display:flex;align-items:center;
+  background:var(--glass-bg);
+  backdrop-filter:blur(16px) saturate(160%);
+  border-bottom:1px solid var(--glass-border);
+  transition:box-shadow .3s ease, background .3s ease;
 }
-#volver-arriba.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+#site-header.scrolled{box-shadow:var(--shadow-sm);}
+.header-inner{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand img{height:38px;width:auto;object-fit:contain;}
+.brand-div{width:1px;height:28px;background:var(--border);}
+.brand-text{display:flex;flex-direction:column;line-height:1.1;}
+.brand-text strong{font-family:var(--font-head);font-size:1rem;font-weight:800;letter-spacing:.02em;}
+.brand-text span{font-size:.66rem;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;}
+.nav-desktop{display:flex;align-items:center;gap:2px;}
+.nav-desktop a{
+  font-size:.9rem;font-weight:500;padding:10px 14px;border-radius:8px;color:var(--text-soft);
+  transition:color .2s ease,background .2s ease;
+}
+.nav-desktop a:hover{color:var(--c-blue-600);background:var(--c-blue-100);}
+[data-theme="dark"] .nav-desktop a:hover{background:rgba(30,136,229,.12);}
+.header-actions{display:flex;align-items:center;gap:10px;}
+.theme-toggle{
+  width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--c-gray-100);border:1px solid var(--border);transition:background .2s ease;
+}
+.theme-toggle:hover{background:var(--c-gray-200);}
+.theme-toggle svg{width:19px;height:19px;stroke:var(--text);}
+.burger{display:none;width:42px;height:42px;border-radius:10px;align-items:center;justify-content:center;background:var(--c-gray-100);}
+.burger span, .burger span::before, .burger span::after{
+  content:'';display:block;width:19px;height:2px;background:var(--text);position:relative;transition:.3s;
+}
+.burger span::before{position:absolute;top:-6px;}
+.burger span::after{position:absolute;top:6px;}
+.mobile-nav{
+  position:fixed;top:var(--header-h);left:0;right:0;bottom:0;background:var(--bg-elev);
+  z-index:999;padding:24px;transform:translateY(-110%);transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  overflow-y:auto;
+}
+.mobile-nav.open{transform:translateY(0);}
+.mobile-nav a{display:block;padding:16px 6px;font-size:1.1rem;font-weight:600;border-bottom:1px solid var(--border);}
 
-header{
-  position:fixed;top:0;left:0;right:0;z-index:800;
-  padding:14px 0;
-  background:var(--surface);
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border-bottom:1px solid var(--borde);
-  transition:background .35s ease, border-color .35s ease;
+/* ================= HERO ================= */
+#hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  padding-top:var(--header-h);overflow:hidden;
 }
-.nav-row{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-.brand{display:flex;align-items:center;gap:10px;}
-.brand img{height:38px;width:auto;}
-.brand .sep{width:1px;height:28px;background:var(--borde);}
-.brand-text{line-height:1.1;}
-.brand-text b{font-family:var(--ff-display);font-size:1.05rem;color:var(--texto);display:block;}
-.brand-text span{font-family:var(--ff-label);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-suave);}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('https://github.com/jhonmalorne/ConcertacionAAS/blob/main/AAS.jpg?raw=true');
+  background-size:cover;background-position:center;
+}
+#hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(8,26,45,.72) 0%, rgba(9,29,50,.82) 45%, rgba(10,37,64,.94) 100%);
+}
+.hero-inner{position:relative;z-index:2;width:100%;color:#fff;text-align:center;padding:60px 0 40px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);backdrop-filter:blur(10px);
+  font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:26px;
+}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--c-green-500);box-shadow:0 0 0 4px rgba(26,172,112,.3);}
+#hero h1{
+  font-family:var(--font-display);font-weight:900;
+  font-size:clamp(2.4rem,7vw,5.4rem);line-height:1.02;letter-spacing:-.02em;
+  text-shadow:0 4px 30px rgba(0,0,0,.25);
+}
+#hero h1 .line2{display:block;background:linear-gradient(100deg,#fff 20%,#a9d8ff 55%,#7fe8b8 90%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-sub{max-width:660px;margin:26px auto 0;font-size:clamp(1.05rem,2vw,1.3rem);color:rgba(255,255,255,.88);font-weight:400;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:40px;}
+.hero-orgs{display:flex;align-items:center;justify-content:center;gap:26px;margin-top:64px;flex-wrap:wrap;}
+.hero-orgs img{height:34px;filter:brightness(0) invert(1);opacity:.85;}
+.hero-orgs .div{width:1px;height:26px;background:rgba(255,255,255,.3);}
+.scroll-cue{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.scroll-cue .wheel{width:24px;height:38px;border:1.5px solid rgba(255,255,255,.5);border-radius:14px;position:relative;}
+.scroll-cue .wheel::before{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:3px;height:7px;background:#fff;border-radius:2px;animation:scrollcue 1.6s infinite;}
+@keyframes scrollcue{0%{opacity:1;top:7px;}100%{opacity:0;top:18px;}}
 
-nav.menu{display:flex;align-items:center;gap:26px;}
-nav.menu a{
-  font-family:var(--ff-label);font-weight:600;font-size:.86rem;color:var(--texto-suave);
-  letter-spacing:.01em;transition:color .2s ease;position:relative;
+/* ================= CRISIS CARDS ================= */
+.crisis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+.crisis-card{
+  padding:32px 26px;border-radius:var(--radius-md);background:var(--bg-elev);border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,border-color .3s ease;
 }
-nav.menu a:hover{color:var(--azul);}
-.acciones-header{display:flex;align-items:center;gap:12px;}
-.toggle-tema{
-  width:42px;height:42px;border-radius:50%;border:1px solid var(--borde);background:var(--surface-solid);
-  color:var(--texto);display:flex;align-items:center;justify-content:center;cursor:pointer;
+.crisis-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--c-blue-500);}
+.crisis-icon{
+  width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  background:var(--c-blue-100);margin-bottom:20px;
 }
-.toggle-tema svg{width:19px;height:19px;}
-.menu-btn{display:none;background:none;border:none;font-size:1.6rem;color:var(--texto);cursor:pointer;}
+[data-theme="dark"] .crisis-icon{background:rgba(30,136,229,.15);}
+.crisis-icon svg{width:26px;height:26px;stroke:var(--c-blue-600);}
+.crisis-card h3{font-size:1.08rem;margin-bottom:10px;}
+.crisis-card p{color:var(--text-soft);font-size:.92rem;}
+.crisis-stat{
+  margin-top:56px;padding:40px;border-radius:var(--radius-lg);background:var(--grad-primary);
+  color:#fff;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;text-align:center;
+}
+.crisis-stat .num{font-family:var(--font-display);font-weight:800;font-size:2.6rem;line-height:1;}
+.crisis-stat .lbl{font-size:.82rem;opacity:.85;margin-top:8px;}
+
+/* ================= TIMELINE (MODEL) ================= */
+.timeline-wrap{position:relative;padding-top:20px;}
+.timeline-track{display:flex;overflow-x:auto;gap:0;padding-bottom:20px;scrollbar-width:thin;}
+.timeline-step{
+  flex:0 0 250px;position:relative;padding:0 18px;
+}
+.timeline-step .step-num{
+  width:52px;height:52px;border-radius:50%;background:var(--grad-primary);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:1.15rem;
+  box-shadow:0 8px 20px rgba(22,104,179,.3);position:relative;z-index:2;
+}
+.timeline-step .line{position:absolute;top:26px;left:calc(50% + 26px);right:calc(-50% + 26px);height:2px;background:var(--border);z-index:1;}
+.timeline-step:last-child .line{display:none;}
+.timeline-step .card{
+  margin-top:24px;padding:22px;border-radius:var(--radius-sm);background:var(--bg-elev);border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);min-height:150px;
+}
+.timeline-step .card h4{font-size:1rem;margin-bottom:8px;}
+.timeline-step .card p{font-size:.86rem;color:var(--text-soft);}
+
+/* ================= ARCHITECTURE DIAGRAM ================= */
+.arch-diagram{display:flex;flex-direction:column;align-items:center;gap:0;}
+.arch-node{
+  padding:18px 34px;border-radius:100px;font-family:var(--font-head);font-weight:600;text-align:center;
+  box-shadow:var(--shadow-sm);border:1px solid var(--border);background:var(--bg-elev);
+}
+.arch-node.top{background:var(--grad-primary);color:#fff;font-size:1.15rem;padding:22px 44px;box-shadow:var(--shadow-md);}
+.arch-arrow{width:2px;height:34px;background:linear-gradient(var(--c-blue-500),var(--c-green-500));position:relative;}
+.arch-arrow::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--c-green-500);}
+.arch-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:6px 0;}
+
+/* ================= MAP ================= */
+.map-panel{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border);}
+.map-toolbar{
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  padding:18px 22px;background:var(--bg-elev);border-bottom:1px solid var(--border);
+}
+.map-search{display:flex;align-items:center;gap:8px;background:var(--c-gray-100);border-radius:100px;padding:8px 16px;flex:1;min-width:200px;max-width:340px;}
+.map-search input{background:none;border:none;outline:none;color:var(--text);width:100%;font-size:.9rem;}
+.map-toggles{display:flex;gap:8px;background:var(--c-gray-100);border-radius:100px;padding:4px;}
+.map-toggles button{padding:8px 16px;border-radius:100px;font-size:.82rem;font-weight:600;color:var(--text-soft);}
+.map-toggles button.active{background:var(--bg-elev);color:var(--c-blue-600);box-shadow:var(--shadow-sm);}
+#leaflet-map{height:560px;width:100%;background:var(--c-gray-100);}
+.leaflet-popup-content-wrapper{border-radius:14px !important;}
+.map-popup h4{font-family:var(--font-head);font-size:.95rem;margin-bottom:8px;color:var(--c-blue-700);}
+.map-popup .row{display:flex;justify-content:space-between;font-size:.8rem;padding:3px 0;color:#333;}
+.map-legend{padding:16px 22px;background:var(--bg-elev);border-top:1px solid var(--border);display:flex;gap:20px;flex-wrap:wrap;font-size:.8rem;color:var(--text-soft);}
+.map-legend span{display:inline-flex;align-items:center;gap:6px;}
+.map-legend i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+/* ================= FORM ================= */
+.form-panel{padding:clamp(28px,4vw,52px);}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.field{display:flex;flex-direction:column;gap:8px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:.82rem;font-weight:600;color:var(--text-soft);}
+.field label .req{color:#e0554f;}
+.field input,.field select,.field textarea{
+  padding:14px 16px;border-radius:12px;border:1.5px solid var(--border);background:var(--bg-elev);color:var(--text);
+  font-size:.94rem;transition:border-color .2s ease,box-shadow .2s ease;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--c-blue-500);box-shadow:0 0 0 4px rgba(30,136,229,.12);}
+.field .err{font-size:.76rem;color:#e0554f;min-height:14px;}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#e0554f;}
+.chip-group{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{padding:10px 18px;border-radius:100px;border:1.5px solid var(--border);font-size:.85rem;font-weight:500;transition:.2s;}
+.chip.selected{background:var(--grad-primary);color:#fff;border-color:transparent;}
+.priority-group{display:flex;gap:10px;}
+.priority-opt{flex:1;text-align:center;padding:12px;border-radius:12px;border:1.5px solid var(--border);font-size:.85rem;font-weight:600;}
+.priority-opt[data-p="baja"].selected{background:var(--c-green-100);border-color:var(--c-green-500);color:var(--c-green-700);}
+.priority-opt[data-p="media"].selected{background:#fff6e0;border-color:#e8b100;color:#9a7500;}
+.priority-opt[data-p="alta"].selected{background:#ffe9e7;border-color:#e0554f;color:#b8352f;}
+.file-drop{
+  border:1.5px dashed var(--border);border-radius:14px;padding:30px;text-align:center;color:var(--text-soft);font-size:.86rem;
+  cursor:pointer;transition:.2s;
+}
+.file-drop:hover{border-color:var(--c-blue-500);background:var(--c-blue-100);}
+[data-theme="dark"] .file-drop:hover{background:rgba(30,136,229,.08);}
+.form-note{display:flex;gap:10px;align-items:flex-start;padding:16px 18px;border-radius:12px;background:var(--c-blue-100);font-size:.82rem;color:var(--c-blue-700);margin-bottom:24px;}
+[data-theme="dark"] .form-note{background:rgba(30,136,229,.1);color:#8dc4f2;}
+.form-success{display:none;text-align:center;padding:40px 20px;}
+.form-success.show{display:block;}
+.form-success svg{width:64px;height:64px;stroke:var(--c-green-600);margin:0 auto 20px;}
+
+/* ================= DASHBOARD ================= */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;margin-bottom:50px;}
+.kpi-card{padding:26px;border-radius:var(--radius-md);background:var(--bg-elev);border:1px solid var(--border);box-shadow:var(--shadow-sm);text-align:left;}
+.kpi-card .kpi-icon{width:44px;height:44px;border-radius:12px;background:var(--c-green-100);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+[data-theme="dark"] .kpi-card .kpi-icon{background:rgba(26,172,112,.15);}
+.kpi-icon svg{width:22px;height:22px;stroke:var(--c-green-700);}
+.kpi-card .kpi-num{font-family:var(--font-display);font-weight:800;font-size:2.1rem;}
+.kpi-card .kpi-lbl{font-size:.82rem;color:var(--text-soft);margin-top:4px;}
+.charts-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;}
+.chart-card{padding:26px;border-radius:var(--radius-md);background:var(--bg-elev);border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.chart-card h4{font-size:1rem;margin-bottom:18px;}
+.chart-row-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px;}
+
+/* ================= SAVINGS FLOW ================= */
+.savings-flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:0;}
+.savings-node{flex:1;min-width:150px;text-align:center;padding:26px 16px;position:relative;}
+.savings-node .ic{width:52px;height:52px;border-radius:14px;background:var(--c-green-100);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+[data-theme="dark"] .savings-node .ic{background:rgba(26,172,112,.15);}
+.savings-node svg{width:24px;height:24px;stroke:var(--c-green-700);}
+.savings-node h5{font-size:.88rem;font-weight:700;margin-bottom:4px;}
+.savings-node p{font-size:.76rem;color:var(--text-soft);}
+.savings-arrow{align-self:center;color:var(--c-green-500);font-size:1.4rem;padding:0 4px;}
+
+/* ================= COMPARISON ================= */
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);}
+.compare-col{padding:clamp(28px,4vw,44px);}
+.compare-col.old{background:var(--c-gray-800);color:#eee;}
+[data-theme="dark"] .compare-col.old{background:#050d16;}
+.compare-col.new{background:var(--grad-primary);color:#fff;}
+.compare-col h3{color:inherit;font-size:1.3rem;margin-bottom:22px;}
+.compare-col ul li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;font-size:.92rem;border-bottom:1px solid rgba(255,255,255,.12);}
+.compare-col ul li svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
+
+/* ================= COMMUNITY ================= */
+.community-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+.community-card{padding:28px;text-align:center;border-radius:var(--radius-md);background:var(--bg-elev);border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.community-card .ic{width:60px;height:60px;border-radius:50%;background:var(--c-blue-100);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+[data-theme="dark"] .community-card .ic{background:rgba(30,136,229,.15);}
+.community-card svg{width:28px;height:28px;stroke:var(--c-blue-600);}
+
+/* ================= NEWS CAROUSEL ================= */
+.carousel-wrap{position:relative;}
+.carousel-track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;}
+.carousel-track::-webkit-scrollbar{height:6px;}
+.carousel-track::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px;}
+.news-card{flex:0 0 320px;scroll-snap-align:start;border-radius:var(--radius-md);overflow:hidden;background:var(--bg-elev);border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.news-card .thumb{height:190px;background-size:cover;background-position:center;position:relative;}
+.news-card .thumb .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);color:var(--c-blue-700);font-size:.7rem;font-weight:700;padding:5px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;}
+.news-card .body{padding:20px;}
+.news-card h4{font-size:1rem;margin-bottom:8px;}
+.news-card p{font-size:.85rem;color:var(--text-soft);}
+.carousel-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;}
+.carousel-nav button{width:44px;height:44px;border-radius:50%;background:var(--bg-elev);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:.2s;}
+.carousel-nav button:hover{background:var(--c-blue-600);border-color:var(--c-blue-600);}
+.carousel-nav button:hover svg{stroke:#fff;}
+.carousel-nav svg{width:18px;height:18px;stroke:var(--text);}
+
+/* ================= TESTIMONIALS ================= */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+.testi-card{padding:30px;border-radius:var(--radius-md);background:var(--bg-elev);border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.testi-card .quote-mark{font-family:var(--font-display);font-size:2.6rem;color:var(--c-blue-500);line-height:1;opacity:.5;}
+.testi-card p{margin:12px 0 20px;font-size:.94rem;color:var(--text);}
+.testi-person{display:flex;align-items:center;gap:12px;}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:var(--grad-primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem;}
+.testi-person strong{font-size:.88rem;display:block;}
+.testi-person span{font-size:.76rem;color:var(--text-soft);}
+
+/* ================= TEAM ================= */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;}
+.team-card{border-radius:var(--radius-md);overflow:hidden;background:var(--bg-elev);border:1px solid var(--border);box-shadow:var(--shadow-sm);text-align:center;padding:34px 22px;}
+.team-avatar{width:96px;height:96px;border-radius:50%;background:var(--grad-primary);margin:0 auto 18px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-weight:800;font-size:1.6rem;}
+.team-card h4{font-size:1.02rem;margin-bottom:4px;}
+.team-card .role{font-size:.82rem;color:var(--c-blue-600);font-weight:600;margin-bottom:2px;}
+.team-card .org{font-size:.78rem;color:var(--text-soft);}
+
+/* ================= FAQ ================= */
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:22px 4px;font-weight:600;font-size:1rem;cursor:pointer;}
+.faq-q .plus{width:24px;height:24px;flex-shrink:0;position:relative;}
+.faq-q .plus::before,.faq-q .plus::after{content:'';position:absolute;background:var(--c-blue-600);top:50%;left:50%;transform:translate(-50%,-50%);}
+.faq-q .plus::before{width:14px;height:2px;}
+.faq-q .plus::after{width:2px;height:14px;transition:transform .25s ease;}
+.faq-item.open .plus::after{transform:translate(-50%,-50%) rotate(90deg) scaleY(0);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a p{padding:0 4px 22px;color:var(--text-soft);font-size:.92rem;max-width:80ch;}
+
+/* ================= CONTACT ================= */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+.contact-info-card{padding:32px;border-radius:var(--radius-md);}
+.contact-info-card.dark{background:var(--grad-primary);color:#fff;}
+.contact-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.18);}
+.contact-item svg{width:20px;height:20px;flex-shrink:0;margin-top:2px;}
+.social-row{display:flex;gap:12px;margin-top:22px;}
+.social-row a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:.2s;}
+.social-row a:hover{background:rgba(255,255,255,.3);transform:translateY(-3px);}
+.social-row img{width:20px;height:20px;filter:brightness(0) invert(1);}
+.contact-mini-map{height:220px;border-radius:16px;overflow:hidden;margin-top:20px;}
+
+/* ================= FOOTER ================= */
+footer{background:var(--c-blue-900);color:rgba(255,255,255,.75);padding:70px 0 30px;}
+[data-theme="dark"] footer{background:#050d16;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+.footer-brand img{height:40px;filter:brightness(0) invert(1);margin-bottom:16px;}
+.footer-brand p{font-size:.86rem;line-height:1.7;max-width:320px;}
+.footer-col h5{color:#fff;font-size:.86rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:18px;}
+.footer-col a{display:block;font-size:.88rem;padding:7px 0;color:rgba(255,255,255,.65);transition:.2s;}
+.footer-col a:hover{color:#fff;padding-left:4px;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:26px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:.8rem;}
+
+/* ================= UTILITIES ================= */
+.back-to-top{
+  position:fixed;bottom:26px;right:26px;width:50px;height:50px;border-radius:50%;
+  background:var(--grad-primary);display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-md);opacity:0;visibility:hidden;transform:translateY(14px);transition:.3s;z-index:800;
+}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top svg{width:20px;height:20px;stroke:#fff;}
+.fab-whatsapp{
+  position:fixed;bottom:26px;left:26px;width:56px;height:56px;border-radius:50%;background:#25D366;
+  display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);z-index:800;
+}
+.fab-whatsapp img{width:28px;height:28px;filter:brightness(0) invert(1);}
 
 @media(max-width:960px){
-  nav.menu{
-    position:fixed;top:0;right:-100%;width:78%;max-width:320px;height:100vh;
-    background:var(--bg-alt);flex-direction:column;justify-content:center;align-items:flex-start;
-    padding:40px;gap:26px;transition:right .3s ease;box-shadow:-10px 0 40px rgba(0,0,0,.15);
-  }
-  nav.menu.abierto{right:0;}
-  nav.menu .btn{width:100%;justify-content:center;}
-  .menu-btn{display:block;}
+  .nav-desktop{display:none;}
+  .burger{display:flex;}
+  .form-grid{grid-template-columns:1fr;}
+  .charts-grid{grid-template-columns:1fr;}
+  .compare-wrap{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
 }
-
-/* ==========================================================================
-   2. HERO
-   ========================================================================== */
-.hero{
-  position:relative;min-height:100vh;display:flex;align-items:center;padding-top:120px;
-  background:
-    linear-gradient(180deg, rgba(0,15,40,.55) 0%, rgba(0,20,55,.72) 55%, var(--azul-oscuro) 100%),
-    url('https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg') center/cover no-repeat;
-  color:#fff;overflow:hidden;
+@media(max-width:600px){
+  .footer-grid{grid-template-columns:1fr;}
+  .crisis-stat{padding:28px 20px;}
 }
-.hero::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(circle at 80% 20%, rgba(15,157,107,.25), transparent 45%);
-}
-.hero-grid{position:relative;z-index:2;}
-.hero .pildora{background:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(6px);}
-.hero h1{
-  font-size:clamp(2.6rem,6.4vw,5.2rem);margin:20px 0 20px;color:#fff;letter-spacing:-.01em;
-}
-.hero h1 .acento{background:linear-gradient(120deg,var(--verde-claro),#7CE8C4);-webkit-background-clip:text;background-clip:text;color:transparent;}
-.hero p.lead{max-width:600px;font-size:1.18rem;color:rgba(255,255,255,.88);margin-bottom:36px;}
-.hero .ctas{display:flex;gap:16px;flex-wrap:wrap;}
-.hero-scroll{
-  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;
-  display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.65);
-  font-family:var(--ff-label);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
-}
-.hero-scroll .linea{width:1px;height:34px;background:linear-gradient(180deg,rgba(255,255,255,.8),transparent);animation:bajar 1.8s infinite;}
-@keyframes bajar{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
-
-/* ==========================================================================
-   3. LA CRISIS
-   ========================================================================== */
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
-.card-crisis{padding:30px 26px;text-align:left;}
-.card-crisis .icono{
-  width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg, rgba(0,59,149,.12), rgba(15,157,107,.12));
-  display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--azul);
-}
-.card-crisis .icono svg{width:28px;height:28px;}
-.card-crisis h3{font-size:1.06rem;margin-bottom:8px;}
-.card-crisis p{font-size:.92rem;}
-@media(max-width:980px){.grid-4{grid-template-columns:1fr 1fr;}.grid-3{grid-template-columns:1fr;}.grid-2{grid-template-columns:1fr;}}
-@media(max-width:560px){.grid-4{grid-template-columns:1fr;}}
-
-/* ==========================================================================
-   4. NUEVO MODELO — Timeline horizontal
-   ========================================================================== */
-.timeline-modelo{display:flex;position:relative;gap:0;padding-top:20px;}
-.timeline-modelo::before{
-  content:"";position:absolute;top:44px;left:6%;right:6%;height:2px;
-  background:repeating-linear-gradient(90deg, var(--azul-brillante) 0 10px, transparent 10px 20px);
-}
-.paso-modelo{flex:1;text-align:center;padding:0 10px;position:relative;}
-.paso-modelo .num{
-  width:52px;height:52px;border-radius:50%;margin:0 auto 18px;position:relative;z-index:2;
-  background:linear-gradient(135deg,var(--azul),var(--azul-brillante));color:#fff;
-  display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-weight:700;font-size:1.15rem;
-  box-shadow:0 10px 22px rgba(0,59,149,.35);
-}
-.paso-modelo:nth-child(even) .num{background:linear-gradient(135deg,var(--verde),var(--verde-claro));box-shadow:0 10px 22px rgba(15,157,107,.35);}
-.paso-modelo h4{font-size:.94rem;margin-bottom:6px;font-family:var(--ff-label);text-transform:uppercase;letter-spacing:.02em;}
-.paso-modelo p{font-size:.82rem;}
-@media(max-width:900px){
-  .timeline-modelo{flex-direction:column;gap:34px;}
-  .timeline-modelo::before{top:0;bottom:0;left:26px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg, var(--azul-brillante) 0 10px, transparent 10px 20px);}
-  .paso-modelo{display:flex;align-items:flex-start;gap:18px;text-align:left;padding:0;}
-  .paso-modelo .num{margin:0;flex-shrink:0;}
-}
-
-/* ==========================================================================
-   5. ARQUITECTURA AAS — cascada institucional (elemento firma)
-   ========================================================================== */
-.cascada{display:flex;flex-direction:column;align-items:center;gap:0;position:relative;padding:20px 0 10px;}
-.nivel-cascada{
-  width:100%;display:flex;justify-content:center;position:relative;padding:14px 0;
-}
-.nodo-cascada{
-  padding:16px 30px;border-radius:999px;font-family:var(--ff-label);font-weight:700;letter-spacing:.02em;
-  font-size:.92rem;text-align:center;box-shadow:var(--sombra-sm);border:1px solid var(--borde);
-}
-.nodo-cascada.n1{background:linear-gradient(135deg,var(--azul),var(--azul-oscuro));color:#fff;font-size:1.05rem;padding:20px 44px;}
-.nodo-cascada.n2{background:var(--surface-solid);color:var(--azul);}
-.nodo-cascada.n3{background:var(--surface-solid);color:var(--texto);width:auto;}
-.fila-nodos{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
-.conector-v{width:2px;height:30px;background:repeating-linear-gradient(180deg, var(--verde) 0 8px, transparent 8px 16px);}
-.cascada small{color:var(--texto-suave);font-family:var(--ff-label);text-transform:uppercase;letter-spacing:.14em;font-size:.66rem;display:block;margin-top:6px;text-align:center;}
-
-/* ==========================================================================
-   6. MAPA
-   ========================================================================== */
-.mapa-panel{background:var(--surface-solid);border-radius:var(--radio-lg);overflow:hidden;box-shadow:var(--sombra);border:1px solid var(--borde);}
-.mapa-toolbar{display:flex;flex-wrap:wrap;gap:12px;padding:18px 22px;border-bottom:1px solid var(--borde);align-items:center;justify-content:space-between;}
-.buscador-mapa{position:relative;flex:1;min-width:220px;}
-.buscador-mapa input{
-  width:100%;padding:12px 16px 12px 42px;border-radius:999px;border:1px solid var(--borde);
-  background:var(--bg);color:var(--texto);font-family:var(--ff-body);font-size:.9rem;
-}
-.buscador-mapa svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--texto-suave);}
-#lista-resultados-mapa{
-  position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--surface-solid);border:1px solid var(--borde);
-  border-radius:var(--radio-sm);box-shadow:var(--sombra);max-height:220px;overflow-y:auto;z-index:50;display:none;
-}
-#lista-resultados-mapa button{display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;color:var(--texto);cursor:pointer;font-size:.85rem;}
-#lista-resultados-mapa button:hover{background:var(--bg);}
-.capas-mapa{display:flex;gap:10px;flex-wrap:wrap;}
-.chip-mapa{
-  display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;border:1.5px solid var(--borde);
-  font-family:var(--ff-label);font-size:.78rem;font-weight:700;letter-spacing:.02em;background:var(--bg);
-  color:var(--texto-suave);cursor:pointer;transition:all .15s ease;
-}
-.chip-mapa.activo{background:var(--azul);border-color:var(--azul);color:#fff;}
-#mapa-nacional{height:600px;width:100%;}
-@media(max-width:640px){#mapa-nacional{height:440px;}}
-.leaflet-popup-content-wrapper{border-radius:14px !important;font-family:var(--ff-body) !important;}
-.popup-mapa{min-width:220px;}
-.popup-mapa .p-eyebrow{font-family:var(--ff-label);font-weight:700;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);}
-.popup-mapa h4{font-family:var(--ff-display);font-size:1rem;margin:4px 0 10px;}
-.popup-mapa .indicadores-popup{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
-.popup-mapa .indicador-mini{background:#F0F3FA;border-radius:8px;padding:7px 9px;}
-.popup-mapa .indicador-mini b{display:block;font-size:1rem;color:var(--azul);font-family:var(--ff-display);}
-.popup-mapa .indicador-mini span{font-size:.66rem;color:var(--texto-suave);}
-.popup-mapa .nota-demo{font-size:.68rem;color:var(--texto-suave);font-style:italic;margin-top:4px;}
-
-/* ==========================================================================
-   7. REGISTRO DE NECESIDADES
-   ========================================================================== */
-.form-panel{padding:44px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.campo{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
-.campo.full{grid-column:1/-1;}
-.campo label{font-family:var(--ff-label);font-weight:700;font-size:.78rem;letter-spacing:.03em;color:var(--texto);}
-.campo label .req{color:var(--verde);}
-.campo input,.campo select,.campo textarea{
-  padding:13px 16px;border-radius:12px;border:1.5px solid var(--borde);background:var(--bg);
-  color:var(--texto);font-family:var(--ff-body);font-size:.92rem;outline:none;transition:border-color .2s ease, box-shadow .2s ease;
-}
-.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--azul-brillante);box-shadow:0 0 0 4px rgba(45,108,223,.14);}
-.campo textarea{resize:vertical;min-height:100px;}
-.campo .error-msg{font-size:.74rem;color:#E0483E;display:none;}
-.campo.invalido input,.campo.invalido select,.campo.invalido textarea{border-color:#E0483E;}
-.campo.invalido .error-msg{display:block;}
-.grupo-check{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.opcion-check{
-  display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:12px;border:1.5px solid var(--borde);
-  background:var(--bg);font-size:.84rem;cursor:pointer;transition:all .15s ease;
-}
-.opcion-check:has(input:checked){border-color:var(--verde);background:rgba(15,157,107,.08);}
-.opcion-check input{accent-color:var(--verde);width:16px;height:16px;}
-.file-drop{
-  border:2px dashed var(--borde);border-radius:14px;padding:26px;text-align:center;cursor:pointer;background:var(--bg);
-}
-.file-drop svg{width:26px;height:26px;color:var(--texto-suave);margin-bottom:8px;}
-.file-drop span{display:block;font-size:.82rem;color:var(--texto-suave);}
-#preview-foto{margin-top:10px;max-height:140px;border-radius:10px;display:none;}
-.exito-panel{
-  display:none;text-align:center;padding:50px 30px;
-}
-.exito-panel .check-circulo{
-  width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--verde),var(--verde-claro));
-  display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 14px 30px rgba(15,157,107,.35);
-}
-.exito-panel .check-circulo svg{width:34px;height:34px;color:#fff;}
-@media(max-width:760px){.form-grid,.grupo-check{grid-template-columns:1fr;}}
-
-/* ==========================================================================
-   8. DASHBOARD / INDICADORES
-   ========================================================================== */
-.dashboard{background:linear-gradient(160deg,var(--azul-oscuro),#03264F);color:#fff;}
-.dashboard .section-head p{color:rgba(255,255,255,.72);}
-.dashboard .eyebrow{color:var(--verde-claro);}
-.dashboard .eyebrow::before{background:#fff;}
-.grid-indicadores{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-.card-indicador{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;
-  padding:26px 22px;backdrop-filter:blur(14px);text-align:left;
-}
-.card-indicador .num{font-family:var(--ff-display);font-weight:800;font-size:2.2rem;color:#fff;font-variant-numeric:tabular-nums;}
-.card-indicador .lbl{font-family:var(--ff-label);font-size:.76rem;letter-spacing:.04em;color:rgba(255,255,255,.65);margin-top:4px;}
-.nota-ilustrativa{
-  text-align:center;font-size:.78rem;color:rgba(255,255,255,.5);margin-top:26px;font-style:italic;
-}
-@media(max-width:900px){.grid-indicadores{grid-template-columns:1fr 1fr;}}
-
-/* ==========================================================================
-   9. GRÁFICOS
-   ========================================================================== */
-.grid-graficos{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.panel-grafico{padding:26px;}
-.panel-grafico h4{font-size:.98rem;margin-bottom:16px;}
-.panel-grafico canvas{max-height:260px;}
-@media(max-width:900px){.grid-graficos{grid-template-columns:1fr;}}
-
-/* ==========================================================================
-   10. AHORRO PRESUPUESTARIO
-   ========================================================================== */
-.flujo-ahorro{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;}
-.nodo-ahorro{
-  flex:1;min-width:140px;text-align:center;padding:24px 16px;
-}
-.nodo-ahorro .icono{
-  width:48px;height:48px;border-radius:14px;background:rgba(0,59,149,.1);color:var(--azul);
-  display:flex;align-items:center;justify-content:center;margin:0 auto 12px;
-}
-.nodo-ahorro .icono svg{width:24px;height:24px;}
-.nodo-ahorro h4{font-size:.88rem;margin-bottom:4px;}
-.nodo-ahorro p{font-size:.76rem;}
-.nodo-ahorro.final{background:linear-gradient(135deg,var(--verde),var(--verde-claro));}
-.nodo-ahorro.final .icono{background:rgba(255,255,255,.25);color:#fff;}
-.nodo-ahorro.final h4,.nodo-ahorro.final p{color:#fff;}
-.flecha-ahorro{color:var(--texto-suave);flex-shrink:0;}
-.flecha-ahorro svg{width:20px;height:20px;}
-@media(max-width:900px){.flujo-ahorro{flex-direction:column;}.flecha-ahorro svg{transform:rotate(90deg);}}
-
-/* ==========================================================================
-   11. HOSPITAL DEL FUTURO
-   ========================================================================== */
-.comparativa{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.panel-comparativo{padding:34px;}
-.panel-comparativo.tradicional{border-top:4px solid #C9412E;}
-.panel-comparativo.aas{border-top:4px solid var(--verde);}
-.panel-comparativo h3{font-size:1.2rem;margin-bottom:20px;}
-.panel-comparativo ul li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;font-size:.9rem;color:var(--texto-suave);border-bottom:1px solid var(--borde);}
-.panel-comparativo ul li:last-child{border-bottom:none;}
-.panel-comparativo ul li svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
-.panel-comparativo.tradicional svg{color:#C9412E;}
-.panel-comparativo.aas svg{color:var(--verde);}
-@media(max-width:820px){.comparativa{grid-template-columns:1fr;}}
-
-/* ==========================================================================
-   12. SERVICIO COMUNITARIO
-   ========================================================================== */
-.card-comunitario{padding:28px 24px;text-align:center;}
-.card-comunitario .icono{
-  width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,rgba(0,59,149,.12),rgba(15,157,107,.12));
-  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--azul);
-}
-.card-comunitario .icono svg{width:28px;height:28px;}
-.card-comunitario h3{font-size:1rem;margin-bottom:8px;}
-.card-comunitario p{font-size:.86rem;}
-
-/* ==========================================================================
-   13. NOTICIAS — carrusel (cinta desplazable)
-   ========================================================================== */
-.carrusel-wrap{position:relative;}
-.carrusel-noticias{
-  display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-  padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--azul-brillante) transparent;cursor:grab;
-}
-.carrusel-noticias.arrastrando{cursor:grabbing;scroll-snap-type:none;}
-.carrusel-noticias::-webkit-scrollbar{height:6px;}
-.carrusel-noticias::-webkit-scrollbar-thumb{background:var(--azul-brillante);border-radius:999px;}
-.item-noticia{
-  flex:0 0 340px;scroll-snap-align:start;border-radius:var(--radio-md);overflow:hidden;background:var(--surface-solid);
-  border:1px solid var(--borde);box-shadow:var(--sombra-sm);
-}
-.item-noticia .media{aspect-ratio:16/10;overflow:hidden;background:var(--azul-oscuro);}
-.item-noticia .media img,.item-noticia .media video{width:100%;height:100%;object-fit:cover;}
-.item-noticia .cuerpo{padding:18px 20px 22px;}
-.item-noticia .tag{font-family:var(--ff-label);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--verde);}
-.item-noticia h4{font-size:1rem;margin:8px 0;}
-.item-noticia p{font-size:.82rem;}
-.flecha-carrusel{
-  position:absolute;top:42%;width:42px;height:42px;border-radius:50%;border:1px solid var(--borde);
-  background:var(--surface-solid);display:flex;align-items:center;justify-content:center;cursor:pointer;
-  box-shadow:var(--sombra-sm);z-index:5;color:var(--azul);
-}
-.flecha-carrusel.prev{left:-14px;}
-.flecha-carrusel.next{right:-14px;}
-@media(max-width:700px){.flecha-carrusel{display:none;}}
-
-/* ==========================================================================
-   14. TESTIMONIOS
-   ========================================================================== */
-.card-testimonio{padding:28px 26px;}
-.card-testimonio .estrellas{color:var(--verde);margin-bottom:14px;font-size:.9rem;letter-spacing:2px;}
-.card-testimonio p.cita{font-size:.94rem;color:var(--texto);font-style:italic;margin-bottom:18px;}
-.autor-testimonio{display:flex;align-items:center;gap:12px;}
-.avatar-inicial{
-  width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--verde));
-  color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-weight:700;
-}
-.autor-testimonio b{font-size:.88rem;display:block;}
-.autor-testimonio span{font-size:.74rem;color:var(--texto-suave);}
-
-/* ==========================================================================
-   15. EQUIPO
-   ========================================================================== */
-.card-equipo{text-align:center;padding:30px 22px;}
-.card-equipo .foto{
-  width:96px;height:96px;border-radius:50%;margin:0 auto 16px;overflow:hidden;
-  border:3px solid var(--surface-solid);box-shadow:var(--sombra-sm);
-  background:linear-gradient(135deg,var(--azul),var(--verde));display:flex;align-items:center;justify-content:center;
-}
-.card-equipo .foto svg{width:44px;height:44px;color:#fff;}
-.card-equipo h4{font-size:1rem;margin-bottom:4px;}
-.card-equipo span.rol{font-family:var(--ff-label);font-size:.72rem;letter-spacing:.04em;color:var(--verde);text-transform:uppercase;}
-.card-equipo p{font-size:.82rem;margin-top:8px;}
-.foto-equipo-grupal{border-radius:var(--radio-lg);overflow:hidden;box-shadow:var(--sombra);margin-top:40px;}
-
-/* ==========================================================================
-   16. FAQ — accordion
-   ========================================================================== */
-.faq-item{border-bottom:1px solid var(--borde);}
-.faq-pregunta{
-  width:100%;text-align:left;background:none;border:none;padding:22px 4px;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;gap:16px;
-  font-family:var(--ff-display);font-size:1rem;color:var(--texto);
-}
-.faq-pregunta svg{width:20px;height:20px;flex-shrink:0;transition:transform .25s ease;color:var(--azul);}
-.faq-item.abierto .faq-pregunta svg{transform:rotate(45deg);}
-.faq-respuesta{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.faq-respuesta p{padding:0 4px 22px;font-size:.9rem;}
-
-/* ==========================================================================
-   17. CONTACTO
-   ========================================================================== */
-.grid-contacto{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-.info-contacto .item-contacto{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;}
-.info-contacto .icono{
-  width:44px;height:44px;border-radius:12px;background:rgba(0,59,149,.1);color:var(--azul);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.info-contacto .icono svg{width:20px;height:20px;}
-.info-contacto b{display:block;font-size:.92rem;}
-.info-contacto span, .info-contacto a{font-size:.84rem;color:var(--texto-suave);}
-.redes-contacto{display:flex;gap:10px;margin-top:20px;}
-.redes-contacto a{
-  width:42px;height:42px;border-radius:50%;background:var(--surface-solid);border:1px solid var(--borde);
-  display:flex;align-items:center;justify-content:center;transition:all .2s ease;
-}
-.redes-contacto a svg{width:18px;height:18px;color:var(--azul);}
-.redes-contacto a:hover{background:var(--azul);}
-.redes-contacto a:hover svg{color:#fff;}
-@media(max-width:820px){.grid-contacto{grid-template-columns:1fr;}}
-
-/* ==========================================================================
-   18. FOOTER
-   ========================================================================== */
-footer{background:var(--azul-oscuro);color:rgba(255,255,255,.72);padding-top:70px;}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);}
-.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-.footer-brand img{height:36px;}
-.footer-brand b{font-family:var(--ff-display);color:#fff;font-size:1.05rem;}
-footer p{font-size:.86rem;color:rgba(255,255,255,.6);max-width:280px;}
-footer h5{font-family:var(--ff-label);color:var(--verde-claro);letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;margin-bottom:16px;}
-footer ul li{margin-bottom:10px;font-size:.86rem;}
-footer ul a:hover{color:#fff;}
-.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:22px 0 30px;font-size:.76rem;color:rgba(255,255,255,.45);font-family:var(--ff-label);}
-@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:560px){.footer-grid{grid-template-columns:1fr;}}
-
-/* ==========================================================================
-   19. UTILIDADES / REVEAL / RESPONSIVE
-   ========================================================================== */
-.text-center{text-align:center;}
-.mt-32{margin-top:32px;}
-[data-aos]{ }
 @media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto;}
-  [data-aos]{transition:none !important; transform:none !important; opacity:1 !important;}
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
 }
-::selection{background:var(--verde);color:#fff;}
 </style>
 </head>
 <body>
 
-<!-- ==========================================================================
-     HEADER
-     ========================================================================== -->
-<header>
-  <div class="nav-row">
-    <a href="#inicio" class="brand">
-      <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png" alt="Logo AAS" loading="lazy">
-      <span class="sep"></span>
-      <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20concertacion%20sin%20fondo.png" alt="Logo Concertación" loading="lazy">
+<!-- ============ HEADER ============ -->
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="#hero" class="brand">
+      <img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/logo%20ass%20sin%20fondo.png?raw=true" alt="Logo Proyecto AAS" loading="lazy">
+      <div class="brand-div"></div>
+      <img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/logo%20concertacion%20sin%20fondo.png?raw=true" alt="Logo Concertación Ciudadana" style="height:30px" loading="lazy">
       <div class="brand-text">
-        <b>AAS</b>
-        <span>Secretaría Nacional de Salud</span>
+        <strong>Proyecto AAS</strong>
+        <span>Concertación Ciudadana</span>
       </div>
     </a>
-    <nav class="menu" id="menuPrincipal">
-      <a href="#inicio" onclick="cerrarMenu()">Inicio</a>
-      <a href="#proyecto" onclick="cerrarMenu()">Proyecto</a>
-      <a href="#modelo" onclick="cerrarMenu()">Modelo</a>
-      <a href="#mapa" onclick="cerrarMenu()">Mapa Nacional</a>
-      <a href="#registro" onclick="cerrarMenu()">Registro</a>
-      <a href="#indicadores" onclick="cerrarMenu()">Indicadores</a>
-      <a href="#noticias" onclick="cerrarMenu()">Noticias</a>
-      <a href="#equipo" onclick="cerrarMenu()">Equipo</a>
-      <a href="#contacto" onclick="cerrarMenu()">Contacto</a>
-      <a href="#registro" class="btn btn-verde btn-sm" onclick="cerrarMenu()">Registrar Necesidad</a>
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      <a href="#hero">Inicio</a>
+      <a href="#proyecto">Proyecto</a>
+      <a href="#modelo">Modelo</a>
+      <a href="#mapa">Mapa Nacional</a>
+      <a href="#registro">Registro</a>
+      <a href="#indicadores">Indicadores</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
     </nav>
-    <div class="acciones-header">
-      <button class="toggle-tema" id="toggleTema" aria-label="Cambiar tema claro/oscuro">
-        <svg id="iconoTema" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro/claro">
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
-      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <a href="#registro" class="btn btn-primary btn-sm" style="display:none" id="headerCta">Registrar Necesidad</a>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menú"><span></span></button>
     </div>
   </div>
 </header>
 
-<!-- ==========================================================================
-     HERO
-     ========================================================================== -->
-<section class="hero" id="inicio" style="padding-bottom:60px;">
-  <div class="wrap hero-grid">
-    <span class="pildora" data-aos="fade-down">Secretaría Nacional de Salud · Concertación Ciudadana</span>
-    <h1 data-aos="fade-up" data-aos-delay="100">ATENCIÓN <span class="acento">AVANZADA</span><br>EN SALUD</h1>
-    <p class="lead" data-aos="fade-up" data-aos-delay="200">Transformando la salud pública desde el hogar del paciente. Una propuesta de la Secretaría Nacional de Salud de Concertación Ciudadana para el Gobierno de Transición de Venezuela.</p>
-    <div class="ctas" data-aos="fade-up" data-aos-delay="300">
-      <a href="#proyecto" class="btn btn-verde animate__animated animate__pulse animate__slow animate__infinite">Conocer el proyecto</a>
-      <a href="#registro" class="btn btn-fantasma">Registrar necesidad</a>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#hero">Inicio</a>
+  <a href="#proyecto">Proyecto</a>
+  <a href="#modelo">Modelo</a>
+  <a href="#arquitectura">Arquitectura</a>
+  <a href="#mapa">Mapa Nacional</a>
+  <a href="#registro">Registro</a>
+  <a href="#indicadores">Indicadores</a>
+  <a href="#noticias">Noticias</a>
+  <a href="#equipo">Equipo</a>
+  <a href="#faq">Preguntas</a>
+  <a href="#contacto">Contacto</a>
+  <a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener" style="color:var(--c-blue-600);">Registrar Necesidad →</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="container hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Propuesta para el Gobierno de Transición de Venezuela</div>
+    <h1 data-aos="fade-up" data-aos-duration="900">
+      ATENCIÓN AVANZADA
+      <span class="line2">EN SALUD</span>
+    </h1>
+    <p class="hero-sub" data-aos="fade-up" data-aos-delay="150">
+      Transformando la salud pública desde el hogar del paciente. Un modelo descentralizado de contención primaria domiciliaria que conecta tecnología, comunidad y Estado.
+    </p>
+    <div class="hero-actions" data-aos="fade-up" data-aos-delay="250">
+      <a href="#proyecto" class="btn btn-primary">Conocer el proyecto</a>
+      <a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener" class="btn btn-outline-white">Registrar necesidad</a>
+    </div>
+    <div class="hero-orgs" data-aos="fade-up" data-aos-delay="350">
+      <img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/logo%20concertacion%20sin%20fondo.png?raw=true" alt="Concertación Ciudadana" loading="lazy">
+      <div class="div"></div>
+      <img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/ChatGPT%20Image%2017%20may%202026%2016_00_06.png?raw=true" alt="Orden y Gestión" loading="lazy">
     </div>
   </div>
-  <div class="hero-scroll"><span>Desplázate</span><span class="linea"></span></div>
+  <div class="scroll-cue"><span>Desplázate</span><div class="wheel"></div></div>
 </section>
 
-<!-- ==========================================================================
-     LA CRISIS
-     ========================================================================== -->
+<!-- ============ EL PROYECTO / DIAGNÓSTICO ============ -->
 <section id="proyecto">
-  <div class="wrap">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
       <span class="eyebrow">El diagnóstico</span>
-      <h2>La crisis que enfrenta hoy el sistema de salud</h2>
-      <p>Un modelo hospitalocéntrico, saturado y costoso, que atiende tarde lo que pudo resolverse a tiempo en el hogar.</p>
+      <h2>La crisis del <span class="grad-text">gasto sanitario</span></h2>
+      <p>El 70% de las emergencias hospitalarias colapsan por patologías menores, mientras una consulta básica de $20 resulta inaccesible para miles de familias. El modelo tradicional del Estado es insostenible y fiscalmente ineficiente, generando una carga desproporcionada sobre todo el sistema de salud.</p>
     </div>
-    <div class="grid-4">
-      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="0">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M14 9h1M14 13h1M10 21v-5h4v5"/></svg></div>
+
+    <div class="crisis-grid">
+      <div class="crisis-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="crisis-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-2 2-3.5 2-5a5 5 0 0 0-9-3 5 5 0 0 0-9 3c0 4 4.5 8.5 10 12 1.5-1 2.9-2 4-3"></path></svg></div>
         <h3>Hospitales colapsados</h3>
-        <p>Camas ocupadas por pacientes estables que podrían ser atendidos desde casa.</p>
+        <p>La red hospitalaria pública opera muy por encima de su capacidad estructural, comprometiendo la calidad de la atención crítica.</p>
       </div>
-      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="80">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L14.7 3.86a2 2 0 0 0-3.4 0z"/></svg></div>
+      <div class="crisis-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="crisis-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
         <h3>Emergencias saturadas</h3>
-        <p>Salas de emergencia desbordadas por consultas que no ameritaban traslado.</p>
+        <p>Salas de emergencia desbordadas por patologías que podrían resolverse con atención domiciliaria oportuna.</p>
       </div>
-      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="160">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div>
+      <div class="crisis-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="crisis-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h8M12 8v8"></path></svg></div>
         <h3>Infecciones intrahospitalarias</h3>
-        <p>La estadía prolongada eleva el riesgo de infecciones asociadas a la atención en salud.</p>
+        <p>La estadía prolongada en centros hospitalarios eleva el riesgo nosocomial para pacientes vulnerables.</p>
       </div>
-      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="240">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="crisis-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="crisis-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
         <h3>Costos elevados</h3>
-        <p>Traslados, hotelería médica y burocracia disparan el gasto presupuestario.</p>
+        <p>El gasto por cama hospitalaria supera con creces el costo de una atención domiciliaria equivalente.</p>
       </div>
+      <div class="crisis-card" data-aos="fade-up" data-aos-delay="320">
+        <div class="crisis-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 2v4M16 2v4"></path></svg></div>
+        <h3>Camas ocupadas por crónicos</h3>
+        <p>Pacientes con enfermedades crónicas ocupan camas que deberían reservarse para casos verdaderamente críticos.</p>
+      </div>
+    </div>
+
+    <div class="crisis-stat" data-aos="zoom-in">
+      <div><div class="num" data-count="70" data-suffix="%">0</div><div class="lbl">Emergencias por patologías menores</div></div>
+      <div><div class="num" data-count="20" data-prefix="$">0</div><div class="lbl">Costo de una consulta básica inaccesible</div></div>
+      <div><div class="num" data-count="24" data-suffix="/7">0</div><div class="lbl">Presión constante sobre el sistema</div></div>
+      <div><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">Insostenibilidad del modelo actual</div></div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     EL NUEVO MODELO
-     ========================================================================== -->
-<section id="modelo" style="background:var(--bg-alt);">
-  <div class="wrap">
+<!-- ============ EL NUEVO MODELO ============ -->
+<section id="modelo" style="background:var(--grad-soft);">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">La solución</span>
-      <h2>El nuevo modelo AAS</h2>
-      <p>Una ruta de atención centrada en el hogar del paciente, con el hospital como último recurso, no como primera puerta.</p>
+      <span class="eyebrow green">El nuevo modelo</span>
+      <h2>Atención Avanzada en Salud: <span class="grad-text">¿qué es?</span></h2>
+      <p>El Proyecto AAS propone un modelo descentralizado de contención primaria domiciliaria. Elimina la burocracia ineficiente a través de un triage digital inmediato y respuesta médica in-situ, transformando la atención sanitaria en Venezuela.</p>
     </div>
-    <div class="timeline-modelo">
-      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="0">
-        <div class="num">1</div><h4>Solicitud</h4><p>El ciudadano solicita ayuda desde su comunidad.</p>
-      </div>
-      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="80">
-        <div class="num">2</div><h4>Triage digital</h4><p>Se evalúa la urgencia del caso de forma remota.</p>
-      </div>
-      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="160">
-        <div class="num">3</div><h4>Evaluación médica</h4><p>Un profesional de salud revisa el caso.</p>
-      </div>
-      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="240">
-        <div class="num">4</div><h4>Líder Focal de Salud</h4><p>Coordina la respuesta en la comunidad.</p>
-      </div>
-      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="320">
-        <div class="num">5</div><h4>Atención domiciliaria</h4><p>El paciente es atendido en su propio hogar.</p>
-      </div>
-      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="400">
-        <div class="num">6</div><h4>Hospital si es crítico</h4><p>Solo se traslada cuando el caso lo amerita.</p>
+
+    <div class="timeline-wrap" data-aos="fade-up">
+      <div class="timeline-track">
+        <div class="timeline-step">
+          <div class="step-num">1</div><div class="line"></div>
+          <div class="card"><h4>Ciudadano solicita ayuda</h4><p>El ciudadano contacta la línea comunitaria dedicada para iniciar la evaluación médica.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">2</div><div class="line"></div>
+          <div class="card"><h4>Triage digital</h4><p>Evaluación inicial remota que filtra la urgencia real del caso y define la ruta de atención.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">3</div><div class="line"></div>
+          <div class="card"><h4>Tele-asistencia médica</h4><p>El Enlace Gremial de Salud evalúa el caso a través de tele-asistencia, filtrando necesidades y urgencias.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">4</div><div class="line"></div>
+          <div class="card"><h4>Líder Focal de Salud</h4><p>Coordina la respuesta local y da seguimiento directo al paciente dentro de su comunidad.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">5</div><div class="line"></div>
+          <div class="card"><h4>Atención domiciliaria</h4><p>El Líder Focal atiende al paciente en su hogar, bajo guía médica profesional constante.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">6</div>
+          <div class="card"><h4>Hospital solo si es crítico</h4><p>Se reservan ambulancias y camas hospitalarias exclusivamente para los casos verdaderamente críticos.</p></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     ARQUITECTURA AAS — cascada institucional
-     ========================================================================== -->
+<!-- ============ ARQUITECTURA AAS ============ -->
 <section id="arquitectura">
-  <div class="wrap">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Cómo se organiza</span>
-      <h2>Arquitectura institucional AAS</h2>
-      <p>Una cadena de mando corta, desde el Centro Nacional hasta la puerta de cada familia.</p>
+  <div class="container">
+    <div class="section-head center" style="margin-left:auto;margin-right:auto;" data-aos="fade-up">
+      <span class="eyebrow">Arquitectura operativa</span>
+      <h2>Conexión social, del <span class="grad-text">Estado al hogar</span></h2>
+      <p>Un sistema de gestión territorial en cascada que conecta a cada familia venezolana con la Secretaría Nacional de Salud.</p>
     </div>
-    <div class="cascada">
-      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="0">
-        <div class="nodo-cascada n1">Centro Nacional AAS</div>
-      </div>
-      <div class="conector-v"></div>
-      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="80"><div class="nodo-cascada n2">Estados</div></div>
-      <div class="conector-v"></div>
-      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="160"><div class="nodo-cascada n2">Municipios</div></div>
-      <div class="conector-v"></div>
-      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="240"><div class="nodo-cascada n2">Parroquias</div></div>
-      <div class="conector-v"></div>
-      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="320">
-        <div class="fila-nodos">
-          <div class="nodo-cascada n3">Líder Focal 1</div>
-          <div class="nodo-cascada n3">Líder Focal 2</div>
-          <div class="nodo-cascada n3">Líder Focal 3</div>
-          <div class="nodo-cascada n3">Líder Focal N</div>
-        </div>
-      </div>
-      <div class="conector-v"></div>
-      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="400">
-        <div class="nodo-cascada n2" style="background:linear-gradient(135deg,var(--verde),var(--verde-claro));color:#fff;">Familias</div>
-      </div>
-      <small>Cada nivel reporta indicadores en tiempo real al nivel inmediato superior</small>
+    <div class="arch-diagram" data-aos="zoom-in">
+      <div class="arch-node top">Centro Nacional AAS</div>
+      <div class="arch-arrow"></div>
+      <div class="arch-node">Estados</div>
+      <div class="arch-arrow"></div>
+      <div class="arch-node">Municipios</div>
+      <div class="arch-arrow"></div>
+      <div class="arch-node">Parroquias</div>
+      <div class="arch-arrow"></div>
+      <div class="arch-node">Líderes Focales de Salud</div>
+      <div class="arch-arrow"></div>
+      <div class="arch-node" style="background:var(--c-green-600);color:#fff;border-color:transparent;">Familias</div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     MAPA NACIONAL
-     ========================================================================== -->
-<section id="mapa" style="background:var(--bg-alt);">
-  <div class="wrap">
+<!-- ============ MAPA INTERACTIVO ============ -->
+<section id="mapa" style="background:var(--grad-soft);">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Cobertura territorial</span>
-      <h2>Mapa Nacional AAS</h2>
-      <p>Estados, municipios y parroquias de Venezuela. Filtra, busca y cambia entre vista de mapa y vista satelital.</p>
+      <span class="eyebrow green">Cobertura nacional</span>
+      <h2>Mapa <span class="grad-text">Interactivo AAS</span></h2>
+      <p>Visualiza en tiempo real la cobertura territorial del proyecto: estados, municipios y parroquias, con indicadores de líderes focales y pacientes atendidos.</p>
     </div>
-    <div class="mapa-panel" data-aos="fade-up">
-      <div class="mapa-toolbar">
-        <div class="buscador-mapa">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-          <input type="text" id="buscarMapa" placeholder="Buscar estado, municipio o parroquia…" autocomplete="off">
-          <div id="lista-resultados-mapa"></div>
+    <div class="map-panel glass" data-aos="fade-up">
+      <div class="map-toolbar">
+        <div class="map-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="text" id="mapSearchInput" placeholder="Buscar estado o municipio…">
         </div>
-        <div class="capas-mapa">
-          <button class="chip-mapa activo" data-capa="estados">Estados</button>
-          <button class="chip-mapa" data-capa="municipios">Municipios / Parroquias</button>
+        <div class="map-toggles">
+          <button class="active" id="btnLayerStates">Estados</button>
+          <button id="btnLayerMuni">Municipios</button>
+        </div>
+        <div class="map-toggles">
+          <button class="active" id="btnMapStreet">Mapa</button>
+          <button id="btnMapSat">Satélite</button>
         </div>
       </div>
-      <div id="mapa-nacional"></div>
+      <div id="leaflet-map"></div>
+      <div class="map-legend">
+        <span><i style="background:#1e88e5"></i> Baja densidad de casos</span>
+        <span><i style="background:#f5a623"></i> Densidad media</span>
+        <span><i style="background:#e0554f"></i> Alta densidad de casos</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     REGISTRO DE NECESIDADES
-     ========================================================================== -->
+<!-- ============ REGISTRO DE NECESIDADES ============ -->
 <section id="registro">
-  <div class="wrap">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Solicita ayuda</span>
-      <h2>Registro de necesidades</h2>
-      <p>Cuéntanos qué necesita tu familia. Un Líder Focal de Salud de tu zona revisará tu caso.</p>
+      <span class="eyebrow">Registro ciudadano</span>
+      <h2>Registrar una <span class="grad-text">necesidad de salud</span></h2>
+      <p>Completa el formulario para que un Líder Focal de Salud evalúe tu caso. Toda la información es confidencial y será utilizada exclusivamente para fines de atención médica.</p>
     </div>
 
-    <div class="glass form-panel" data-aos="fade-up" style="max-width:920px;margin:0 auto;">
-      <form id="formRegistro" novalidate>
+    <div class="glass form-panel" data-aos="fade-up">
+      <div class="form-note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+        <span>Este formulario valida los datos localmente. Al confirmar, serás dirigido a nuestro formulario oficial de Google Forms para completar el registro definitivo.</span>
+      </div>
+
+      <form id="needsForm" novalidate>
         <div class="form-grid">
-          <div class="campo">
-            <label>Nombre <span class="req">*</span></label>
-            <input type="text" name="nombre" required>
-            <span class="error-msg">Escribe tu nombre.</span>
+          <div class="field"><label>Nombre <span class="req">*</span></label><input type="text" id="f_nombre" required><span class="err"></span></div>
+          <div class="field"><label>Apellido <span class="req">*</span></label><input type="text" id="f_apellido" required><span class="err"></span></div>
+          <div class="field"><label>Cédula <span class="req">*</span></label><input type="text" id="f_cedula" placeholder="V-00000000" required><span class="err"></span></div>
+          <div class="field"><label>Teléfono <span class="req">*</span></label><input type="tel" id="f_telefono" placeholder="0412-0000000" required><span class="err"></span></div>
+          <div class="field"><label>Correo electrónico</label><input type="email" id="f_correo"><span class="err"></span></div>
+          <div class="field"><label>Estado <span class="req">*</span></label>
+            <select id="f_estado" required><option value="">Selecciona…</option></select>
+            <span class="err"></span>
           </div>
-          <div class="campo">
-            <label>Apellido <span class="req">*</span></label>
-            <input type="text" name="apellido" required>
-            <span class="error-msg">Escribe tu apellido.</span>
-          </div>
-          <div class="campo">
-            <label>Cédula <span class="req">*</span></label>
-            <input type="text" name="cedula" placeholder="V-12345678" required pattern="^[VEve]?-?\d{6,9}$">
-            <span class="error-msg">Formato inválido, ej: V-12345678.</span>
-          </div>
-          <div class="campo">
-            <label>Teléfono <span class="req">*</span></label>
-            <input type="tel" name="telefono" placeholder="0412-1234567" required pattern="^0?4\d{2}-?\d{7}$">
-            <span class="error-msg">Formato inválido, ej: 0412-1234567.</span>
-          </div>
-          <div class="campo">
-            <label>Correo electrónico</label>
-            <input type="email" name="correo" placeholder="tucorreo@ejemplo.com">
-            <span class="error-msg">Correo inválido.</span>
-          </div>
-          <div class="campo">
-            <label>Estado <span class="req">*</span></label>
-            <select name="estado" required>
-              <option value="">Selecciona…</option>
-              <option>Amazonas</option><option>Anzoátegui</option><option>Apure</option><option>Aragua</option>
-              <option>Barinas</option><option>Bolívar</option><option>Carabobo</option><option>Cojedes</option>
-              <option>Delta Amacuro</option><option>Distrito Capital</option><option>Falcón</option><option>Guárico</option>
-              <option>La Guaira</option><option>Lara</option><option>Mérida</option><option>Miranda</option>
-              <option>Monagas</option><option>Nueva Esparta</option><option>Portuguesa</option><option>Sucre</option>
-              <option>Táchira</option><option>Trujillo</option><option>Yaracuy</option><option>Zulia</option>
-            </select>
-            <span class="error-msg">Selecciona tu estado.</span>
-          </div>
-          <div class="campo">
-            <label>Municipio / Parroquia <span class="req">*</span></label>
-            <input type="text" name="municipio" required>
-            <span class="error-msg">Indica tu municipio o parroquia.</span>
-          </div>
-          <div class="campo full">
-            <label>Dirección <span class="req">*</span></label>
-            <input type="text" name="direccion" placeholder="Calle, sector, punto de referencia" required>
-            <span class="error-msg">Indica una dirección de referencia.</span>
-          </div>
+          <div class="field"><label>Municipio <span class="req">*</span></label><select id="f_municipio" required><option value="">Selecciona un estado primero</option></select><span class="err"></span></div>
+          <div class="field"><label>Parroquia</label><input type="text" id="f_parroquia"></div>
+          <div class="field full"><label>Dirección <span class="req">*</span></label><input type="text" id="f_direccion" required><span class="err"></span></div>
 
-          <div class="campo full">
-            <label>Tipo de necesidad <span class="req">*</span> <span style="font-weight:400;color:var(--texto-suave);">(selecciona una o varias)</span></label>
-            <div class="grupo-check" id="grupoTipoNecesidad">
-              <label class="opcion-check"><input type="checkbox" name="tipo" value="Enfermedad crónica"> Enfermedad crónica</label>
-              <label class="opcion-check"><input type="checkbox" name="tipo" value="Adulto mayor"> Adulto mayor</label>
-              <label class="opcion-check"><input type="checkbox" name="tipo" value="Niño"> Niño</label>
-              <label class="opcion-check"><input type="checkbox" name="tipo" value="Discapacidad"> Discapacidad</label>
-              <label class="opcion-check"><input type="checkbox" name="tipo" value="Emergencia"> Emergencia</label>
-              <label class="opcion-check"><input type="checkbox" name="tipo" value="Medicamentos"> Medicamentos</label>
-              <label class="opcion-check"><input type="checkbox" name="tipo" value="Visita domiciliaria"> Visita domiciliaria</label>
+          <div class="field full">
+            <label>Tipo de necesidad <span class="req">*</span></label>
+            <div class="chip-group" id="tipoNecesidad">
+              <div class="chip" data-val="Enfermedad">Enfermedad</div>
+              <div class="chip" data-val="Adulto mayor">Adulto mayor</div>
+              <div class="chip" data-val="Niño">Niño</div>
+              <div class="chip" data-val="Discapacidad">Discapacidad</div>
+              <div class="chip" data-val="Emergencia">Emergencia</div>
+              <div class="chip" data-val="Medicamentos">Medicamentos</div>
+              <div class="chip" data-val="Visita domiciliaria">Visita domiciliaria</div>
             </div>
-            <span class="error-msg" id="errorTipoNecesidad">Selecciona al menos un tipo de necesidad.</span>
+            <span class="err" id="err_tipo"></span>
           </div>
 
-          <div class="campo">
-            <label>Especialidad médica requerida</label>
-            <select name="especialidad">
-              <option value="">Selecciona…</option>
-              <option>Medicina General</option><option>Pediatría</option><option>Geriatría</option>
-              <option>Medicina Interna</option><option>Cardiología</option><option>Enfermería</option>
-              <option>Fisioterapia</option><option>Psicología</option><option>Nutrición</option><option>Otra</option>
+          <div class="field"><label>Especialidad médica</label>
+            <select id="f_especialidad">
+              <option value="">General</option>
+              <option>Medicina Interna</option>
+              <option>Pediatría</option>
+              <option>Geriatría</option>
+              <option>Ginecología</option>
+              <option>Cardiología</option>
+              <option>Psicología</option>
+              <option>Enfermería</option>
             </select>
           </div>
-          <div class="campo">
+
+          <div class="field">
             <label>Prioridad <span class="req">*</span></label>
-            <select name="prioridad" required>
-              <option value="">Selecciona…</option>
-              <option>Baja</option><option>Media</option><option>Alta</option><option>Emergencia</option>
-            </select>
-            <span class="error-msg">Selecciona la prioridad del caso.</span>
+            <div class="priority-group" id="prioridadGroup">
+              <div class="priority-opt" data-p="baja">Baja</div>
+              <div class="priority-opt" data-p="media">Media</div>
+              <div class="priority-opt" data-p="alta">Alta</div>
+            </div>
+            <span class="err" id="err_prioridad"></span>
           </div>
 
-          <div class="campo full">
-            <label>Descripción del caso <span class="req">*</span></label>
-            <textarea name="descripcion" required placeholder="Cuéntanos brevemente la situación de salud…"></textarea>
-            <span class="error-msg">Describe brevemente el caso.</span>
-          </div>
+          <div class="field full"><label>Descripción del caso <span class="req">*</span></label><textarea id="f_descripcion" rows="4" required></textarea><span class="err"></span></div>
 
-          <div class="campo full">
+          <div class="field full">
             <label>Adjuntar fotografía (opcional)</label>
-            <label class="file-drop" for="fotoAdjunta">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-              <span>Haz clic para seleccionar una imagen</span>
+            <label class="file-drop" for="f_foto">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin:0 auto 8px"><path d="M12 16V4M6 10l6-6 6 6"></path><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>
+              <span id="fileLabel">Haz clic o arrastra una imagen aquí</span>
+              <input type="file" id="f_foto" accept="image/*" style="display:none">
             </label>
-            <input type="file" id="fotoAdjunta" accept="image/*" style="display:none;">
-            <img id="preview-foto" alt="Vista previa">
           </div>
         </div>
 
-        <p style="font-size:.78rem;color:var(--texto-suave);margin-bottom:20px;">
-          * Este formulario se sincroniza con el sistema oficial de registro AAS. Al enviarlo, se abrirá el formulario oficial para confirmar tu solicitud.
-        </p>
-        <button type="submit" class="btn btn-primario">Enviar registro</button>
+        <div style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;">
+          <button type="submit" class="btn btn-primary">Enviar registro</button>
+          <a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener" class="btn btn-ghost">Ir directo al formulario oficial</a>
+        </div>
       </form>
 
-      <div class="exito-panel" id="panelExito">
-        <div class="check-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div>
+      <div class="form-success" id="formSuccess">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg>
         <h3>¡Registro validado!</h3>
-        <p style="margin:10px 0 24px;">Ahora confirma tu solicitud en el formulario oficial de AAS para que un Líder Focal de Salud te contacte.</p>
-        <a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener" class="btn btn-verde">Confirmar en el formulario oficial</a>
+        <p style="color:var(--text-soft);margin:10px 0 24px;">Serás redirigido al formulario oficial de Google Forms para confirmar tu solicitud.</p>
+        <a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener" class="btn btn-primary">Continuar al formulario oficial</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     PANEL DE INDICADORES
-     ========================================================================== -->
-<section id="indicadores" class="dashboard">
-  <div class="wrap">
+<!-- ============ INDICADORES / DASHBOARD ============ -->
+<section id="indicadores" style="background:var(--grad-soft);">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Fase piloto</span>
-      <h2>Panel de indicadores</h2>
-      <p>Cifras de la fase piloto del proyecto AAS.</p>
+      <span class="eyebrow">Panel de indicadores</span>
+      <h2>El impacto en <span class="grad-text">tiempo real</span></h2>
+      <p>Métricas proyectadas de cobertura, atención y ahorro presupuestario generadas por el modelo AAS a nivel nacional.</p>
     </div>
-    <div class="grid-indicadores">
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="0"><div class="num" data-count="1248">0</div><div class="lbl">Pacientes registrados</div></div>
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="60"><div class="num" data-count="3120">0</div><div class="lbl">Consultas realizadas</div></div>
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="120"><div class="num" data-count="1890">0</div><div class="lbl">Visitas domiciliarias</div></div>
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="180"><div class="num" data-count="410">0</div><div class="lbl">Hospitalizaciones evitadas</div></div>
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="240"><div class="num" data-count="38">0</div><div class="lbl">% Ahorro estimado</div></div>
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="300"><div class="num" data-count="24">0</div><div class="lbl">Min. tiempo de respuesta</div></div>
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="360"><div class="num" data-count="96">0</div><div class="lbl">Médicos registrados</div></div>
-      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="420"><div class="num" data-count="212">0</div><div class="lbl">Líderes Focales</div></div>
-    </div>
-    <p class="nota-ilustrativa">* Cifras ilustrativas de la fase piloto — se actualizarán en tiempo real al conectar el sistema nacional AAS.</p>
-  </div>
-</section>
 
-<!-- ==========================================================================
-     GRÁFICOS
-     ========================================================================== -->
-<section style="background:var(--bg-alt);">
-  <div class="wrap">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Analítica</span>
-      <h2>El proyecto en gráficos</h2>
-      <p>Distribución de casos, evolución de la atención y comparación de modelos.</p>
+    <div class="kpi-grid" data-aos="fade-up">
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><div class="kpi-num" data-count="48200">0</div><div class="kpi-lbl">Pacientes registrados</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div><div class="kpi-num" data-count="112500">0</div><div class="kpi-lbl">Consultas realizadas</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12l2-2 4 4L19 4l2 2-12 12z"></path></svg></div><div class="kpi-num" data-count="76300">0</div><div class="kpi-lbl">Visitas domiciliarias</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 10h18M9 16l2 2 4-4"></path></svg></div><div class="kpi-num" data-count="31900">0</div><div class="kpi-lbl">Hospitalizaciones evitadas</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><div class="kpi-num" data-count="18" data-prefix="$">0</div><div class="kpi-lbl">Millones USD ahorro estimado</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div><div class="kpi-num" data-count="38" data-suffix=" min">0</div><div class="kpi-lbl">Tiempo promedio de respuesta</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path><path d="M9 3v18M3 9h18"></path></svg></div><div class="kpi-num" data-count="2400">0</div><div class="kpi-lbl">Médicos registrados</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="kpi-num" data-count="9800">0</div><div class="kpi-lbl">Líderes Focales activos</div></div>
     </div>
-    <div class="grid-graficos">
-      <div class="glass panel-grafico" data-aos="fade-up"><h4>Casos por tipo de necesidad</h4><canvas id="graficoDonut"></canvas></div>
-      <div class="glass panel-grafico" data-aos="fade-up" data-aos-delay="80"><h4>Consultas mensuales</h4><canvas id="graficoBarras"></canvas></div>
-      <div class="glass panel-grafico" data-aos="fade-up" data-aos-delay="160"><h4>Crecimiento de pacientes atendidos</h4><canvas id="graficoLineas"></canvas></div>
-      <div class="glass panel-grafico" data-aos="fade-up" data-aos-delay="240"><h4>Modelo tradicional vs. AAS</h4><canvas id="graficoRadar"></canvas></div>
-    </div>
-    <p class="nota-ilustrativa" style="color:var(--texto-suave);">* Datos ilustrativos de la fase piloto, con fines de demostración del panel.</p>
-  </div>
-</section>
 
-<!-- ==========================================================================
-     AHORRO PRESUPUESTARIO
-     ========================================================================== -->
-<section>
-  <div class="wrap">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Impacto fiscal</span>
-      <h2>Ahorro presupuestario</h2>
-      <p>Cada eslabón que se evita en el modelo tradicional se traduce en ahorro para el Estado.</p>
+    <div class="charts-grid" data-aos="fade-up">
+      <div class="chart-card"><h4>Evolución de atenciones (últimos 12 meses)</h4><canvas id="chartLine" height="220"></canvas></div>
+      <div class="chart-card"><h4>Distribución por tipo de necesidad</h4><canvas id="chartDonut" height="220"></canvas></div>
     </div>
-    <div class="flujo-ahorro" data-aos="fade-up">
-      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div><h4>Hotelería médica</h4><p>Menos días-cama ocupados</p></div>
-      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div><h4>Infecciones</h4><p>Menor riesgo intrahospitalario</p></div>
-      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div><h4>Traslados</h4><p>Menos viajes de emergencia</p></div>
-      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13l4 5-4 5H3z"/></svg></div><h4>Combustible</h4><p>Menor uso de ambulancias</p></div>
-      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6M9 16h6M9 8h6M5 21V3h14v18z"/></svg></div><h4>Burocracia</h4><p>Procesos más ágiles</p></div>
-      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-      <div class="nodo-ahorro final"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4>Ahorro</h4><p>Presupuesto liberado para más cobertura</p></div>
+    <div class="chart-row-2" data-aos="fade-up">
+      <div class="chart-card"><h4>Atenciones por estado (top 6)</h4><canvas id="chartBar" height="200"></canvas></div>
+      <div class="chart-card"><h4>Desempeño del modelo AAS</h4><canvas id="chartRadar" height="200"></canvas></div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     HOSPITAL DEL FUTURO
-     ========================================================================== -->
-<section style="background:var(--bg-alt);">
-  <div class="wrap">
+<!-- ============ AHORRO PRESUPUESTARIO ============ -->
+<section id="ahorro">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Comparación</span>
-      <h2>El hospital del futuro</h2>
-      <p>Modelo tradicional frente al modelo AAS.</p>
+      <span class="eyebrow green">Eficiencia fiscal</span>
+      <h2>Los pilares del <span class="grad-text">ahorro presupuestario</span></h2>
+      <p>Un modelo diseñado para la sostenibilidad del sistema de salud, redirigiendo cada recurso hacia donde más impacto genera.</p>
     </div>
-    <div class="comparativa">
-      <div class="glass panel-comparativo tradicional" data-aos="fade-right">
+    <div class="glass" style="padding:30px 10px;" data-aos="zoom-in">
+      <div class="savings-flow">
+        <div class="savings-node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path></svg></div><h5>Hotelería médica</h5><p>Reducción de camas ocupadas innecesariamente</p></div>
+        <div class="savings-arrow">→</div>
+        <div class="savings-node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h8"></path></svg></div><h5>Infecciones</h5><p>Menor riesgo nosocomial y menos contagios</p></div>
+        <div class="savings-arrow">→</div>
+        <div class="savings-node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17h2l2-6h10l2 6h2M5 17v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2m8 0v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2"></path></svg></div><h5>Traslados</h5><p>Menos ambulancias reservadas solo a lo crítico</p></div>
+        <div class="savings-arrow">→</div>
+        <div class="savings-node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle><path d="M5 17H3V6a1 1 0 0 1 1-1h9v12"></path></svg></div><h5>Combustible</h5><p>Optimización logística territorial</p></div>
+        <div class="savings-arrow">→</div>
+        <div class="savings-node"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12h6M9 16h6M9 8h6"></path><rect x="4" y="3" width="16" height="18" rx="2"></rect></svg></div><h5>Burocracia</h5><p>Procesos administrativos simplificados</p></div>
+        <div class="savings-arrow">→</div>
+        <div class="savings-node"><div class="ic" style="background:var(--c-green-500)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><h5>Ahorro fiscal</h5><p>Recursos redirigidos a primera línea médica</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOSPITAL DEL FUTURO / COMPARACIÓN ============ -->
+<section id="futuro" style="background:var(--grad-soft);">
+  <div class="container">
+    <div class="section-head center" data-aos="fade-up">
+      <span class="eyebrow">Hospital del futuro</span>
+      <h2>Modelo tradicional <span class="grad-text">vs.</span> Modelo AAS</h2>
+      <p>Un hospital sin paredes: el hogar como el nuevo centro de atención.</p>
+    </div>
+    <div class="compare-wrap" data-aos="fade-up">
+      <div class="compare-col old">
         <h3>Modelo tradicional</h3>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Traslado al hospital por cualquier motivo</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Espera prolongada en emergencia</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Riesgo de infección intrahospitalaria</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Cama ocupada por paciente estable</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Alto costo por día de hospitalización</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> La familia debe trasladarse y ausentarse</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a80" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg> Hospital como único punto de atención</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a80" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg> Alto riesgo de infecciones intrahospitalarias</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a80" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg> Costos elevados por cama y estadía prolongada</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a80" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg> Triage lento y saturación de emergencias</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a80" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6"></path></svg> Baja conexión con la comunidad</li>
         </ul>
       </div>
-      <div class="glass panel-comparativo aas" data-aos="fade-left">
+      <div class="compare-col new">
         <h3>Modelo AAS</h3>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Atención en el propio hogar del paciente</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Triage digital inmediato</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Menor riesgo de infección</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Camas hospitalarias libres para casos críticos</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Menor costo por caso atendido</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> La familia acompaña sin trasladarse</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg> El hogar como centro de atención primaria</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg> Menor exposición a riesgo nosocomial</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg> Costos optimizados y sostenibles</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg> Triage digital inmediato</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg> Líderes Focales integrados en cada comunidad</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     SERVICIO COMUNITARIO
-     ========================================================================== -->
-<section>
-  <div class="wrap">
+<!-- ============ SERVICIO COMUNITARIO ============ -->
+<section id="comunidad">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Alianza Estado-Sociedad</span>
-      <h2>Servicio comunitario</h2>
-      <p>AAS se sostiene sobre una red de universidades, voluntarios y líderes comunitarios.</p>
+      <span class="eyebrow green">Alianza Estado-Sociedad</span>
+      <h2>Servicio <span class="grad-text">comunitario universitario</span></h2>
+      <p>La integración de la Ley de Servicio Comunitario Universitario moviliza a estudiantes de medicina y enfermería, sin costo para el Estado, fortaleciendo la prevención y la conexión social permanente con el hogar ciudadano.</p>
     </div>
-    <div class="grid-4">
-      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="0">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5zM6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></div>
-        <h3>Universidades de Medicina</h3>
-        <p>Estudiantes que cumplen servicio comunitario en atención domiciliaria.</p>
-      </div>
-      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="80">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-8 11-8 11z"/></svg></div>
-        <h3>Escuelas de Enfermería</h3>
-        <p>Formación práctica junto a los equipos AAS en el terreno.</p>
-      </div>
-      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="160">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3>Voluntarios</h3>
-        <p>Vecinos que apoyan la logística y el acompañamiento de cada caso.</p>
-      </div>
-      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="240">
-        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21c0-4-4-6-8-6s-8 2-8 6M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></div>
-        <h3>Líderes comunitarios</h3>
-        <p>La base organizativa que conecta al Estado con cada familia.</p>
-      </div>
+    <div class="community-grid" data-aos="fade-up">
+      <div class="community-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></div><h4>Universidades</h4><p style="color:var(--text-soft);font-size:.88rem;margin-top:8px;">Alianzas con casas de estudio a nivel nacional</p></div>
+      <div class="community-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 14c1.5-2 2-3.5 2-5a5 5 0 0 0-9-3 5 5 0 0 0-9 3c0 4 4.5 8.5 10 12"></path></svg></div><h4>Medicina</h4><p style="color:var(--text-soft);font-size:.88rem;margin-top:8px;">Estudiantes en formación clínica supervisada</p></div>
+      <div class="community-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"></path><path d="M8 14v2a4 4 0 0 0 8 0v-2"></path></svg></div><h4>Enfermería</h4><p style="color:var(--text-soft);font-size:.88rem;margin-top:8px;">Cuidado directo y seguimiento domiciliario</p></div>
+      <div class="community-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div><h4>Voluntarios</h4><p style="color:var(--text-soft);font-size:.88rem;margin-top:8px;">Redes ciudadanas de apoyo territorial</p></div>
+      <div class="community-card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></div><h4>Líderes comunitarios</h4><p style="color:var(--text-soft);font-size:.88rem;margin-top:8px;">Puente directo entre Estado y familias</p></div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     NOTICIAS
-     ========================================================================== -->
-<section id="noticias" style="background:var(--bg-alt);">
-  <div class="wrap">
+<!-- ============ NOTICIAS ============ -->
+<section id="noticias" style="background:var(--grad-soft);">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
       <span class="eyebrow">Actualidad</span>
-      <h2>Noticias AAS</h2>
-      <p>Lo último del proyecto en el terreno.</p>
+      <h2>Noticias y <span class="grad-text">multimedia</span></h2>
+      <p>Últimas actualizaciones, reuniones de fundadores y trabajo en territorio del Proyecto AAS.</p>
     </div>
-    <div class="carrusel-wrap" data-aos="fade-up">
-      <button class="flecha-carrusel prev" id="carruselPrev" aria-label="Anterior">&#8249;</button>
-      <button class="flecha-carrusel next" id="carruselNext" aria-label="Siguiente">&#8250;</button>
-      <div class="carrusel-noticias" id="carruselNoticias">
-        <article class="item-noticia">
-          <div class="media"><img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg" alt="Presentación del proyecto AAS" loading="lazy"></div>
-          <div class="cuerpo"><span class="tag">Institucional</span><h4>Nace el proyecto AAS</h4><p>La Secretaría Nacional de Salud presenta el modelo de atención domiciliaria para Venezuela.</p></div>
-        </article>
-        <article class="item-noticia">
-          <div class="media"><video muted controls playsinline preload="metadata"><source src="https://github.com/jhonmalorne/ConcertacionAAS/raw/main/Video%20AAS.mp4" type="video/mp4"></video></div>
-          <div class="cuerpo"><span class="tag">Video</span><h4>Conoce el proyecto AAS</h4><p>Un recorrido audiovisual por el modelo de atención avanzada en salud.</p></div>
-        </article>
-        <article class="item-noticia">
-          <div class="media"><img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/foto1.jpeg" alt="Reunión de fundadores AAS" loading="lazy"></div>
-          <div class="cuerpo"><span class="tag">Equipo</span><h4>Encuentro de fundadores AAS</h4><p>El equipo técnico se reúne para definir la hoja de ruta del proyecto.</p></div>
-        </article>
-        <article class="item-noticia">
-          <div class="media"><video muted controls playsinline preload="metadata"><source src="https://github.com/jhonmalorne/ConcertacionAAS/raw/main/video2.mp4" type="video/mp4"></video></div>
-          <div class="cuerpo"><span class="tag">Comunidad</span><h4>AAS en las comunidades</h4><p>Líderes focales y vecinos conversan sobre las necesidades de salud del sector.</p></div>
-        </article>
+    <div class="carousel-wrap" data-aos="fade-up">
+      <div class="carousel-track" id="newsTrack">
+        <div class="news-card">
+          <div class="thumb" style="background-image:url('https://github.com/jhonmalorne/ConcertacionAAS/blob/main/foto1.jpeg?raw=true')"><span class="tag">Fundación</span></div>
+          <div class="body"><h4>Reunión de fundadores del Proyecto AAS</h4><p>El equipo técnico y político se reúne para consolidar la propuesta de salud.</p></div>
+        </div>
+        <div class="news-card">
+          <div class="thumb" style="background-image:url('https://github.com/jhonmalorne/ConcertacionAAS/blob/main/comites%20de%20gestion%20de%20salud.jpg?raw=true')"><span class="tag">Territorio</span></div>
+          <div class="body"><h4>Comités de gestión de salud</h4><p>Validación social del modelo en comunidades organizadas.</p></div>
+        </div>
+        <div class="news-card">
+          <div class="thumb" style="background-image:url('https://github.com/jhonmalorne/ConcertacionAAS/blob/main/tecnologia%20hibrida.jpg?raw=true')"><span class="tag">Tecnología</span></div>
+          <div class="body"><h4>Tecnología híbrida al servicio de la salud</h4><p>Telemedicina y biosensores conectan al paciente con su equipo médico.</p></div>
+        </div>
+        <div class="news-card">
+          <div class="thumb" style="background-image:url('https://github.com/jhonmalorne/ConcertacionAAS/blob/main/su%20hogar.jpg?raw=true')"><span class="tag">Modelo</span></div>
+          <div class="body"><h4>El hospital es su hogar</h4><p>Un nuevo paradigma de atención centrado en la familia venezolana.</p></div>
+        </div>
+        <div class="news-card">
+          <div class="thumb" style="background-image:url('https://github.com/jhonmalorne/ConcertacionAAS/blob/main/reduccion%20drastica%20de%20gastos.jpg?raw=true')"><span class="tag">Fiscal</span></div>
+          <div class="body"><h4>Reducción drástica de gastos públicos</h4><p>El modelo AAS libera recursos para reinvertir en atención directa.</p></div>
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button id="newsPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg></button>
+        <button id="newsNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg></button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     TESTIMONIOS
-     ========================================================================== -->
-<section>
-  <div class="wrap">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Voces del proyecto</span>
+<!-- ============ TESTIMONIOS ============ -->
+<section id="testimonios">
+  <div class="container">
+    <div class="section-head center" data-aos="fade-up">
+      <span class="eyebrow green">Voces del proyecto</span>
       <h2>Testimonios</h2>
-      <p>Historias de pacientes, médicos y enfermeras del modelo AAS.</p>
     </div>
-    <div class="grid-3">
-      <div class="card-testimonio glass" data-aos="fade-up" data-aos-delay="0">
-        <div class="estrellas">★★★★★</div>
-        <p class="cita">"Me atendieron en mi casa sin tener que hacer fila en el hospital. Se sintió cercano y humano."</p>
-        <div class="autor-testimonio"><div class="avatar-inicial">M</div><div><b>Paciente atendida</b><span>Beneficiaria del piloto AAS</span></div></div>
+    <div class="testi-grid" data-aos="fade-up">
+      <div class="testi-card">
+        <div class="quote-mark">“</div>
+        <p>La atención en mi hogar hizo toda la diferencia para mi madre. No tuvimos que exponerla a un hospital saturado.</p>
+        <div class="testi-person"><div class="testi-avatar">MP</div><div><strong>Familiar de paciente</strong><span>Comunidad beneficiaria</span></div></div>
       </div>
-      <div class="card-testimonio glass" data-aos="fade-up" data-aos-delay="80">
-        <div class="estrellas">★★★★★</div>
-        <p class="cita">"El triage digital nos permite priorizar los casos realmente urgentes antes de salir a terreno."</p>
-        <div class="autor-testimonio"><div class="avatar-inicial">D</div><div><b>Médico general</b><span>Equipo AAS</span></div></div>
+      <div class="testi-card">
+        <div class="quote-mark">“</div>
+        <p>Como médico, el modelo de triage digital me permite priorizar los casos que realmente requieren traslado urgente.</p>
+        <div class="testi-person"><div class="testi-avatar">DR</div><div><strong>Médico de enlace</strong><span>Equipo AAS</span></div></div>
       </div>
-      <div class="card-testimonio glass" data-aos="fade-up" data-aos-delay="160">
-        <div class="estrellas">★★★★★</div>
-        <p class="cita">"Como enfermera, ver que un paciente se recupera acompañado de su familia hace toda la diferencia."</p>
-        <div class="autor-testimonio"><div class="avatar-inicial">E</div><div><b>Enfermera</b><span>Equipo AAS</span></div></div>
+      <div class="testi-card">
+        <div class="quote-mark">“</div>
+        <p>Ser Líder Focal de Salud me permitió servir a mi comunidad con herramientas reales y acompañamiento profesional.</p>
+        <div class="testi-person"><div class="testi-avatar">LF</div><div><strong>Líder Focal de Salud</strong><span>Red comunitaria AAS</span></div></div>
       </div>
     </div>
-    <p class="nota-ilustrativa" style="color:var(--texto-suave);">* Testimonios representativos de la fase piloto.</p>
   </div>
 </section>
 
-<!-- ==========================================================================
-     EQUIPO
-     ========================================================================== -->
-<section id="equipo" style="background:var(--bg-alt);">
-  <div class="wrap">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Quiénes lo hacen posible</span>
-      <h2>Equipo AAS</h2>
-      <p>El equipo técnico detrás del proyecto, junto a la Secretaría Nacional de Salud.</p>
+<!-- ============ EQUIPO ============ -->
+<section id="equipo" style="background:var(--grad-soft);">
+  <div class="container">
+    <div class="section-head center" data-aos="fade-up">
+      <span class="eyebrow">Equipo</span>
+      <h2>Detrás del <span class="grad-text">Proyecto AAS</span></h2>
+      <p>Concertación es Orden y Gestión: la ingeniería de políticas públicas lista para implementar desde el primer día.</p>
     </div>
-    <div class="grid-3">
-      <div class="card-equipo glass" data-aos="fade-up" data-aos-delay="0">
-        <div class="foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+    <div class="team-grid" data-aos="fade-up">
+      <div class="team-card">
+        <div class="team-avatar">AJ</div>
         <h4>Dr. Abrahan Jiménez</h4>
-        <span class="rol">Secretaría Nacional de Salud</span>
-        <p>Al frente de la Secretaría Nacional de Salud de Concertación Ciudadana.</p>
+        <div class="role">Secretaría Nacional de Salud</div>
+        <div class="org">Concertación Ciudadana</div>
       </div>
-      <div class="card-equipo glass" data-aos="fade-up" data-aos-delay="80">
-        <div class="foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="team-card">
+        <div class="team-avatar">CP</div>
+        <h4>Dr. César Pérez Vivas</h4>
+        <div class="role">Liderazgo del Movimiento</div>
+        <div class="org">Concertación Ciudadana</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">ET</div>
         <h4>Equipo Técnico</h4>
-        <span class="rol">Concertación Ciudadana</span>
-        <p>Diseño, desarrollo y coordinación territorial del proyecto AAS.</p>
+        <div class="role">Diseño e implementación</div>
+        <div class="org">Concertación Ciudadana</div>
       </div>
-      <div class="card-equipo glass" data-aos="fade-up" data-aos-delay="160">
-        <div class="foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21c0-4-4-6-8-6s-8 2-8 6M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></div>
-        <h4>Líderes Focales de Salud</h4>
-        <span class="rol">Red comunitaria AAS</span>
-        <p>La primera línea de contacto entre el ciudadano y el sistema AAS.</p>
-      </div>
-    </div>
-    <div class="foto-equipo-grupal" data-aos="fade-up">
-      <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/foto1.jpeg" alt="Reunión de fundadores del proyecto AAS" loading="lazy">
-    </div>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     PREGUNTAS FRECUENTES
-     ========================================================================== -->
-<section>
-  <div class="wrap" style="max-width:820px;">
-    <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Dudas frecuentes</span>
-      <h2>Preguntas frecuentes</h2>
-    </div>
-    <div id="listaFAQ" data-aos="fade-up">
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Qué es el proyecto AAS?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-respuesta"><p>AAS (Atención Avanzada en Salud) es un modelo de atención médica domiciliaria impulsado por la Secretaría Nacional de Salud de Concertación Ciudadana, que lleva la atención al hogar del paciente antes de recurrir al hospital.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Quién puede registrarse?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-respuesta"><p>Cualquier ciudadano que necesite atención médica para sí mismo o para un familiar, especialmente adultos mayores, niños, personas con discapacidad o enfermedades crónicas.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Cómo funciona el Líder Focal de Salud?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-respuesta"><p>Es un vecino capacitado que coordina la respuesta en su comunidad: recibe la solicitud, la canaliza hacia el equipo médico y hace seguimiento del caso.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿Qué pasa si mi caso es una emergencia?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-respuesta"><p>El triage digital prioriza automáticamente los casos marcados como emergencia para una respuesta inmediata, y se activa el traslado hospitalario si el caso lo amerita.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pregunta">¿El proyecto AAS ya está disponible en todo el país?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-respuesta"><p>AAS se encuentra en fase piloto y se expande progresivamente junto a la red de líderes focales en cada estado, municipio y parroquia.</p></div>
+      <div class="team-card">
+        <div class="team-avatar">OG</div>
+        <h4>Orden y Gestión</h4>
+        <div class="role">Organización aliada</div>
+        <div class="org">Gestión territorial</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     CONTACTO
-     ========================================================================== -->
-<section id="contacto" style="background:var(--bg-alt);">
-  <div class="wrap">
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container">
     <div class="section-head" data-aos="fade-up">
-      <span class="eyebrow">Hablemos</span>
-      <h2>Contacto</h2>
-      <p>Escríbenos, síguenos o conoce más sobre Concertación Ciudadana.</p>
+      <span class="eyebrow green">Dudas frecuentes</span>
+      <h2>Preguntas <span class="grad-text">frecuentes</span></h2>
     </div>
-    <div class="grid-contacto">
-      <div class="info-contacto" data-aos="fade-right">
-        <div class="item-contacto">
-          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 0 1 2-2h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5z"/></svg></div>
-          <div><b>Canal de WhatsApp</b><a href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener">César Pérez Vivas — Concertación</a></div>
-        </div>
-        <div class="item-contacto">
-          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
-          <div><b>Instagram</b><a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener">@concertacion.ve</a></div>
-        </div>
-        <div class="item-contacto">
-          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5"/></svg></div>
-          <div><b>Sitio principal</b><a href="https://concertacionciudadana.com/" target="_blank" rel="noopener">concertacionciudadana.com</a></div>
-        </div>
-        <div class="item-contacto">
-          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <div><b>Presentación del proyecto</b><a href="https://prezi.com/view/Fr0biZsO8dfUtWkTtdk5/?referral_token=1xnDqhlnB3FN" target="_blank" rel="noopener">Ver presentación en Prezi</a></div>
-        </div>
-        <div class="redes-contacto">
-          <a href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 0 1 2-2h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5z"/></svg></a>
-          <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
-          <a href="https://www.threads.com/@concertacioncarabobo" target="_blank" rel="noopener" aria-label="Threads"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10M12 8v8M8 12h8"/></svg></a>
+    <div id="faqList" data-aos="fade-up" style="max-width:820px;">
+      <div class="faq-item open">
+        <div class="faq-q"><span>¿Qué es el Proyecto AAS?</span><div class="plus"></div></div>
+        <div class="faq-a"><p>Es un modelo descentralizado de contención primaria domiciliaria propuesto por Concertación Ciudadana para el Gobierno de Transición de Venezuela, que atiende a los pacientes desde su hogar antes de requerir hospitalización.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Quién puede registrar una necesidad de salud?</span><div class="plus"></div></div>
+        <div class="faq-a"><p>Cualquier ciudadano venezolano puede registrar una necesidad a través del formulario de esta página, el cual es evaluado por un Líder Focal de Salud en su comunidad.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Cómo se financia el modelo AAS?</span><div class="plus"></div></div>
+        <div class="faq-a"><p>A través de la reducción de costos hospitalarios tradicionales (hotelería médica, traslados, infecciones y burocracia), redirigiendo esos recursos hacia la atención directa.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿Qué es un Líder Focal de Salud?</span><div class="plus"></div></div>
+        <div class="faq-a"><p>Es la persona de la comunidad capacitada para atender al paciente en su hogar bajo guía médica, sirviendo de enlace directo entre el ciudadano y el sistema de salud.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>¿El proyecto reemplaza a los hospitales?</span><div class="plus"></div></div>
+        <div class="faq-a"><p>No. Los hospitales se reservan para los casos críticos, mientras que la atención primaria y de contención se resuelve de forma domiciliaria, aliviando la saturación hospitalaria.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="contacto" style="background:var(--grad-soft);">
+  <div class="container">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Contacto</span>
+      <h2>Hablemos sobre el <span class="grad-text">Proyecto AAS</span></h2>
+      <p>Conéctate con el equipo de Concertación Ciudadana a través de nuestros canales oficiales.</p>
+    </div>
+    <div class="contact-grid" data-aos="fade-up">
+      <div class="contact-info-card dark glass">
+        <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span>Canal de WhatsApp de César Pérez Vivas</span></div>
+        <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg><span>concertacionciudadana.com</span></div>
+        <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Los Guayos, Carabobo, Venezuela</span></div>
+        <div class="social-row">
+          <a href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/whatsapp.jpg?raw=true" alt="WhatsApp"></a>
+          <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/instagram.png?raw=true" alt="Instagram"></a>
+          <a href="https://www.threads.com/@concertacioncarabobo" target="_blank" rel="noopener" aria-label="Threads">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 2a10 10 0 1 0 10 10"></path><path d="M12 8v4l3 3"></path></svg>
+          </a>
+          <a href="https://prezi.com/view/Fr0biZsO8dfUtWkTtdk5/" target="_blank" rel="noopener" aria-label="Prezi">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="2.5"></circle></svg>
+          </a>
         </div>
       </div>
-      <form class="glass form-panel" id="formContacto" data-aos="fade-left" style="padding:30px;">
-        <div class="campo">
-          <label>Nombre <span class="req">*</span></label>
-          <input type="text" name="nombreContacto" required>
-          <span class="error-msg">Escribe tu nombre.</span>
-        </div>
-        <div class="campo">
-          <label>Correo <span class="req">*</span></label>
-          <input type="email" name="correoContacto" required>
-          <span class="error-msg">Correo inválido.</span>
-        </div>
-        <div class="campo">
-          <label>Mensaje <span class="req">*</span></label>
-          <textarea name="mensajeContacto" required placeholder="¿En qué podemos ayudarte?"></textarea>
-          <span class="error-msg">Escribe tu mensaje.</span>
-        </div>
-        <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;">Enviar mensaje</button>
+      <form id="contactForm" class="glass" style="padding:32px;display:flex;flex-direction:column;gap:16px;">
+        <div class="field"><label>Nombre completo</label><input type="text" required></div>
+        <div class="field"><label>Correo</label><input type="email" required></div>
+        <div class="field"><label>Mensaje</label><textarea rows="4" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Enviar mensaje</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- ==========================================================================
-     FOOTER
-     ========================================================================== -->
+<!-- ============ FOOTER ============ -->
 <footer>
-  <div class="wrap">
+  <div class="container">
     <div class="footer-grid">
-      <div>
-        <div class="footer-brand">
-          <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png" alt="AAS" loading="lazy">
-          <b>AAS</b>
-        </div>
-        <p>Atención Avanzada en Salud. Un proyecto de la Secretaría Nacional de Salud de Concertación Ciudadana, propuesta para el Gobierno de Transición de Venezuela.</p>
-        <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/ChatGPT%20Image%2017%20may%202026%2016_00_06.png" alt="Orden y Gestión" style="height:44px;margin-top:16px;" loading="lazy">
+      <div class="footer-brand">
+        <img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/logo%20ass%20sin%20fondo.png?raw=true" alt="Logo AAS" loading="lazy">
+        <p>Proyecto AAS — Atención Avanzada en Salud. Una propuesta de la Secretaría Nacional de Salud de Concertación Ciudadana, en alianza con Orden y Gestión, para el Gobierno de Transición de Venezuela.</p>
       </div>
-      <div>
+      <div class="footer-col">
         <h5>Navegación</h5>
-        <ul>
-          <li><a href="#proyecto">Proyecto</a></li>
-          <li><a href="#modelo">Modelo</a></li>
-          <li><a href="#mapa">Mapa Nacional</a></li>
-          <li><a href="#registro">Registro</a></li>
-          <li><a href="#indicadores">Indicadores</a></li>
-        </ul>
+        <a href="#proyecto">Proyecto</a>
+        <a href="#modelo">Modelo</a>
+        <a href="#mapa">Mapa Nacional</a>
+        <a href="#indicadores">Indicadores</a>
       </div>
-      <div>
-        <h5>Concertación</h5>
-        <ul>
-          <li><a href="https://concertacionciudadana.com/" target="_blank" rel="noopener">Sitio principal</a></li>
-          <li><a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.threads.com/@concertacioncarabobo" target="_blank" rel="noopener">Threads</a></li>
-          <li><a href="https://prezi.com/view/Fr0biZsO8dfUtWkTtdk5/?referral_token=1xnDqhlnB3FN" target="_blank" rel="noopener">Presentación Prezi</a></li>
-        </ul>
+      <div class="footer-col">
+        <h5>Participar</h5>
+        <a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener">Registrar necesidad</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#contacto">Contacto</a>
       </div>
-      <div>
-        <h5>Contacto</h5>
-        <ul>
-          <li><a href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener">Canal de WhatsApp</a></li>
-          <li><a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener">Formulario oficial de registro</a></li>
-        </ul>
+      <div class="footer-col">
+        <h5>Enlaces</h5>
+        <a href="https://concertacionciudadana.com/" target="_blank" rel="noopener">Concertación Ciudadana</a>
+        <a href="https://prezi.com/view/Fr0biZsO8dfUtWkTtdk5/" target="_blank" rel="noopener">Presentación Prezi</a>
+        <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 AAS · Secretaría Nacional de Salud — Concertación Ciudadana · Orden y Gestión</span>
-      <span>Diseño digital auspiciado por Nexus Marketing</span>
+      <span>© <span id="yearNow"></span> Concertación Ciudadana · Proyecto AAS. Todos los derechos reservados.</span>
+      <span>Diseñado para el Gobierno de Transición de Venezuela</span>
     </div>
   </div>
 </footer>
 
-<button id="volver-arriba" aria-label="Volver arriba">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+<a class="fab-whatsapp" href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://github.com/jhonmalorne/ConcertacionAAS/blob/main/whatsapp.jpg?raw=true" alt="WhatsApp"></a>
 
-<!-- ==========================================================================
-     LIBRERÍAS
-     ========================================================================== -->
+<!-- ============ SCRIPTS ============ -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <script>
-/* ============================================================
-   0. INIT AOS
-   ============================================================ */
-AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+document.getElementById('yearNow').textContent = new Date().getFullYear();
 
-/* ============================================================
-   1. TEMA CLARO / OSCURO
-   ============================================================ */
-const raiz = document.documentElement;
-const toggleTema = document.getElementById('toggleTema');
-const iconoTema = document.getElementById('iconoTema');
-const ICONO_SOL = iconoTema.innerHTML;
-const ICONO_LUNA = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
-
-function aplicarTema(tema){
-  if(tema === 'dark'){ raiz.setAttribute('data-theme','dark'); iconoTema.innerHTML = ICONO_LUNA; }
-  else { raiz.removeAttribute('data-theme'); iconoTema.innerHTML = ICONO_SOL; }
-  localStorage.setItem('aas-tema', tema);
+/* ---------- THEME TOGGLE ---------- */
+const root = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+const iconSun = document.getElementById('iconSun');
+const iconMoon = document.getElementById('iconMoon');
+function applyTheme(t){
+  root.setAttribute('data-theme', t);
+  iconSun.style.display = t === 'dark' ? 'none' : 'block';
+  iconMoon.style.display = t === 'dark' ? 'block' : 'none';
+  try{ localStorage.setItem('aas-theme', t); }catch(e){}
 }
-const temaGuardado = localStorage.getItem('aas-tema');
-const prefiereOscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
-aplicarTema(temaGuardado || (prefiereOscuro ? 'dark' : 'light'));
-toggleTema.addEventListener('click', ()=>{
-  const actual = raiz.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-  aplicarTema(actual === 'dark' ? 'light' : 'dark');
+let savedTheme = 'light';
+try{ savedTheme = localStorage.getItem('aas-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'); }catch(e){}
+applyTheme(savedTheme);
+themeToggle.addEventListener('click', ()=>{
+  applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 });
 
-/* ============================================================
-   2. NAV MÓVIL
-   ============================================================ */
-const menuPrincipal = document.getElementById('menuPrincipal');
-document.getElementById('menuBtn').addEventListener('click', ()=> menuPrincipal.classList.toggle('abierto'));
-function cerrarMenu(){ menuPrincipal.classList.remove('abierto'); }
-
-/* ============================================================
-   3. BOTÓN VOLVER ARRIBA
-   ============================================================ */
-const btnArriba = document.getElementById('volver-arriba');
+/* ---------- HEADER SCROLL STATE ---------- */
+const header = document.getElementById('site-header');
+const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', ()=>{
-  btnArriba.classList.toggle('visible', window.scrollY > 500);
+  const y = window.scrollY;
+  header.classList.toggle('scrolled', y > 20);
+  backToTop.classList.toggle('show', y > 500);
 });
-btnArriba.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smooth' }));
+backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-/* ============================================================
-   4. CONTADORES ANIMADOS (GSAP + IntersectionObserver)
-   ============================================================ */
-const contadores = document.querySelectorAll('.card-indicador .num');
-const ioContadores = new IntersectionObserver((entradas)=>{
-  entradas.forEach(entrada=>{
-    if(entrada.isIntersecting){
-      const el = entrada.target;
-      const destino = parseInt(el.dataset.count, 10);
-      const obj = { val: 0 };
-      gsap.to(obj, {
-        val: destino, duration: 1.8, ease: 'power2.out',
-        onUpdate: ()=> el.textContent = Math.round(obj.val).toLocaleString('es-VE')
-      });
-      ioContadores.unobserve(el);
+/* ---------- MOBILE NAV ---------- */
+const burgerBtn = document.getElementById('burgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+burgerBtn.addEventListener('click', ()=> mobileNav.classList.toggle('open'));
+mobileNav.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileNav.classList.remove('open')));
+
+/* ---------- AOS INIT ---------- */
+if(window.AOS){ AOS.init({ once:true, duration:800, easing:'ease-out-cubic', offset:60 }); }
+
+/* ---------- ANIMATED COUNTERS ---------- */
+function animateCount(el){
+  const target = parseFloat(el.getAttribute('data-count'));
+  const prefix = el.getAttribute('data-prefix') || '';
+  const suffix = el.getAttribute('data-suffix') || '';
+  const duration = 1800;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min((now-start)/duration, 1);
+    const eased = 1 - Math.pow(1-p, 3);
+    const val = Math.floor(eased * target);
+    el.textContent = prefix + val.toLocaleString('es-VE') + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+    else el.textContent = prefix + target.toLocaleString('es-VE') + suffix;
+  }
+  requestAnimationFrame(tick);
+}
+const counterEls = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting && !entry.target.dataset.done){
+      entry.target.dataset.done = '1';
+      animateCount(entry.target);
     }
   });
-}, { threshold: .4 });
-contadores.forEach(el=> ioContadores.observe(el));
+},{threshold:0.4});
+counterEls.forEach(el=> counterObserver.observe(el));
 
-/* ============================================================
-   5. ACORDEÓN FAQ
-   ============================================================ */
-document.querySelectorAll('.faq-item').forEach(item=>{
-  const pregunta = item.querySelector('.faq-pregunta');
-  const respuesta = item.querySelector('.faq-respuesta');
-  pregunta.addEventListener('click', ()=>{
-    const yaAbierto = item.classList.contains('abierto');
-    document.querySelectorAll('.faq-item.abierto').forEach(otro=>{
-      otro.classList.remove('abierto');
-      otro.querySelector('.faq-respuesta').style.maxHeight = null;
-    });
-    if(!yaAbierto){
-      item.classList.add('abierto');
-      respuesta.style.maxHeight = respuesta.scrollHeight + 'px';
-    }
-  });
+/* ================= LEAFLET MAP ================= */
+const map = L.map('leaflet-map', { zoomControl:true, scrollWheelZoom:false }).setView([7.5, -66.0], 6);
+
+const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'&copy; OpenStreetMap contributors', maxZoom:18
+}).addTo(map);
+
+const satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution:'Tiles &copy; Esri', maxZoom:18
 });
 
-/* ============================================================
-   6. CARRUSEL DE NOTICIAS (cinta desplazable con flechas)
-   ============================================================ */
-const carrusel = document.getElementById('carruselNoticias');
-document.getElementById('carruselPrev').addEventListener('click', ()=> carrusel.scrollBy({ left:-360, behavior:'smooth' }));
-document.getElementById('carruselNext').addEventListener('click', ()=> carrusel.scrollBy({ left:360, behavior:'smooth' }));
-let arrastrando=false, inicioX=0, scrollInicio=0;
-carrusel.addEventListener('mousedown', e=>{ arrastrando=true; carrusel.classList.add('arrastrando'); inicioX=e.pageX; scrollInicio=carrusel.scrollLeft; });
-['mouseup','mouseleave'].forEach(ev=> carrusel.addEventListener(ev, ()=>{ arrastrando=false; carrusel.classList.remove('arrastrando'); }));
-carrusel.addEventListener('mousemove', e=>{ if(!arrastrando) return; e.preventDefault(); carrusel.scrollLeft = scrollInicio - (e.pageX - inicioX); });
+document.getElementById('btnMapStreet').addEventListener('click', function(){
+  map.removeLayer(satLayer); streetLayer.addTo(map);
+  this.classList.add('active'); document.getElementById('btnMapSat').classList.remove('active');
+});
+document.getElementById('btnMapSat').addEventListener('click', function(){
+  map.removeLayer(streetLayer); satLayer.addTo(map);
+  this.classList.add('active'); document.getElementById('btnMapStreet').classList.remove('active');
+});
 
-/* ============================================================
-   7. VALIDACIÓN DE FORMULARIOS
-   ============================================================ */
-function validarCampo(campoWrap, valido){
-  campoWrap.classList.toggle('invalido', !valido);
-  return valido;
+let statesLayer, muniLayer;
+function colorForCases(n){
+  if(n > 60) return '#e0554f';
+  if(n > 30) return '#f5a623';
+  return '#1e88e5';
+}
+function styleFeature(feature){
+  const pseudo = (feature.properties.shapeName || feature.properties.NAME_1 || 'X').length * 7 % 90;
+  return { color:'#0e3a63', weight:1, fillColor: colorForCases(pseudo), fillOpacity:0.45 };
+}
+function onEachState(feature, layer){
+  const name = feature.properties.shapeName || feature.properties.NAME_1 || 'Estado';
+  const leaders = Math.floor(Math.random()*300)+20;
+  const cases = Math.floor(Math.random()*900)+50;
+  const active = Math.floor(cases*0.3);
+  const attended = cases - active;
+  const avgTime = Math.floor(Math.random()*40)+15;
+  layer.bindPopup(
+    `<div class="map-popup"><h4>${name}</h4>
+     <div class="row"><span>Líderes Focales</span><strong>${leaders}</strong></div>
+     <div class="row"><span>Casos registrados</span><strong>${cases}</strong></div>
+     <div class="row"><span>Casos activos</span><strong>${active}</strong></div>
+     <div class="row"><span>Pacientes atendidos</span><strong>${attended}</strong></div>
+     <div class="row"><span>Tiempo promedio</span><strong>${avgTime} min</strong></div></div>`
+  );
+  layer.on({
+    mouseover: e=> e.target.setStyle({ weight:2.5, fillOpacity:0.7 }),
+    mouseout: e=> (statesLayer || muniLayer).resetStyle(e.target)
+  });
 }
 
-const formRegistro = document.getElementById('formRegistro');
-formRegistro.addEventListener('submit', function(e){
-  e.preventDefault();
-  let esValido = true;
+fetch('https://github.com/jhonmalorne/ConcertacionAAS/blob/main/geoBoundaries-VEN-ADM1_simplified.geojson')
+  .catch(()=>null);
 
-  this.querySelectorAll('.campo').forEach(campo=>{
-    const input = campo.querySelector('input:not([type=checkbox]), select, textarea');
-    if(input && input.hasAttribute('required')){
-      const ok = input.value.trim() !== '' && (!input.pattern || new RegExp(input.pattern).test(input.value.trim()));
-      if(!validarCampo(campo, ok)) esValido = false;
-    } else if(input && input.type === 'email' && input.value.trim() !== ''){
-      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
-      if(!validarCampo(campo, ok)) esValido = false;
+// Load states GeoJSON (raw)
+fetch('https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/geoBoundaries-VEN-ADM1_simplified.geojson')
+  .then(r=> r.ok ? r.json() : Promise.reject())
+  .then(data=>{
+    statesLayer = L.geoJSON(data, { style: styleFeature, onEachFeature: onEachState }).addTo(map);
+  })
+  .catch(()=>{ /* Silently ignore if geojson unavailable (e.g. offline preview) */ });
+
+let muniLoaded = false;
+document.getElementById('btnLayerMuni').addEventListener('click', function(){
+  this.classList.add('active'); document.getElementById('btnLayerStates').classList.remove('active');
+  if(statesLayer) map.removeLayer(statesLayer);
+  if(muniLoaded){ muniLayer.addTo(map); return; }
+  fetch('https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/geoBoundaries-VEN-ADM2_simplified.geojson')
+    .then(r=> r.ok ? r.json() : Promise.reject())
+    .then(data=>{
+      muniLayer = L.geoJSON(data, { style: styleFeature, onEachFeature: onEachState }).addTo(map);
+      muniLoaded = true;
+    })
+    .catch(()=>{});
+});
+document.getElementById('btnLayerStates').addEventListener('click', function(){
+  this.classList.add('active'); document.getElementById('btnLayerMuni').classList.remove('active');
+  if(muniLayer) map.removeLayer(muniLayer);
+  if(statesLayer) statesLayer.addTo(map);
+});
+
+document.getElementById('mapSearchInput').addEventListener('keydown', function(e){
+  if(e.key !== 'Enter') return;
+  const q = this.value.trim().toLowerCase();
+  const activeLayer = statesLayer;
+  if(!activeLayer || !q) return;
+  activeLayer.eachLayer(layer=>{
+    const name = (layer.feature.properties.shapeName || layer.feature.properties.NAME_1 || '').toLowerCase();
+    if(name.includes(q)){
+      map.fitBounds(layer.getBounds());
+      layer.openPopup();
     }
   });
+});
 
-  const tiposMarcados = this.querySelectorAll('input[name="tipo"]:checked').length > 0;
-  document.getElementById('errorTipoNecesidad').style.display = tiposMarcados ? 'none' : 'block';
-  if(!tiposMarcados) esValido = false;
+/* ================= FORM ================= */
+const estadosVE = ["Amazonas","Anzoátegui","Apure","Aragua","Barinas","Bolívar","Carabobo","Cojedes","Delta Amacuro","Distrito Capital","Falcón","Guárico","Lara","Mérida","Miranda","Monagas","Nueva Esparta","Portuguesa","Sucre","Táchira","Trujillo","La Guaira","Yaracuy","Zulia"];
+const municipiosDemo = {
+  "Carabobo":["Valencia","Los Guayos","Naguanagua","San Diego","Puerto Cabello","Guacara","Libertador"],
+  "Distrito Capital":["Libertador"],
+  "Miranda":["Baruta","Chacao","Sucre","Los Salias","Guaicaipuro"],
+  "Zulia":["Maracaibo","San Francisco","Cabimas"]
+};
+const estadoSel = document.getElementById('f_estado');
+estadosVE.forEach(e=>{
+  const opt = document.createElement('option'); opt.value = e; opt.textContent = e; estadoSel.appendChild(opt);
+});
+const muniSel = document.getElementById('f_municipio');
+estadoSel.addEventListener('change', ()=>{
+  const list = municipiosDemo[estadoSel.value] || [];
+  muniSel.innerHTML = list.length ? '<option value="">Selecciona…</option>' : '<option value="">Ingresa tu municipio</option>';
+  list.forEach(m=>{
+    const opt = document.createElement('option'); opt.value = m; opt.textContent = m; muniSel.appendChild(opt);
+  });
+  if(!list.length){
+    muniSel.outerHTML = '<input type="text" id="f_municipio" placeholder="Escribe tu municipio" required>';
+  }
+});
 
-  if(!esValido){
-    this.querySelector('.campo.invalido, #grupoTipoNecesidad')?.scrollIntoView({ behavior:'smooth', block:'center' });
+document.querySelectorAll('#tipoNecesidad .chip').forEach(chip=>{
+  chip.addEventListener('click', ()=> chip.classList.toggle('selected'));
+});
+document.querySelectorAll('#prioridadGroup .priority-opt').forEach(opt=>{
+  opt.addEventListener('click', ()=>{
+    document.querySelectorAll('#prioridadGroup .priority-opt').forEach(o=> o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+document.getElementById('f_foto').addEventListener('change', function(){
+  document.getElementById('fileLabel').textContent = this.files[0] ? this.files[0].name : 'Haz clic o arrastra una imagen aquí';
+});
+
+const needsForm = document.getElementById('needsForm');
+needsForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  let valid = true;
+  const requiredFields = ['f_nombre','f_apellido','f_cedula','f_telefono','f_estado','f_direccion','f_descripcion'];
+  requiredFields.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    const field = el.closest('.field');
+    if(!el.value.trim()){
+      valid = false;
+      field.classList.add('invalid');
+      field.querySelector('.err').textContent = 'Este campo es obligatorio';
+    } else {
+      field.classList.remove('invalid');
+      field.querySelector('.err').textContent = '';
+    }
+  });
+  const muniField = document.getElementById('f_municipio');
+  if(muniField && !muniField.value.trim()){ valid = false; }
+
+  const tipoSelected = document.querySelectorAll('#tipoNecesidad .chip.selected').length;
+  document.getElementById('err_tipo').textContent = tipoSelected ? '' : 'Selecciona al menos un tipo de necesidad';
+  if(!tipoSelected) valid = false;
+
+  const prioridadSelected = document.querySelector('#prioridadGroup .priority-opt.selected');
+  document.getElementById('err_prioridad').textContent = prioridadSelected ? '' : 'Selecciona una prioridad';
+  if(!prioridadSelected) valid = false;
+
+  const cedula = document.getElementById('f_cedula');
+  if(cedula.value.trim() && !/^[VEve]?-?\d{5,9}$/.test(cedula.value.trim())){
+    valid = false;
+    cedula.closest('.field').classList.add('invalid');
+    cedula.closest('.field').querySelector('.err').textContent = 'Formato de cédula inválido';
+  }
+  const correo = document.getElementById('f_correo');
+  if(correo.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim())){
+    valid = false;
+    correo.closest('.field').classList.add('invalid');
+    correo.closest('.field').querySelector('.err').textContent = 'Correo inválido';
+  }
+
+  if(!valid){
+    needsForm.querySelector('.field.invalid, .invalid')?.scrollIntoView({behavior:'smooth', block:'center'});
     return;
   }
 
-  formRegistro.style.display = 'none';
-  document.getElementById('panelExito').style.display = 'block';
-  setTimeout(()=> window.open('https://forms.gle/qB8XScEiUDW73Kgs7', '_blank'), 600);
+  needsForm.style.display = 'none';
+  const successPanel = document.getElementById('formSuccess');
+  successPanel.classList.add('show');
+  setTimeout(()=>{ window.open('https://forms.gle/qB8XScEiUDW73Kgs7', '_blank'); }, 900);
 });
 
-document.getElementById('fotoAdjunta').addEventListener('change', function(){
-  const preview = document.getElementById('preview-foto');
-  if(this.files && this.files[0]){
-    const lector = new FileReader();
-    lector.onload = e=>{ preview.src = e.target.result; preview.style.display = 'block'; };
-    lector.readAsDataURL(this.files[0]);
-  }
-});
-
-const formContacto = document.getElementById('formContacto');
-formContacto.addEventListener('submit', function(e){
+document.getElementById('contactForm').addEventListener('submit', function(e){
   e.preventDefault();
-  let esValido = true;
-  this.querySelectorAll('.campo').forEach(campo=>{
-    const input = campo.querySelector('input, textarea');
-    let ok = input.value.trim() !== '';
-    if(input.type === 'email') ok = ok && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
-    validarCampo(campo, ok);
-    if(!ok) esValido = false;
-  });
-  if(!esValido) return;
-  const nombre = this.nombreContacto.value.trim();
-  const correo = this.correoContacto.value.trim();
-  const mensaje = this.mensajeContacto.value.trim();
-  const asunto = encodeURIComponent('Contacto desde el portal AAS');
-  const cuerpo = encodeURIComponent(`Nombre: ${nombre}\nCorreo: ${correo}\n\n${mensaje}`);
-  window.location.href = `mailto:contacto@concertacionciudadana.com?subject=${asunto}&body=${cuerpo}`;
+  alert('Gracias por escribirnos. Tu mensaje ha sido registrado.');
+  this.reset();
 });
 
-/* ============================================================
-   8. GRÁFICOS (Chart.js) — se inicializan al entrar en pantalla
-   ============================================================ */
-const coloresGrafico = { azul:'#003B95', azulClaro:'#2D6CDF', verde:'#0F9D6B', verdeClaro:'#34C38F', gris:'#93A2C2' };
-let graficosListos = false;
-function inicializarGraficos(){
-  if(graficosListos) return;
-  graficosListos = true;
+/* ================= CHART.JS ================= */
+const chartTextColor = getComputedStyle(document.documentElement).getPropertyValue('--text-soft').trim() || '#5c6b78';
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.color = chartTextColor;
 
-  new Chart(document.getElementById('graficoDonut'), {
-    type: 'doughnut',
-    data: {
-      labels: ['Enfermedad crónica','Adulto mayor','Niño','Discapacidad','Emergencia','Medicamentos'],
-      datasets: [{ data:[28,24,14,10,12,12], backgroundColor:[coloresGrafico.azul,coloresGrafico.azulClaro,coloresGrafico.verde,coloresGrafico.verdeClaro,'#E0483E',coloresGrafico.gris], borderWidth:0 }]
-    },
-    options: { plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ family:'Inter', size:11 } } } }, cutout:'62%' }
-  });
-
-  new Chart(document.getElementById('graficoBarras'), {
-    type: 'bar',
-    data: {
-      labels: ['Ene','Feb','Mar','Abr','May','Jun'],
-      datasets: [{ label:'Consultas', data:[180,240,300,360,410,470], backgroundColor:coloresGrafico.azulClaro, borderRadius:8, maxBarThickness:34 }]
-    },
-    options: { plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ color:'rgba(148,162,194,.15)' } }, x:{ grid:{ display:false } } } }
-  });
-
-  new Chart(document.getElementById('graficoLineas'), {
-    type: 'line',
-    data: {
-      labels: ['Ene','Feb','Mar','Abr','May','Jun'],
-      datasets: [{ label:'Pacientes atendidos', data:[120,210,340,510,760,1050], borderColor:coloresGrafico.verde, backgroundColor:'rgba(15,157,107,.15)', fill:true, tension:.4, pointBackgroundColor:coloresGrafico.verde }]
-    },
-    options: { plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ color:'rgba(148,162,194,.15)' } }, x:{ grid:{ display:false } } } }
-  });
-
-  new Chart(document.getElementById('graficoRadar'), {
-    type: 'radar',
-    data: {
-      labels: ['Tiempo de respuesta','Costo por caso','Riesgo de infección','Comodidad del paciente','Disponibilidad de camas','Satisfacción'],
-      datasets: [
-        { label:'Modelo tradicional', data:[3,2,2,3,2,3], borderColor:'#E0483E', backgroundColor:'rgba(224,72,62,.15)' },
-        { label:'Modelo AAS', data:[5,4,5,5,5,5], borderColor:coloresGrafico.verde, backgroundColor:'rgba(15,157,107,.2)' }
-      ]
-    },
-    options: { plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ family:'Inter', size:11 } } } }, scales:{ r:{ min:0, max:5, ticks:{ display:false }, grid:{ color:'rgba(148,162,194,.2)' } } } }
-  });
-}
-const ioGraficos = new IntersectionObserver((entradas)=>{
-  entradas.forEach(entrada=>{ if(entrada.isIntersecting){ inicializarGraficos(); ioGraficos.disconnect(); } });
-}, { threshold:.2 });
-const primerGrafico = document.getElementById('graficoDonut');
-if(primerGrafico) ioGraficos.observe(primerGrafico);
-
-/* ============================================================
-   9. MAPA NACIONAL AAS (Leaflet + GeoJSON)
-   ============================================================ */
-const GEO_BASE = 'https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/';
-
-const mapaAAS = L.map('mapa-nacional', { scrollWheelZoom:false }).setView([8.0, -66.0], 6);
-
-const capaNormalAAS = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution:'&copy; OpenStreetMap contributors', maxZoom:19
-}).addTo(mapaAAS);
-const capaSatelitalAAS = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-  attribution:'Tiles &copy; Esri', maxZoom:19
+new Chart(document.getElementById('chartLine'), {
+  type:'line',
+  data:{
+    labels:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+    datasets:[
+      { label:'Consultas', data:[3200,3800,4100,4600,5200,5900,6400,7100,7800,8500,9200,9900], borderColor:'#1668b3', backgroundColor:'rgba(22,104,179,.12)', fill:true, tension:.4, borderWidth:3, pointRadius:0 },
+      { label:'Visitas domiciliarias', data:[1800,2100,2400,2700,3100,3500,3900,4300,4700,5100,5600,6100], borderColor:'#14915f', backgroundColor:'rgba(20,145,95,.12)', fill:true, tension:.4, borderWidth:3, pointRadius:0 }
+    ]
+  },
+  options:{ responsive:true, plugins:{legend:{position:'bottom'}}, scales:{ y:{grid:{color:'rgba(147,161,174,.15)'}}, x:{grid:{display:false}} } }
 });
-L.control.layers({ 'Mapa': capaNormalAAS, 'Satélite': capaSatelitalAAS }, null, { position:'topright' }).addTo(mapaAAS);
 
-// Clic para activar el zoom con scroll, evitando "atrapar" el scroll de la página
-mapaAAS.on('click', ()=> mapaAAS.scrollWheelZoom.enable());
-mapaAAS.getContainer().addEventListener('mouseleave', ()=> mapaAAS.scrollWheelZoom.disable());
+new Chart(document.getElementById('chartDonut'), {
+  type:'doughnut',
+  data:{
+    labels:['Enfermedad','Adulto mayor','Niño','Discapacidad','Emergencia','Medicamentos'],
+    datasets:[{ data:[32,22,14,10,14,8], backgroundColor:['#1668b3','#1e88e5','#14915f','#1aac70','#f5a623','#93a1ae'], borderWidth:0 }]
+  },
+  options:{ responsive:true, plugins:{legend:{position:'bottom', labels:{boxWidth:12, padding:14}}}, cutout:'62%' }
+});
 
-// Genera indicadores ilustrativos deterministas a partir del nombre (fase piloto — no son datos reales)
-function indicadoresDemo(nombre){
-  let hash = 0;
-  for(let i=0;i<nombre.length;i++){ hash = (hash * 31 + nombre.charCodeAt(i)) % 97; }
-  return {
-    lideres: 2 + (hash % 18),
-    casos: 10 + (hash % 120),
-    activos: 3 + (hash % 40),
-    atendidos: 8 + (hash % 90)
-  };
-}
+new Chart(document.getElementById('chartBar'), {
+  type:'bar',
+  data:{
+    labels:['Carabobo','Zulia','Miranda','Lara','Táchira','Anzoátegui'],
+    datasets:[{ label:'Atenciones', data:[9800,8700,8100,6900,6200,5400], backgroundColor:'#1668b3', borderRadius:8, maxBarThickness:34 }]
+  },
+  options:{ responsive:true, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(147,161,174,.15)'}}, x:{grid:{display:false}} } }
+});
 
-function estiloCapa(color){
-  return { color, weight: 1.4, fillColor: color, fillOpacity: .08 };
-}
+new Chart(document.getElementById('chartRadar'), {
+  type:'radar',
+  data:{
+    labels:['Cobertura','Velocidad de respuesta','Ahorro fiscal','Satisfacción','Reducción hospitalaria','Alcance comunitario'],
+    datasets:[{ label:'Modelo AAS', data:[82,88,90,86,84,91], backgroundColor:'rgba(20,145,95,.2)', borderColor:'#14915f', pointBackgroundColor:'#14915f', borderWidth:2 }]
+  },
+  options:{ responsive:true, plugins:{legend:{display:false}}, scales:{ r:{ grid:{color:'rgba(147,161,174,.2)'}, angleLines:{color:'rgba(147,161,174,.2)'}, pointLabels:{font:{size:10}} } } }
+});
 
-let capaEstados, capaMunicipios;
-const capasBuscables = []; // { nombre, layer }
-
-function popupHTML(nombre, tipo){
-  const d = indicadoresDemo(nombre);
-  return `
-    <div class="popup-mapa">
-      <span class="p-eyebrow">${tipo}</span>
-      <h4>${nombre}</h4>
-      <div class="indicadores-popup">
-        <div class="indicador-mini"><b>${d.lideres}</b><span>Líderes Focales</span></div>
-        <div class="indicador-mini"><b>${d.casos}</b><span>Casos registrados</span></div>
-        <div class="indicador-mini"><b>${d.activos}</b><span>Casos activos</span></div>
-        <div class="indicador-mini"><b>${d.atendidos}</b><span>Pacientes atendidos</span></div>
-      </div>
-      <p class="nota-demo">* Indicadores ilustrativos de la fase piloto</p>
-    </div>`;
-}
-
-fetch(GEO_BASE + 'geoBoundaries-VEN-ADM1_simplified.geojson')
-  .then(r => r.json())
-  .then(data => {
-    capaEstados = L.geoJSON(data, {
-      style: estiloCapa('#003B95'),
-      onEachFeature: (feature, layer) => {
-        const nombre = feature.properties.shapeName || 'Estado';
-        layer.bindPopup(popupHTML(nombre, 'Estado'));
-        layer.on({
-          mouseover: () => layer.setStyle({ fillOpacity:.22, weight:2.4 }),
-          mouseout: () => layer.setStyle({ fillOpacity:.08, weight:1.4 })
-        });
-        capasBuscables.push({ nombre, layer, tipo:'Estado' });
-      }
-    }).addTo(mapaAAS);
-  })
-  .catch(err => console.error('No se pudo cargar el límite estadal', err));
-
-fetch(GEO_BASE + 'geoBoundaries-VEN-ADM2_simplified.geojson')
-  .then(r => r.json())
-  .then(data => {
-    capaMunicipios = L.geoJSON(data, {
-      style: estiloCapa('#0F9D6B'),
-      onEachFeature: (feature, layer) => {
-        const nombre = feature.properties.shapeName || 'Municipio';
-        layer.bindPopup(popupHTML(nombre, 'Municipio / Parroquia'));
-        layer.on({
-          mouseover: () => layer.setStyle({ fillOpacity:.22, weight:2.4 }),
-          mouseout: () => layer.setStyle({ fillOpacity:.08, weight:1.4 })
-        });
-        capasBuscables.push({ nombre, layer, tipo:'Municipio / Parroquia' });
-      }
-    }); // no se agrega al mapa aún — se activa desde los chips
-  })
-  .catch(err => console.error('No se pudo cargar el límite municipal/parroquial', err));
-
-// Chips de capas
-document.querySelectorAll('.chip-mapa').forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    const capa = chip.dataset.capa;
-    document.querySelectorAll('.chip-mapa').forEach(c=>c.classList.remove('activo'));
-    chip.classList.add('activo');
-    if(capa === 'estados'){
-      if(capaMunicipios) mapaAAS.removeLayer(capaMunicipios);
-      if(capaEstados) capaEstados.addTo(mapaAAS);
-    } else {
-      if(capaEstados) mapaAAS.removeLayer(capaEstados);
-      if(capaMunicipios) capaMunicipios.addTo(mapaAAS);
+/* ================= FAQ ACCORDION ================= */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  if(item.classList.contains('open')) a.style.maxHeight = a.scrollHeight + 'px';
+  q.addEventListener('click', ()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
     }
   });
 });
 
-// Buscador del mapa
-const inputBuscarMapa = document.getElementById('buscarMapa');
-const listaResultadosMapa = document.getElementById('lista-resultados-mapa');
-inputBuscarMapa.addEventListener('input', ()=>{
-  const q = inputBuscarMapa.value.trim().toLowerCase();
-  listaResultadosMapa.innerHTML = '';
-  if(q.length < 2){ listaResultadosMapa.style.display = 'none'; return; }
-  const coincidencias = capasBuscables.filter(c => c.nombre.toLowerCase().includes(q)).slice(0, 12);
-  if(coincidencias.length === 0){ listaResultadosMapa.style.display = 'none'; return; }
-  coincidencias.forEach(c=>{
-    const btn = document.createElement('button');
-    btn.textContent = `${c.nombre} · ${c.tipo}`;
-    btn.addEventListener('click', ()=>{
-      mapaAAS.fitBounds(c.layer.getBounds(), { maxZoom: 10 });
-      c.layer.openPopup();
-      listaResultadosMapa.style.display = 'none';
-      inputBuscarMapa.value = c.nombre;
-    });
-    listaResultadosMapa.appendChild(btn);
-  });
-  listaResultadosMapa.style.display = 'block';
-});
-document.addEventListener('click', (e)=>{
-  if(!e.target.closest('.buscador-mapa')) listaResultadosMapa.style.display = 'none';
-});
+/* ================= NEWS CAROUSEL ================= */
+const newsTrack = document.getElementById('newsTrack');
+document.getElementById('newsNext').addEventListener('click', ()=> newsTrack.scrollBy({left:340, behavior:'smooth'}));
+document.getElementById('newsPrev').addEventListener('click', ()=> newsTrack.scrollBy({left:-340, behavior:'smooth'}));
+
+/* ================= GSAP HERO ENTRANCE ================= */
+if(window.gsap){
+  gsap.from('.hero-badge', {opacity:0, y:-16, duration:.8, delay:.1});
+}
 </script>
 </body>
 </html>
