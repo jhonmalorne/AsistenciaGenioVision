@@ -2,1171 +2,1631 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODERE | Conexión Deportiva y Recreativa — Concertación Ciudadana</title>
-<meta name="description" content="CODERE conecta clubes deportivos, parques y espacios recreativos en un solo mapa digital. Una iniciativa de la Secretaría de Deporte y Recreación de Concertación Ciudadana.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AAS · Atención Avanzada en Salud | Secretaría Nacional de Salud — Concertación Ciudadana</title>
+<meta name="description" content="Proyecto AAS: Atención Avanzada en Salud. Un modelo de salud domiciliaria impulsado por la Secretaría Nacional de Salud de Concertación Ciudadana, propuesta para el Gobierno de Transición de Venezuela.">
+<meta name="keywords" content="AAS, Atención Avanzada en Salud, Concertación Ciudadana, salud domiciliaria, telemedicina, Venezuela, gobierno de transición, líderes focales de salud">
+<meta name="author" content="Secretaría Nacional de Salud, Concertación Ciudadana">
+<meta name="theme-color" content="#003B95">
+<meta name="robots" content="index, follow">
 
-<!-- Fonts -->
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AAS · Atención Avanzada en Salud">
+<meta property="og:description" content="Transformando la salud pública desde el hogar del paciente. Un proyecto de la Secretaría Nacional de Salud de Concertación Ciudadana.">
+<meta property="og:image" content="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg">
+<meta property="og:url" content="https://jhonmalorne.github.io/ConcertacionAAS/">
+<meta property="og:locale" content="es_VE">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AAS · Atención Avanzada en Salud">
+<meta name="twitter:description" content="Transformando la salud pública desde el hogar del paciente.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png">
+
+<!-- Preload critical assets -->
+<link rel="preload" as="image" href="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<!-- AOS (scroll animations) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+<!-- Animate.css (used sparingly for CTA emphasis) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 <style>
-  :root{
-    --navy:#001B3D;
-    --navy-2:#00204a;
-    --blue:#003B95;
-    --blue-light:#1C5FC7;
-    --gold:#C49A22;
-    --gold-light:#E4BB4A;
-    --paper:#F6F7FB;
-    --paper-2:#ECEFF6;
-    --ink:#0E1526;
-    --ink-soft:#4B5670;
-    --line:rgba(255,255,255,.14);
-    --line-dark:rgba(14,21,38,.10);
-    --radius:14px;
-    --shadow:0 10px 30px rgba(0,20,60,.14);
-    --maxw:1180px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Barlow',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  img{max-width:100%;display:block;}
-  a{color:inherit;text-decoration:none;}
-  h1,h2,h3,h4{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    letter-spacing:.01em;
-    margin:0;
-  }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-  .eyebrow{
-    font-family:'Barlow Condensed',sans-serif;
-    font-weight:700;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-    font-size:.78rem;
-    color:var(--gold);
-  }
-  section{padding:76px 0;}
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:13px 26px;
-    border-radius:999px;
-    font-family:'Barlow Condensed',sans-serif;
-    font-weight:700;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    font-size:.92rem;
-    border:2px solid transparent;
-    cursor:pointer;
-    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);}
-  .btn-gold{background:var(--gold);color:var(--navy);}
-  .btn-gold:hover{background:var(--gold-light);box-shadow:0 8px 20px rgba(196,154,34,.35);}
-  .btn-outline{border-color:rgba(255,255,255,.55);color:#fff;}
-  .btn-outline:hover{background:rgba(255,255,255,.1);}
-  .btn-navy{background:var(--blue);color:#fff;}
-  .btn-navy:hover{background:var(--blue-light);}
+/* ==========================================================================
+   0. DESIGN TOKENS
+   ========================================================================== */
+:root{
+  /* Identidad Concertación */
+  --azul:#003B95;
+  --azul-brillante:#2D6CDF;
+  --azul-oscuro:#001B3D;
+  --verde:#0F9D6B;
+  --verde-claro:#34C38F;
 
-  /* ===== Top strip ===== */
-  .topstrip{
-    background:var(--navy);
-    color:rgba(255,255,255,.75);
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:.85rem;
-    letter-spacing:.03em;
-  }
-  .topstrip .wrap{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:7px 24px;gap:12px;flex-wrap:wrap;
-  }
-  .topstrip .social{display:flex;gap:16px;align-items:center;}
-  .topstrip a:hover{color:var(--gold-light);}
+  /* Neutros — modo claro */
+  --bg:#F5F7FB;
+  --bg-alt:#FFFFFF;
+  --surface:rgba(255,255,255,.66);
+  --surface-solid:#FFFFFF;
+  --borde:rgba(11,27,51,.08);
+  --texto:#0B1B33;
+  --texto-suave:#5B6780;
+  --sombra:0 20px 50px rgba(11,27,51,.10);
+  --sombra-sm:0 8px 20px rgba(11,27,51,.08);
 
-  /* ===== Header ===== */
-  header{
-    position:sticky;top:0;z-index:500;
-    background:var(--blue);
-    box-shadow:0 2px 18px rgba(0,10,40,.25);
-  }
-  .nav{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:12px 24px;max-width:var(--maxw);margin:0 auto;
-  }
-  .brand{display:flex;align-items:center;gap:12px;}
-  .brand img{height:42px;width:auto;}
-  .brand .name{color:#fff;line-height:1.05;}
-  .brand .name b{font-family:'Oswald';font-size:1.35rem;letter-spacing:.03em;}
-  .brand .name span{display:block;font-family:'Barlow Condensed';font-size:.68rem;letter-spacing:.12em;color:var(--gold-light);text-transform:uppercase;}
-  nav.links{display:flex;gap:26px;align-items:center;}
-  nav.links a{
-    color:rgba(255,255,255,.88);
-    font-family:'Barlow Condensed';
-    font-weight:600;
-    letter-spacing:.03em;
-    text-transform:uppercase;
-    font-size:.92rem;
-  }
-  nav.links a:hover{color:var(--gold-light);}
-  .navbtn{display:none;background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;}
+  --radio-lg:26px;
+  --radio-md:18px;
+  --radio-sm:12px;
+  --maxw:1240px;
 
-  @media(max-width:880px){
-    nav.links{
-      position:fixed;top:0;right:-100%;height:100vh;width:78%;max-width:320px;
-      background:var(--navy);flex-direction:column;justify-content:center;
-      transition:right .3s ease;gap:28px;
-    }
-    nav.links.open{right:0;}
-    .navbtn{display:block;}
-  }
+  --ff-display:'Poppins',sans-serif;
+  --ff-label:'Montserrat',sans-serif;
+  --ff-body:'Inter',sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#04122A;
+  --bg-alt:#071A33;
+  --surface:rgba(255,255,255,.06);
+  --surface-solid:#0B2244;
+  --borde:rgba(255,255,255,.10);
+  --texto:#EAF0FB;
+  --texto-suave:#93A2C2;
+  --sombra:0 20px 50px rgba(0,0,0,.45);
+  --sombra-sm:0 8px 20px rgba(0,0,0,.35);
+}
 
-  /* ===== Hero ===== */
-  .hero{
-    position:relative;
-    min-height:88vh;
-    display:flex;align-items:center;
-    background:
-      linear-gradient(180deg, rgba(0,20,55,.55) 0%, rgba(0,15,45,.72) 45%, var(--navy) 100%),
-      url('https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/banner%20web%20deporte.jpg?raw=true') center/cover no-repeat;
-    color:#fff;
-  }
-  .hero .wrap{padding-top:70px;padding-bottom:60px;}
-  .hero .eyebrow{color:var(--gold-light);}
-  .hero h1{
-    font-size:clamp(2.4rem,6vw,4.4rem);
-    line-height:.98;
-    margin:14px 0 18px;
-  }
-  .hero h1 em{font-style:normal;color:var(--gold-light);}
-  .hero p.lead{
-    max-width:640px;font-size:1.14rem;line-height:1.55;
-    color:rgba(255,255,255,.88);margin-bottom:32px;
-  }
-  .hero .ctas{display:flex;gap:16px;flex-wrap:wrap;}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--texto);
+  font-family:var(--ff-body);
+  -webkit-font-smoothing:antialiased;
+  transition:background .35s ease, color .35s ease;
+  overflow-x:hidden;
+}
+img,video{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{margin:0;padding:0;list-style:none;}
+button{font-family:inherit;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+section{padding:110px 0;position:relative;}
+h1,h2,h3,h4{font-family:var(--ff-display);margin:0;line-height:1.1;color:var(--texto);}
+p{line-height:1.65;color:var(--texto-suave);margin:0;}
 
-  /* ===== Scoreboard (signature element) ===== */
-  .scoreboard{
-    background:var(--navy);
-    border-top:1px solid var(--line);
-    border-bottom:4px solid var(--gold);
-  }
-  .board-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);
-    gap:0;
-  }
-  .board-tile{
-    padding:30px 18px;text-align:center;
-    border-right:1px solid var(--line);
-    position:relative;
-    background-image:radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.4px);
-    background-size:9px 9px;
-  }
-  .board-tile:last-child{border-right:none;}
-  .board-num{
-    font-family:'Oswald';font-weight:700;
-    font-size:clamp(2rem,4.4vw,3.1rem);
-    color:var(--gold-light);
-    letter-spacing:.02em;
-    font-variant-numeric:tabular-nums;
-    text-shadow:0 0 18px rgba(228,187,74,.35);
-  }
-  .board-label{
-    margin-top:6px;
-    font-family:'Barlow Condensed';
-    font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-    font-size:.78rem;color:rgba(255,255,255,.65);
-  }
-  @media(max-width:700px){
-    .board-grid{grid-template-columns:repeat(2,1fr);}
-    .board-tile{border-bottom:1px solid var(--line);}
-  }
+.eyebrow{
+  font-family:var(--ff-label);font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  font-size:.76rem;color:var(--verde);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.eyebrow::before{content:"";width:24px;height:2px;background:var(--azul-brillante);display:inline-block;}
+.section-head{max-width:680px;margin:0 auto 56px;text-align:center;}
+.section-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:14px;}
+.section-head p{font-size:1.05rem;}
+.section-head.left{margin-left:0;text-align:left;}
 
-  /* ===== Section headers ===== */
-  .sec-head{max-width:640px;margin-bottom:40px;}
-  .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:8px;color:var(--navy);}
-  .sec-head p{color:var(--ink-soft);font-size:1.02rem;line-height:1.55;margin-top:12px;}
-  .sec-head.on-dark h2{color:#fff;}
-  .sec-head.on-dark p{color:rgba(255,255,255,.72);}
+/* Botones */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;
+  font-family:var(--ff-label);font-weight:700;letter-spacing:.02em;font-size:.92rem;
+  border:2px solid transparent;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.btn:hover{transform:translateY(-3px);}
+.btn-primario{background:linear-gradient(135deg,var(--azul),var(--azul-brillante));color:#fff;box-shadow:0 14px 30px rgba(0,59,149,.32);}
+.btn-primario:hover{box-shadow:0 18px 36px rgba(0,59,149,.42);}
+.btn-verde{background:linear-gradient(135deg,var(--verde),var(--verde-claro));color:#fff;box-shadow:0 14px 30px rgba(15,157,107,.30);}
+.btn-verde:hover{box-shadow:0 18px 36px rgba(15,157,107,.4);}
+.btn-fantasma{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5);color:#fff;backdrop-filter:blur(6px);}
+.btn-fantasma:hover{background:rgba(255,255,255,.22);}
+.btn-outline{background:transparent;border-color:var(--azul);color:var(--azul);}
+.btn-outline:hover{background:var(--azul);color:#fff;}
+.btn-sm{padding:10px 20px;font-size:.8rem;}
 
-  /* ===== About ===== */
-  .about{
-    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
-  }
-  .about-copy h2{color:var(--navy);font-size:clamp(1.9rem,3.4vw,2.5rem);margin-bottom:16px;}
-  .about-copy p{color:var(--ink-soft);line-height:1.65;margin-bottom:14px;}
-  .about-media{
-    border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
-    border:1px solid var(--line-dark);
-  }
-  @media(max-width:860px){.about{grid-template-columns:1fr;}}
+/* Glassmorphism card base */
+.glass{
+  background:var(--surface);
+  border:1px solid var(--borde);
+  border-radius:var(--radio-lg);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:var(--sombra-sm);
+  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.glass:hover{transform:translateY(-6px);box-shadow:var(--sombra);border-color:rgba(45,108,223,.3);}
 
-  /* ===== Noticias ===== */
-  .noticias{background:var(--paper-2);}
-  .news-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
-  .news-card{
-    background:#fff;border-radius:var(--radius);overflow:hidden;
-    box-shadow:var(--shadow);border:1px solid var(--line-dark);
-    display:flex;flex-direction:column;
-  }
-  .news-card .img-wrap{aspect-ratio:16/10;overflow:hidden;background:var(--navy);position:relative;}
-  .news-card .img-wrap img{width:100%;height:100%;object-fit:cover;}
-  .news-body{padding:22px 24px 26px;}
-  .news-tag{
-    display:inline-block;background:var(--gold);color:var(--navy);
-    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.06em;
-    text-transform:uppercase;font-size:.72rem;padding:4px 10px;border-radius:999px;
-    margin-bottom:12px;
-  }
-  .news-body h3{font-size:1.28rem;color:var(--navy);margin-bottom:10px;line-height:1.2;}
-  .news-body p{color:var(--ink-soft);font-size:.96rem;line-height:1.55;}
-  @media(max-width:800px){.news-grid{grid-template-columns:1fr;}}
+.pildora{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
+  background:rgba(15,157,107,.12);color:var(--verde);font-family:var(--ff-label);font-weight:700;
+  font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;
+}
 
-  /* ===== Noticia: cinta desplazable de fotos y videos ===== */
-  .media-slider{
-    display:flex;
-    width:100%;
-    height:100%;
-    overflow-x:auto;
-    overflow-y:hidden;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:thin;
-    scrollbar-color:var(--gold-light) transparent;
-    cursor:grab;
-    background:var(--navy);
-  }
-  .media-slider.dragging{cursor:grabbing;scroll-snap-type:none;}
-  .media-slider::-webkit-scrollbar{height:6px;}
-  .media-slider::-webkit-scrollbar-thumb{background:var(--gold-light);border-radius:999px;}
-  .media-slider::-webkit-scrollbar-track{background:transparent;}
-  .media-slider .slides{
-    flex:0 0 100%;
-    width:100%;
-    height:100%;
-    scroll-snap-align:start;
-    scroll-snap-stop:always;
-    position:relative;
-  }
-  .media-slider .slides img,
-  .media-slider .slides video{
-    width:100%;height:100%;object-fit:cover;display:block;background:#000;
-  }
-  .slider-arrow{
-    position:absolute;top:50%;transform:translateY(-50%);
-    width:36px;height:36px;border-radius:50%;border:none;
-    background:rgba(0,27,61,.55);color:#fff;font-size:1.3rem;line-height:1;
-    display:flex;align-items:center;justify-content:center;cursor:pointer;
-    z-index:5;transition:background .15s ease;
-  }
-  .slider-arrow:hover{background:var(--gold);color:var(--navy);}
-  .slider-arrow-prev{left:8px;}
-  .slider-arrow-next{right:8px;}
-  .slider-dots{
-    position:absolute;left:0;right:0;bottom:10px;z-index:5;
-    display:flex;justify-content:center;gap:6px;pointer-events:none;
-  }
-  .slider-dot{
-    width:7px;height:7px;border-radius:50%;border:none;
-    background:rgba(255,255,255,.5);cursor:pointer;padding:0;
-    pointer-events:auto;transition:background .15s ease, transform .15s ease;
-  }
-  .slider-dot.active{background:var(--gold-light);transform:scale(1.3);}
-  .slider-counter{
-    position:absolute;top:10px;right:10px;z-index:5;
-    background:rgba(0,27,61,.6);color:#fff;
-    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.04em;
-    font-size:.76rem;padding:4px 10px;border-radius:999px;
-    pointer-events:none;
-  }
-  @media(max-width:600px){
-    .slider-arrow{width:30px;height:30px;font-size:1.1rem;}
-  }
+/* ==========================================================================
+   1. HEADER
+   ========================================================================== */
+#volver-arriba{
+  position:fixed;right:24px;bottom:24px;z-index:900;width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--azul),var(--azul-brillante));color:#fff;border:none;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 26px rgba(0,59,149,.4);
+  opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .25s ease, transform .25s ease;
+}
+#volver-arriba.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
 
-  /* ===== Disciplinas ===== */
-  .disc-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
-  .disc-cat{
-    background:#fff;border-radius:var(--radius);padding:24px 22px;
-    border:1px solid var(--line-dark);box-shadow:var(--shadow);
-  }
-  .disc-cat h3{
-    font-size:1.02rem;color:var(--blue);margin-bottom:14px;
-    padding-bottom:12px;border-bottom:2px solid var(--paper-2);
-  }
-  .chip-list{display:flex;flex-wrap:wrap;gap:8px;}
-  .chip{
-    font-family:'Barlow Condensed';font-weight:600;font-size:.86rem;
-    background:var(--paper-2);color:var(--ink);
-    padding:6px 12px;border-radius:8px;letter-spacing:.01em;
-  }
-  @media(max-width:980px){.disc-cats{grid-template-columns:1fr 1fr;}}
-  @media(max-width:560px){.disc-cats{grid-template-columns:1fr;}}
+header{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  padding:14px 0;
+  background:var(--surface);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border-bottom:1px solid var(--borde);
+  transition:background .35s ease, border-color .35s ease;
+}
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand img{height:38px;width:auto;}
+.brand .sep{width:1px;height:28px;background:var(--borde);}
+.brand-text{line-height:1.1;}
+.brand-text b{font-family:var(--ff-display);font-size:1.05rem;color:var(--texto);display:block;}
+.brand-text span{font-family:var(--ff-label);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-suave);}
 
-  /* ===== Mapa ===== */
-  .mapa{background:var(--navy);color:#fff;}
-  .map-toolbar{
-    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;align-items:center;justify-content:space-between;
-  }
-  .filter-chips{display:flex;gap:8px;flex-wrap:wrap;}
-  .filter-chip{
-    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.03em;
-    text-transform:uppercase;font-size:.82rem;
-    padding:8px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.3);
-    background:transparent;color:#fff;cursor:pointer;transition:all .15s ease;
-    display:flex;align-items:center;gap:7px;
-  }
-  .filter-chip .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
-  .filter-chip.active{background:rgba(255,255,255,.14);border-color:var(--gold-light);}
-  .filter-chip:hover{border-color:var(--gold-light);}
-  #map{
-    height:560px;width:100%;border-radius:var(--radius);
-    border:2px solid rgba(255,255,255,.15);box-shadow:var(--shadow);
-  }
-  .map-legend{
-    margin-top:16px;display:flex;flex-wrap:wrap;gap:18px;
-    font-family:'Barlow Condensed';font-size:.86rem;color:rgba(255,255,255,.75);
-  }
-  .map-legend span{display:inline-flex;align-items:center;gap:7px;}
-  .map-legend .dot{width:10px;height:10px;border-radius:50%;}
-  .layer-toggles{display:flex;gap:14px;flex-wrap:wrap;font-family:'Barlow Condensed';font-size:.85rem;color:rgba(255,255,255,.75);margin-top:12px;}
-  .layer-toggles label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+nav.menu{display:flex;align-items:center;gap:26px;}
+nav.menu a{
+  font-family:var(--ff-label);font-weight:600;font-size:.86rem;color:var(--texto-suave);
+  letter-spacing:.01em;transition:color .2s ease;position:relative;
+}
+nav.menu a:hover{color:var(--azul);}
+.acciones-header{display:flex;align-items:center;gap:12px;}
+.toggle-tema{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--borde);background:var(--surface-solid);
+  color:var(--texto);display:flex;align-items:center;justify-content:center;cursor:pointer;
+}
+.toggle-tema svg{width:19px;height:19px;}
+.menu-btn{display:none;background:none;border:none;font-size:1.6rem;color:var(--texto);cursor:pointer;}
 
-  /* Leaflet popup theming */
-  .leaflet-popup-content-wrapper{border-radius:10px;}
-  .popup-card{font-family:'Barlow',sans-serif;min-width:190px;}
-  .popup-card .p-tag{
-    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.06em;
-    text-transform:uppercase;font-size:.68rem;color:var(--blue);
+@media(max-width:960px){
+  nav.menu{
+    position:fixed;top:0;right:-100%;width:78%;max-width:320px;height:100vh;
+    background:var(--bg-alt);flex-direction:column;justify-content:center;align-items:flex-start;
+    padding:40px;gap:26px;transition:right .3s ease;box-shadow:-10px 0 40px rgba(0,0,0,.15);
   }
-  .popup-card h4{font-family:'Oswald';font-size:1rem;margin:4px 0 6px;color:var(--ink);text-transform:none;}
-  .popup-card p{margin:0 0 8px;font-size:.85rem;color:var(--ink-soft);line-height:1.4;}
-  .popup-card a.wa-link{
-    display:inline-block;font-family:'Barlow Condensed';font-weight:700;
-    font-size:.8rem;color:#fff;background:#1EA952;padding:6px 12px;border-radius:999px;
-  }
+  nav.menu.abierto{right:0;}
+  nav.menu .btn{width:100%;justify-content:center;}
+  .menu-btn{display:block;}
+}
 
-  /* ===== Clubes ===== */
-  .club-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-  .club-card{
-    background:#fff;border-radius:var(--radius);overflow:hidden;
-    border:1px solid var(--line-dark);box-shadow:var(--shadow);
-    display:flex;flex-direction:column;
-  }
-  .club-logo{aspect-ratio:4/3;background:var(--paper-2);overflow:hidden;}
-  .club-logo img{width:100%;height:100%;object-fit:cover;}
-  .club-info{padding:20px 20px 22px;flex:1;display:flex;flex-direction:column;}
-  .club-info h3{font-size:1.12rem;color:var(--navy);margin-bottom:8px;line-height:1.2;}
-  .club-info p.tagline{color:var(--ink-soft);font-size:.92rem;line-height:1.5;margin-bottom:14px;flex:1;}
-  .club-meta{
-    font-family:'Barlow Condensed';font-size:.86rem;color:var(--ink-soft);
-    display:flex;flex-direction:column;gap:4px;margin-bottom:14px;
-  }
-  .club-meta b{color:var(--ink);}
-  .club-card .btn{width:100%;justify-content:center;}
-  @media(max-width:980px){.club-grid{grid-template-columns:1fr 1fr;}}
-  @media(max-width:640px){.club-grid{grid-template-columns:1fr;}}
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;padding-top:120px;
+  background:
+    linear-gradient(180deg, rgba(0,15,40,.55) 0%, rgba(0,20,55,.72) 55%, var(--azul-oscuro) 100%),
+    url('https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg') center/cover no-repeat;
+  color:#fff;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 80% 20%, rgba(15,157,107,.25), transparent 45%);
+}
+.hero-grid{position:relative;z-index:2;}
+.hero .pildora{background:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(6px);}
+.hero h1{
+  font-size:clamp(2.6rem,6.4vw,5.2rem);margin:20px 0 20px;color:#fff;letter-spacing:-.01em;
+}
+.hero h1 .acento{background:linear-gradient(120deg,var(--verde-claro),#7CE8C4);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero p.lead{max-width:600px;font-size:1.18rem;color:rgba(255,255,255,.88);margin-bottom:36px;}
+.hero .ctas{display:flex;gap:16px;flex-wrap:wrap;}
+.hero-scroll{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.65);
+  font-family:var(--ff-label);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+}
+.hero-scroll .linea{width:1px;height:34px;background:linear-gradient(180deg,rgba(255,255,255,.8),transparent);animation:bajar 1.8s infinite;}
+@keyframes bajar{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
 
-  /* ===== CTA Registro ===== */
-  .cta-registro{
-    background:linear-gradient(120deg,var(--blue) 0%,var(--blue-light) 100%);
-    color:#fff;text-align:center;
-  }
-  .cta-registro h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;}
-  .cta-registro p{max-width:560px;margin:0 auto 28px;color:rgba(255,255,255,.9);line-height:1.55;}
+/* ==========================================================================
+   3. LA CRISIS
+   ========================================================================== */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.card-crisis{padding:30px 26px;text-align:left;}
+.card-crisis .icono{
+  width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg, rgba(0,59,149,.12), rgba(15,157,107,.12));
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--azul);
+}
+.card-crisis .icono svg{width:28px;height:28px;}
+.card-crisis h3{font-size:1.06rem;margin-bottom:8px;}
+.card-crisis p{font-size:.92rem;}
+@media(max-width:980px){.grid-4{grid-template-columns:1fr 1fr;}.grid-3{grid-template-columns:1fr;}.grid-2{grid-template-columns:1fr;}}
+@media(max-width:560px){.grid-4{grid-template-columns:1fr;}}
 
-  /* ===== Footer ===== */
-  footer{background:var(--navy);color:rgba(255,255,255,.7);padding-top:56px;}
-  .foot-grid{
-    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;
-    padding-bottom:36px;border-bottom:1px solid var(--line);
-  }
-  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
-  .foot-brand img{height:44px;}
-  .foot-brand b{font-family:'Oswald';color:#fff;font-size:1.2rem;}
-  footer h4{
-    font-family:'Barlow Condensed';color:var(--gold-light);
-    letter-spacing:.1em;font-size:.82rem;text-transform:uppercase;margin-bottom:14px;
-  }
-  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:.94rem;}
-  footer a:hover{color:var(--gold-light);}
-  .foot-social{display:flex;gap:14px;margin-top:6px;}
-  .foot-social a{
-    width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);
-    display:flex;align-items:center;justify-content:center;transition:background .15s;
-  }
-  .foot-social a:hover{background:var(--gold);}
-  .foot-social img{width:20px;height:20px;}
-  .foot-bottom{
-    padding:20px 0 30px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
-    font-size:.82rem;color:rgba(255,255,255,.5);font-family:'Barlow Condensed';letter-spacing:.02em;
-  }
-  @media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr;}}
-  @media(max-width:560px){.foot-grid{grid-template-columns:1fr;}}
+/* ==========================================================================
+   4. NUEVO MODELO — Timeline horizontal
+   ========================================================================== */
+.timeline-modelo{display:flex;position:relative;gap:0;padding-top:20px;}
+.timeline-modelo::before{
+  content:"";position:absolute;top:44px;left:6%;right:6%;height:2px;
+  background:repeating-linear-gradient(90deg, var(--azul-brillante) 0 10px, transparent 10px 20px);
+}
+.paso-modelo{flex:1;text-align:center;padding:0 10px;position:relative;}
+.paso-modelo .num{
+  width:52px;height:52px;border-radius:50%;margin:0 auto 18px;position:relative;z-index:2;
+  background:linear-gradient(135deg,var(--azul),var(--azul-brillante));color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-weight:700;font-size:1.15rem;
+  box-shadow:0 10px 22px rgba(0,59,149,.35);
+}
+.paso-modelo:nth-child(even) .num{background:linear-gradient(135deg,var(--verde),var(--verde-claro));box-shadow:0 10px 22px rgba(15,157,107,.35);}
+.paso-modelo h4{font-size:.94rem;margin-bottom:6px;font-family:var(--ff-label);text-transform:uppercase;letter-spacing:.02em;}
+.paso-modelo p{font-size:.82rem;}
+@media(max-width:900px){
+  .timeline-modelo{flex-direction:column;gap:34px;}
+  .timeline-modelo::before{top:0;bottom:0;left:26px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg, var(--azul-brillante) 0 10px, transparent 10px 20px);}
+  .paso-modelo{display:flex;align-items:flex-start;gap:18px;text-align:left;padding:0;}
+  .paso-modelo .num{margin:0;flex-shrink:0;}
+}
 
-  /* Floating WhatsApp */
-  .fab-wa{
-    position:fixed;right:22px;bottom:22px;z-index:600;
-    width:60px;height:60px;border-radius:50%;background:#1EA952;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 8px 22px rgba(0,0,0,.35);
-    transition:transform .15s ease;
-  }
-  .fab-wa:hover{transform:scale(1.08);}
-  .fab-wa img{width:32px;height:32px;}
+/* ==========================================================================
+   5. ARQUITECTURA AAS — cascada institucional (elemento firma)
+   ========================================================================== */
+.cascada{display:flex;flex-direction:column;align-items:center;gap:0;position:relative;padding:20px 0 10px;}
+.nivel-cascada{
+  width:100%;display:flex;justify-content:center;position:relative;padding:14px 0;
+}
+.nodo-cascada{
+  padding:16px 30px;border-radius:999px;font-family:var(--ff-label);font-weight:700;letter-spacing:.02em;
+  font-size:.92rem;text-align:center;box-shadow:var(--sombra-sm);border:1px solid var(--borde);
+}
+.nodo-cascada.n1{background:linear-gradient(135deg,var(--azul),var(--azul-oscuro));color:#fff;font-size:1.05rem;padding:20px 44px;}
+.nodo-cascada.n2{background:var(--surface-solid);color:var(--azul);}
+.nodo-cascada.n3{background:var(--surface-solid);color:var(--texto);width:auto;}
+.fila-nodos{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+.conector-v{width:2px;height:30px;background:repeating-linear-gradient(180deg, var(--verde) 0 8px, transparent 8px 16px);}
+.cascada small{color:var(--texto-suave);font-family:var(--ff-label);text-transform:uppercase;letter-spacing:.14em;font-size:.66rem;display:block;margin-top:6px;text-align:center;}
 
-  /* Reveal animation */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
-  @media (prefers-reduced-motion: reduce){
-    .reveal{opacity:1;transform:none;transition:none;}
-    html{scroll-behavior:auto;}
-  }
+/* ==========================================================================
+   6. MAPA
+   ========================================================================== */
+.mapa-panel{background:var(--surface-solid);border-radius:var(--radio-lg);overflow:hidden;box-shadow:var(--sombra);border:1px solid var(--borde);}
+.mapa-toolbar{display:flex;flex-wrap:wrap;gap:12px;padding:18px 22px;border-bottom:1px solid var(--borde);align-items:center;justify-content:space-between;}
+.buscador-mapa{position:relative;flex:1;min-width:220px;}
+.buscador-mapa input{
+  width:100%;padding:12px 16px 12px 42px;border-radius:999px;border:1px solid var(--borde);
+  background:var(--bg);color:var(--texto);font-family:var(--ff-body);font-size:.9rem;
+}
+.buscador-mapa svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--texto-suave);}
+#lista-resultados-mapa{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--surface-solid);border:1px solid var(--borde);
+  border-radius:var(--radio-sm);box-shadow:var(--sombra);max-height:220px;overflow-y:auto;z-index:50;display:none;
+}
+#lista-resultados-mapa button{display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;color:var(--texto);cursor:pointer;font-size:.85rem;}
+#lista-resultados-mapa button:hover{background:var(--bg);}
+.capas-mapa{display:flex;gap:10px;flex-wrap:wrap;}
+.chip-mapa{
+  display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;border:1.5px solid var(--borde);
+  font-family:var(--ff-label);font-size:.78rem;font-weight:700;letter-spacing:.02em;background:var(--bg);
+  color:var(--texto-suave);cursor:pointer;transition:all .15s ease;
+}
+.chip-mapa.activo{background:var(--azul);border-color:var(--azul);color:#fff;}
+#mapa-nacional{height:600px;width:100%;}
+@media(max-width:640px){#mapa-nacional{height:440px;}}
+.leaflet-popup-content-wrapper{border-radius:14px !important;font-family:var(--ff-body) !important;}
+.popup-mapa{min-width:220px;}
+.popup-mapa .p-eyebrow{font-family:var(--ff-label);font-weight:700;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);}
+.popup-mapa h4{font-family:var(--ff-display);font-size:1rem;margin:4px 0 10px;}
+.popup-mapa .indicadores-popup{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.popup-mapa .indicador-mini{background:#F0F3FA;border-radius:8px;padding:7px 9px;}
+.popup-mapa .indicador-mini b{display:block;font-size:1rem;color:var(--azul);font-family:var(--ff-display);}
+.popup-mapa .indicador-mini span{font-size:.66rem;color:var(--texto-suave);}
+.popup-mapa .nota-demo{font-size:.68rem;color:var(--texto-suave);font-style:italic;margin-top:4px;}
+
+/* ==========================================================================
+   7. REGISTRO DE NECESIDADES
+   ========================================================================== */
+.form-panel{padding:44px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.campo{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
+.campo.full{grid-column:1/-1;}
+.campo label{font-family:var(--ff-label);font-weight:700;font-size:.78rem;letter-spacing:.03em;color:var(--texto);}
+.campo label .req{color:var(--verde);}
+.campo input,.campo select,.campo textarea{
+  padding:13px 16px;border-radius:12px;border:1.5px solid var(--borde);background:var(--bg);
+  color:var(--texto);font-family:var(--ff-body);font-size:.92rem;outline:none;transition:border-color .2s ease, box-shadow .2s ease;
+}
+.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--azul-brillante);box-shadow:0 0 0 4px rgba(45,108,223,.14);}
+.campo textarea{resize:vertical;min-height:100px;}
+.campo .error-msg{font-size:.74rem;color:#E0483E;display:none;}
+.campo.invalido input,.campo.invalido select,.campo.invalido textarea{border-color:#E0483E;}
+.campo.invalido .error-msg{display:block;}
+.grupo-check{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.opcion-check{
+  display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:12px;border:1.5px solid var(--borde);
+  background:var(--bg);font-size:.84rem;cursor:pointer;transition:all .15s ease;
+}
+.opcion-check:has(input:checked){border-color:var(--verde);background:rgba(15,157,107,.08);}
+.opcion-check input{accent-color:var(--verde);width:16px;height:16px;}
+.file-drop{
+  border:2px dashed var(--borde);border-radius:14px;padding:26px;text-align:center;cursor:pointer;background:var(--bg);
+}
+.file-drop svg{width:26px;height:26px;color:var(--texto-suave);margin-bottom:8px;}
+.file-drop span{display:block;font-size:.82rem;color:var(--texto-suave);}
+#preview-foto{margin-top:10px;max-height:140px;border-radius:10px;display:none;}
+.exito-panel{
+  display:none;text-align:center;padding:50px 30px;
+}
+.exito-panel .check-circulo{
+  width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--verde),var(--verde-claro));
+  display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 14px 30px rgba(15,157,107,.35);
+}
+.exito-panel .check-circulo svg{width:34px;height:34px;color:#fff;}
+@media(max-width:760px){.form-grid,.grupo-check{grid-template-columns:1fr;}}
+
+/* ==========================================================================
+   8. DASHBOARD / INDICADORES
+   ========================================================================== */
+.dashboard{background:linear-gradient(160deg,var(--azul-oscuro),#03264F);color:#fff;}
+.dashboard .section-head p{color:rgba(255,255,255,.72);}
+.dashboard .eyebrow{color:var(--verde-claro);}
+.dashboard .eyebrow::before{background:#fff;}
+.grid-indicadores{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.card-indicador{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;
+  padding:26px 22px;backdrop-filter:blur(14px);text-align:left;
+}
+.card-indicador .num{font-family:var(--ff-display);font-weight:800;font-size:2.2rem;color:#fff;font-variant-numeric:tabular-nums;}
+.card-indicador .lbl{font-family:var(--ff-label);font-size:.76rem;letter-spacing:.04em;color:rgba(255,255,255,.65);margin-top:4px;}
+.nota-ilustrativa{
+  text-align:center;font-size:.78rem;color:rgba(255,255,255,.5);margin-top:26px;font-style:italic;
+}
+@media(max-width:900px){.grid-indicadores{grid-template-columns:1fr 1fr;}}
+
+/* ==========================================================================
+   9. GRÁFICOS
+   ========================================================================== */
+.grid-graficos{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.panel-grafico{padding:26px;}
+.panel-grafico h4{font-size:.98rem;margin-bottom:16px;}
+.panel-grafico canvas{max-height:260px;}
+@media(max-width:900px){.grid-graficos{grid-template-columns:1fr;}}
+
+/* ==========================================================================
+   10. AHORRO PRESUPUESTARIO
+   ========================================================================== */
+.flujo-ahorro{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;}
+.nodo-ahorro{
+  flex:1;min-width:140px;text-align:center;padding:24px 16px;
+}
+.nodo-ahorro .icono{
+  width:48px;height:48px;border-radius:14px;background:rgba(0,59,149,.1);color:var(--azul);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 12px;
+}
+.nodo-ahorro .icono svg{width:24px;height:24px;}
+.nodo-ahorro h4{font-size:.88rem;margin-bottom:4px;}
+.nodo-ahorro p{font-size:.76rem;}
+.nodo-ahorro.final{background:linear-gradient(135deg,var(--verde),var(--verde-claro));}
+.nodo-ahorro.final .icono{background:rgba(255,255,255,.25);color:#fff;}
+.nodo-ahorro.final h4,.nodo-ahorro.final p{color:#fff;}
+.flecha-ahorro{color:var(--texto-suave);flex-shrink:0;}
+.flecha-ahorro svg{width:20px;height:20px;}
+@media(max-width:900px){.flujo-ahorro{flex-direction:column;}.flecha-ahorro svg{transform:rotate(90deg);}}
+
+/* ==========================================================================
+   11. HOSPITAL DEL FUTURO
+   ========================================================================== */
+.comparativa{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.panel-comparativo{padding:34px;}
+.panel-comparativo.tradicional{border-top:4px solid #C9412E;}
+.panel-comparativo.aas{border-top:4px solid var(--verde);}
+.panel-comparativo h3{font-size:1.2rem;margin-bottom:20px;}
+.panel-comparativo ul li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;font-size:.9rem;color:var(--texto-suave);border-bottom:1px solid var(--borde);}
+.panel-comparativo ul li:last-child{border-bottom:none;}
+.panel-comparativo ul li svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
+.panel-comparativo.tradicional svg{color:#C9412E;}
+.panel-comparativo.aas svg{color:var(--verde);}
+@media(max-width:820px){.comparativa{grid-template-columns:1fr;}}
+
+/* ==========================================================================
+   12. SERVICIO COMUNITARIO
+   ========================================================================== */
+.card-comunitario{padding:28px 24px;text-align:center;}
+.card-comunitario .icono{
+  width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,rgba(0,59,149,.12),rgba(15,157,107,.12));
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--azul);
+}
+.card-comunitario .icono svg{width:28px;height:28px;}
+.card-comunitario h3{font-size:1rem;margin-bottom:8px;}
+.card-comunitario p{font-size:.86rem;}
+
+/* ==========================================================================
+   13. NOTICIAS — carrusel (cinta desplazable)
+   ========================================================================== */
+.carrusel-wrap{position:relative;}
+.carrusel-noticias{
+  display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--azul-brillante) transparent;cursor:grab;
+}
+.carrusel-noticias.arrastrando{cursor:grabbing;scroll-snap-type:none;}
+.carrusel-noticias::-webkit-scrollbar{height:6px;}
+.carrusel-noticias::-webkit-scrollbar-thumb{background:var(--azul-brillante);border-radius:999px;}
+.item-noticia{
+  flex:0 0 340px;scroll-snap-align:start;border-radius:var(--radio-md);overflow:hidden;background:var(--surface-solid);
+  border:1px solid var(--borde);box-shadow:var(--sombra-sm);
+}
+.item-noticia .media{aspect-ratio:16/10;overflow:hidden;background:var(--azul-oscuro);}
+.item-noticia .media img,.item-noticia .media video{width:100%;height:100%;object-fit:cover;}
+.item-noticia .cuerpo{padding:18px 20px 22px;}
+.item-noticia .tag{font-family:var(--ff-label);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--verde);}
+.item-noticia h4{font-size:1rem;margin:8px 0;}
+.item-noticia p{font-size:.82rem;}
+.flecha-carrusel{
+  position:absolute;top:42%;width:42px;height:42px;border-radius:50%;border:1px solid var(--borde);
+  background:var(--surface-solid);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:var(--sombra-sm);z-index:5;color:var(--azul);
+}
+.flecha-carrusel.prev{left:-14px;}
+.flecha-carrusel.next{right:-14px;}
+@media(max-width:700px){.flecha-carrusel{display:none;}}
+
+/* ==========================================================================
+   14. TESTIMONIOS
+   ========================================================================== */
+.card-testimonio{padding:28px 26px;}
+.card-testimonio .estrellas{color:var(--verde);margin-bottom:14px;font-size:.9rem;letter-spacing:2px;}
+.card-testimonio p.cita{font-size:.94rem;color:var(--texto);font-style:italic;margin-bottom:18px;}
+.autor-testimonio{display:flex;align-items:center;gap:12px;}
+.avatar-inicial{
+  width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--verde));
+  color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-weight:700;
+}
+.autor-testimonio b{font-size:.88rem;display:block;}
+.autor-testimonio span{font-size:.74rem;color:var(--texto-suave);}
+
+/* ==========================================================================
+   15. EQUIPO
+   ========================================================================== */
+.card-equipo{text-align:center;padding:30px 22px;}
+.card-equipo .foto{
+  width:96px;height:96px;border-radius:50%;margin:0 auto 16px;overflow:hidden;
+  border:3px solid var(--surface-solid);box-shadow:var(--sombra-sm);
+  background:linear-gradient(135deg,var(--azul),var(--verde));display:flex;align-items:center;justify-content:center;
+}
+.card-equipo .foto svg{width:44px;height:44px;color:#fff;}
+.card-equipo h4{font-size:1rem;margin-bottom:4px;}
+.card-equipo span.rol{font-family:var(--ff-label);font-size:.72rem;letter-spacing:.04em;color:var(--verde);text-transform:uppercase;}
+.card-equipo p{font-size:.82rem;margin-top:8px;}
+.foto-equipo-grupal{border-radius:var(--radio-lg);overflow:hidden;box-shadow:var(--sombra);margin-top:40px;}
+
+/* ==========================================================================
+   16. FAQ — accordion
+   ========================================================================== */
+.faq-item{border-bottom:1px solid var(--borde);}
+.faq-pregunta{
+  width:100%;text-align:left;background:none;border:none;padding:22px 4px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:var(--ff-display);font-size:1rem;color:var(--texto);
+}
+.faq-pregunta svg{width:20px;height:20px;flex-shrink:0;transition:transform .25s ease;color:var(--azul);}
+.faq-item.abierto .faq-pregunta svg{transform:rotate(45deg);}
+.faq-respuesta{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-respuesta p{padding:0 4px 22px;font-size:.9rem;}
+
+/* ==========================================================================
+   17. CONTACTO
+   ========================================================================== */
+.grid-contacto{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.info-contacto .item-contacto{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;}
+.info-contacto .icono{
+  width:44px;height:44px;border-radius:12px;background:rgba(0,59,149,.1);color:var(--azul);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.info-contacto .icono svg{width:20px;height:20px;}
+.info-contacto b{display:block;font-size:.92rem;}
+.info-contacto span, .info-contacto a{font-size:.84rem;color:var(--texto-suave);}
+.redes-contacto{display:flex;gap:10px;margin-top:20px;}
+.redes-contacto a{
+  width:42px;height:42px;border-radius:50%;background:var(--surface-solid);border:1px solid var(--borde);
+  display:flex;align-items:center;justify-content:center;transition:all .2s ease;
+}
+.redes-contacto a svg{width:18px;height:18px;color:var(--azul);}
+.redes-contacto a:hover{background:var(--azul);}
+.redes-contacto a:hover svg{color:#fff;}
+@media(max-width:820px){.grid-contacto{grid-template-columns:1fr;}}
+
+/* ==========================================================================
+   18. FOOTER
+   ========================================================================== */
+footer{background:var(--azul-oscuro);color:rgba(255,255,255,.72);padding-top:70px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.footer-brand img{height:36px;}
+.footer-brand b{font-family:var(--ff-display);color:#fff;font-size:1.05rem;}
+footer p{font-size:.86rem;color:rgba(255,255,255,.6);max-width:280px;}
+footer h5{font-family:var(--ff-label);color:var(--verde-claro);letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;margin-bottom:16px;}
+footer ul li{margin-bottom:10px;font-size:.86rem;}
+footer ul a:hover{color:#fff;}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:22px 0 30px;font-size:.76rem;color:rgba(255,255,255,.45);font-family:var(--ff-label);}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr;}}
+
+/* ==========================================================================
+   19. UTILIDADES / REVEAL / RESPONSIVE
+   ========================================================================== */
+.text-center{text-align:center;}
+.mt-32{margin-top:32px;}
+[data-aos]{ }
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  [data-aos]{transition:none !important; transform:none !important; opacity:1 !important;}
+}
+::selection{background:var(--verde);color:#fff;}
 </style>
 </head>
 <body>
 
-<!-- ===== Top strip ===== -->
-<div class="topstrip">
-  <div class="wrap">
-    <span>📞 Atención CODERE: 0424-4525765</span>
-    <div class="social">
-      <a href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener">Canal de WhatsApp</a>
-      <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener" style="color:#E4BB4A;">Registrar mi club →</a>
-    </div>
-  </div>
-</div>
-
-<!-- ===== Header ===== -->
+<!-- ==========================================================================
+     HEADER
+     ========================================================================== -->
 <header>
-  <div class="nav">
-    <div class="brand">
-      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/logo%20concertacion%20sin%20fondo.png?raw=true" alt="Logo Concertación Ciudadana">
-      <div class="name">
-        <b>CODERE</b>
-        <span>Conexión Deportiva y Recreativa</span>
+  <div class="nav-row">
+    <a href="#inicio" class="brand">
+      <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png" alt="Logo AAS" loading="lazy">
+      <span class="sep"></span>
+      <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20concertacion%20sin%20fondo.png" alt="Logo Concertación" loading="lazy">
+      <div class="brand-text">
+        <b>AAS</b>
+        <span>Secretaría Nacional de Salud</span>
       </div>
-    </div>
-    <nav class="links" id="navLinks">
-      <a href="#inicio" onclick="closeNav()">Inicio</a>
-      <a href="#noticias" onclick="closeNav()">Noticias</a>
-      <a href="#disciplinas" onclick="closeNav()">Disciplinas</a>
-      <a href="#mapa" onclick="closeNav()">Mapa</a>
-      <a href="#clubes" onclick="closeNav()">Clubes afiliados</a>
-      <a class="btn btn-gold" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Registrarme</a>
+    </a>
+    <nav class="menu" id="menuPrincipal">
+      <a href="#inicio" onclick="cerrarMenu()">Inicio</a>
+      <a href="#proyecto" onclick="cerrarMenu()">Proyecto</a>
+      <a href="#modelo" onclick="cerrarMenu()">Modelo</a>
+      <a href="#mapa" onclick="cerrarMenu()">Mapa Nacional</a>
+      <a href="#registro" onclick="cerrarMenu()">Registro</a>
+      <a href="#indicadores" onclick="cerrarMenu()">Indicadores</a>
+      <a href="#noticias" onclick="cerrarMenu()">Noticias</a>
+      <a href="#equipo" onclick="cerrarMenu()">Equipo</a>
+      <a href="#contacto" onclick="cerrarMenu()">Contacto</a>
+      <a href="#registro" class="btn btn-verde btn-sm" onclick="cerrarMenu()">Registrar Necesidad</a>
     </nav>
-    <button class="navbtn" id="navBtn" aria-label="Menú">☰</button>
+    <div class="acciones-header">
+      <button class="toggle-tema" id="toggleTema" aria-label="Cambiar tema claro/oscuro">
+        <svg id="iconoTema" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+    </div>
   </div>
 </header>
 
-<!-- ===== Hero ===== -->
-<section class="hero" id="inicio">
-  <div class="wrap">
-    <span class="eyebrow">Secretaría de Deporte y Recreación · Concertación Ciudadana</span>
-    <h1>Un solo mapa<br>para el <em>deporte</em><br>de nuestra gente</h1>
-    <p class="lead">CODERE conecta a los clubes deportivos, academias, parques y canchas en un directorio digital único: ubícalos en el mapa, conoce su ficha y contáctalos directamente por WhatsApp.</p>
-    <div class="ctas">
-      <a class="btn btn-gold" href="#mapa">Ver mapa interactivo</a>
-      <a class="btn btn-outline" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Registrar mi club</a>
+<!-- ==========================================================================
+     HERO
+     ========================================================================== -->
+<section class="hero" id="inicio" style="padding-bottom:60px;">
+  <div class="wrap hero-grid">
+    <span class="pildora" data-aos="fade-down">Secretaría Nacional de Salud · Concertación Ciudadana</span>
+    <h1 data-aos="fade-up" data-aos-delay="100">ATENCIÓN <span class="acento">AVANZADA</span><br>EN SALUD</h1>
+    <p class="lead" data-aos="fade-up" data-aos-delay="200">Transformando la salud pública desde el hogar del paciente. Una propuesta de la Secretaría Nacional de Salud de Concertación Ciudadana para el Gobierno de Transición de Venezuela.</p>
+    <div class="ctas" data-aos="fade-up" data-aos-delay="300">
+      <a href="#proyecto" class="btn btn-verde animate__animated animate__pulse animate__slow animate__infinite">Conocer el proyecto</a>
+      <a href="#registro" class="btn btn-fantasma">Registrar necesidad</a>
     </div>
   </div>
+  <div class="hero-scroll"><span>Desplázate</span><span class="linea"></span></div>
 </section>
 
-<!-- ===== Scoreboard ===== -->
-<div class="scoreboard">
-  <div class="wrap board-grid">
-    <div class="board-tile">
-      <div class="board-num" data-count="6">0</div>
-      <div class="board-label">Clubes afiliados</div>
-    </div>
-    <div class="board-tile">
-      <div class="board-num" data-count="20">0</div>
-      <div class="board-label">Disciplinas registradas</div>
-    </div>
-    <div class="board-tile">
-      <div class="board-num" data-count="39">0</div>
-      <div class="board-label">Espacios en el mapa</div>
-    </div>
-    <div class="board-tile">
-      <div class="board-num" data-count="1">0</div>
-      <div class="board-label">Municipio piloto: Los Guayos</div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== Sobre CODERE ===== -->
-<section id="sobre">
-  <div class="wrap about reveal">
-    <div class="about-copy">
-      <span class="eyebrow">¿Qué es CODERE?</span>
-      <h2>Una alternativa gremial para el deporte comunitario</h2>
-      <p>CODERE (Conexión Deportiva y Recreativa) nace desde la Secretaría de Deporte y Recreación de Concertación Ciudadana como un registro gremial de clubes deportivos, pensado para organizar eventos y actividades, y para impulsar una fórmula de gestión de mantenimiento y sustentación de parques que permita recortar gasto presupuestario en los espacios públicos.</p>
-      <p>Aquí encontrarás el directorio de clubes afiliados, los parques y canchas de tu comunidad, y un mapa interactivo que iremos ampliando junto a los liderazgos focales en cada municipio.</p>
-      <a class="btn btn-navy" href="#clubes">Ver clubes afiliados</a>
-    </div>
-    <div class="about-media">
-      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/imagenhomeconcertacion.png?raw=true" alt="Concertación Ciudadana">
-    </div>
-  </div>
-</section>
-
-<!-- ===== Noticias ===== -->
-<section class="noticias" id="noticias">
+<!-- ==========================================================================
+     LA CRISIS
+     ========================================================================== -->
+<section id="proyecto">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Al día</span>
-      <h2>Noticias CODERE</h2>
-      <p>Lo último del gremio deportivo y recreativo.</p>
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">El diagnóstico</span>
+      <h2>La crisis que enfrenta hoy el sistema de salud</h2>
+      <p>Un modelo hospitalocéntrico, saturado y costoso, que atiende tarde lo que pudo resolverse a tiempo en el hogar.</p>
     </div>
-    <div class="news-grid reveal">
-      <article class="news-card">
-        <div class="img-wrap">
-          <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/banner%20web%20deporte.jpg?raw=true" alt="Nace CODERE">
-        </div>
-        <div class="news-body">
-          <span class="news-tag">Institucional</span>
-          <h3>Nace CODERE como alternativa gremial deportiva</h3>
-          <p>Arranca el registro de clubes deportivos para la organización de eventos y actividades, junto a una fórmula de gestión para el mantenimiento y sustentación de parques que permita recortar el gasto presupuestario en los espacios públicos.</p>
-        </div>
-      </article>
-      <article class="news-card">
-  <div class="img-wrap media-slider">
-    <div class="slides active">
-      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/entrenadores%20pintando%20la%20cancha.jpeg?raw=true" alt="Entrenadores pintando la cancha múltiple de Los Cerritos">
-    </div>
-    <div class="slides">
-      <video muted controls playsinline preload="metadata">
-        <source src="https://github.com/jhonmalorne/ConcertacionCODERE/raw/main/equipo%20organizador%20de%20actividad.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="slides">
-      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/galones%20de%20pintura%20donados.jpeg?raw=true" alt="Galones de pintura donados por Febeca y Quimicolor">
-    </div>
-    <div class="slides">
-      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/joven%20pintando.jpeg?raw=true" alt="Joven de la comunidad pintando la cancha">
-    </div>
-    <div class="slides">
-      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/joven%20pintando2.jpeg?raw=true" alt="Joven de la comunidad pintando la cancha">
-    </div>
-    <div class="slides">
-      <video muted controls playsinline preload="metadata">
-        <source src="https://github.com/jhonmalorne/ConcertacionCODERE/raw/main/palabras%20del%20padre.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="slides">
-      <video muted controls playsinline preload="metadata">
-        <source src="https://github.com/jhonmalorne/ConcertacionCODERE/raw/main/recibiendo%20p%C3%ADntura.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-  <div class="news-body">
-      <span class="news-tag">Institucional</span>
-      <h3>
-      Comunidad organizada recupera la Cancha Múltiple de Los Cerritos
-      </h3>
-      <p>
-      De la mano con la empresa privada, como
-      <strong>Febeca</strong> y <strong>Quimicolor</strong>,
-      la comunidad organizada junto a sus clubes deportivos de la
-      Urb. Los Cerritos logró recuperar espacios deportivos como la
-      Cancha Múltiple de la urbanización, para así impulsar el deporte
-      de niños y adolescentes en las comunidades.
-      <strong>Juntos somos más. Orden y Gestión.</strong>
-      </p>
-  </div>
-</article>
-      <article class="news-card">
-        <div class="img-wrap">
-          <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Voleibol%20femenino.png?raw=true" alt="Triunfo de voleibol Los Guayos">
-        </div>
-        <div class="news-body">
-          <span class="news-tag">Resultados</span>
-          <h3>Triunfo de voleibol femenino en Los Guayos con Miguel Aristimuño</h3>
-          <p>El voleibol femenino de Los Guayos celebra una nueva victoria bajo la conducción de Miguel Aristimuño, reflejo del talento que se forma día a día en las canchas de nuestros clubes afiliados.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Disciplinas ===== -->
-<section id="disciplinas">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Directorio</span>
-      <h2>Disciplinas deportivas</h2>
-      <p>Estas son las disciplinas que hoy conviven en CODERE. La lista crece con cada nuevo registro recibido por el formulario de afiliación.</p>
-    </div>
-    <div class="disc-cats reveal">
-      <div class="disc-cat">
-        <h3>Deportes de conjunto</h3>
-        <div class="chip-list">
-          <span class="chip">Fútbol campo</span>
-          <span class="chip">Futsal</span>
-          <span class="chip">Baloncesto</span>
-          <span class="chip">Voleibol cancha</span>
-          <span class="chip">Voleibol playa</span>
-          <span class="chip">Béisbol / Kickingball</span>
-          <span class="chip">Softbol</span>
-        </div>
+    <div class="grid-4">
+      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="0">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M14 9h1M14 13h1M10 21v-5h4v5"/></svg></div>
+        <h3>Hospitales colapsados</h3>
+        <p>Camas ocupadas por pacientes estables que podrían ser atendidos desde casa.</p>
       </div>
-      <div class="disc-cat">
-        <h3>Deportes de combate</h3>
-        <div class="chip-list">
-          <span class="chip">Boxeo</span>
-          <span class="chip">Karate-do</span>
-          <span class="chip">Taekwondo</span>
-          <span class="chip">Judo</span>
-          <span class="chip">Esgrima</span>
-          <span class="chip">Lucha olímpica</span>
-        </div>
+      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="80">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L14.7 3.86a2 2 0 0 0-3.4 0z"/></svg></div>
+        <h3>Emergencias saturadas</h3>
+        <p>Salas de emergencia desbordadas por consultas que no ameritaban traslado.</p>
       </div>
-      <div class="disc-cat">
-        <h3>Fuerza y resistencia</h3>
-        <div class="chip-list">
-          <span class="chip">Atletismo</span>
-          <span class="chip">Ciclismo ruta</span>
-          <span class="chip">Ciclismo montaña</span>
-          <span class="chip">BMX</span>
-          <span class="chip">Halterofilia</span>
-          <span class="chip">Crossfit / funcional</span>
-          <span class="chip">Natación</span>
-        </div>
+      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="160">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>Infecciones intrahospitalarias</h3>
+        <p>La estadía prolongada eleva el riesgo de infecciones asociadas a la atención en salud.</p>
       </div>
-      <div class="disc-cat">
-        <h3>Precisión y otros</h3>
-        <div class="chip-list">
-          <span class="chip">Tenis de mesa</span>
-          <span class="chip">Tenis de campo</span>
-          <span class="chip">Ajedrez</span>
-          <span class="chip">Gimnasia artística</span>
-          <span class="chip">Gimnasia rítmica</span>
-        </div>
+      <div class="card-crisis glass" data-aos="fade-up" data-aos-delay="240">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Costos elevados</h3>
+        <p>Traslados, hotelería médica y burocracia disparan el gasto presupuestario.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== Mapa ===== -->
-<section class="mapa" id="mapa">
+<!-- ==========================================================================
+     EL NUEVO MODELO
+     ========================================================================== -->
+<section id="modelo" style="background:var(--bg-alt);">
   <div class="wrap">
-    <div class="sec-head on-dark reveal">
-      <span class="eyebrow">Mapa digital</span>
-      <h2>Clubes, parques y canchas cerca de ti</h2>
-      <p>Explora en vista normal o satelital. Filtra por tipo de espacio y toca cada punto para ver su ficha.</p>
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">La solución</span>
+      <h2>El nuevo modelo AAS</h2>
+      <p>Una ruta de atención centrada en el hogar del paciente, con el hospital como último recurso, no como primera puerta.</p>
     </div>
-
-    <div class="map-toolbar reveal">
-      <div class="filter-chips" id="filterChips">
-        <button class="filter-chip active" data-type="club"><span class="dot" style="background:#E4453D"></span>Clubes</button>
-        <button class="filter-chip active" data-type="cancha"><span class="dot" style="background:#4C8DFF"></span>Canchas</button>
-        <button class="filter-chip active" data-type="campo"><span class="dot" style="background:#E4BB4A"></span>Campos de béisbol</button>
-        <button class="filter-chip active" data-type="parque"><span class="dot" style="background:#3FBF7F"></span>Parques</button>
-        <button class="filter-chip active" data-type="plaza"><span class="dot" style="background:#B983FF"></span>Plazas</button>
+    <div class="timeline-modelo">
+      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="0">
+        <div class="num">1</div><h4>Solicitud</h4><p>El ciudadano solicita ayuda desde su comunidad.</p>
+      </div>
+      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="80">
+        <div class="num">2</div><h4>Triage digital</h4><p>Se evalúa la urgencia del caso de forma remota.</p>
+      </div>
+      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="160">
+        <div class="num">3</div><h4>Evaluación médica</h4><p>Un profesional de salud revisa el caso.</p>
+      </div>
+      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="240">
+        <div class="num">4</div><h4>Líder Focal de Salud</h4><p>Coordina la respuesta en la comunidad.</p>
+      </div>
+      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="320">
+        <div class="num">5</div><h4>Atención domiciliaria</h4><p>El paciente es atendido en su propio hogar.</p>
+      </div>
+      <div class="paso-modelo" data-aos="fade-up" data-aos-delay="400">
+        <div class="num">6</div><h4>Hospital si es crítico</h4><p>Solo se traslada cuando el caso lo amerita.</p>
       </div>
     </div>
-
-    <div id="map" class="reveal"></div>
-
-    <div class="layer-toggles reveal">
-      <label><input type="checkbox" id="toggleStates"> Ver límites estadales</label>
-      <label><input type="checkbox" id="toggleParishes"> Ver límites parroquiales</label>
-    </div>
-
-    <div class="map-legend reveal">
-      <span><i class="dot" style="background:#E4453D"></i>Club afiliado</span>
-      <span><i class="dot" style="background:#4C8DFF"></i>Cancha deportiva</span>
-      <span><i class="dot" style="background:#E4BB4A"></i>Campo de béisbol</span>
-      <span><i class="dot" style="background:#3FBF7F"></i>Parque</span>
-      <span><i class="dot" style="background:#B983FF"></i>Plaza</span>
-    </div>
   </div>
 </section>
 
-<!-- ===== Clubes afiliados ===== -->
-<section id="clubes">
+<!-- ==========================================================================
+     ARQUITECTURA AAS — cascada institucional
+     ========================================================================== -->
+<section id="arquitectura">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Ficha de afiliados</span>
-      <h2>Clubes afiliados a CODERE</h2>
-      <p>Conoce a los clubes registrados y contáctalos directamente por WhatsApp.</p>
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Cómo se organiza</span>
+      <h2>Arquitectura institucional AAS</h2>
+      <p>Una cadena de mando corta, desde el Centro Nacional hasta la puerta de cada familia.</p>
     </div>
-    <div class="club-grid reveal" id="clubGrid"></div>
-    <div style="text-align:center;margin-top:36px;">
-      <p style="color:var(--ink-soft);margin-bottom:16px;">¿Tienes un club deportivo y aún no apareces aquí?</p>
-      <a class="btn btn-navy" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Registrar mi club en CODERE</a>
+    <div class="cascada">
+      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="0">
+        <div class="nodo-cascada n1">Centro Nacional AAS</div>
+      </div>
+      <div class="conector-v"></div>
+      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="80"><div class="nodo-cascada n2">Estados</div></div>
+      <div class="conector-v"></div>
+      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="160"><div class="nodo-cascada n2">Municipios</div></div>
+      <div class="conector-v"></div>
+      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="240"><div class="nodo-cascada n2">Parroquias</div></div>
+      <div class="conector-v"></div>
+      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="320">
+        <div class="fila-nodos">
+          <div class="nodo-cascada n3">Líder Focal 1</div>
+          <div class="nodo-cascada n3">Líder Focal 2</div>
+          <div class="nodo-cascada n3">Líder Focal 3</div>
+          <div class="nodo-cascada n3">Líder Focal N</div>
+        </div>
+      </div>
+      <div class="conector-v"></div>
+      <div class="nivel-cascada" data-aos="zoom-in" data-aos-delay="400">
+        <div class="nodo-cascada n2" style="background:linear-gradient(135deg,var(--verde),var(--verde-claro));color:#fff;">Familias</div>
+      </div>
+      <small>Cada nivel reporta indicadores en tiempo real al nivel inmediato superior</small>
     </div>
   </div>
 </section>
 
-<!-- ===== CTA Registro ===== -->
-<section class="cta-registro">
-  <div class="wrap reveal">
-    <span class="eyebrow" style="color:#fff;opacity:.85;">Únete al gremio</span>
-    <h2>Haz que tu club aparezca en el mapa de CODERE</h2>
-    <p>Completa el formulario de registro y tu club pasará a formar parte del directorio oficial de afiliados, visible para toda la comunidad.</p>
-    <a class="btn btn-gold" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Ir al formulario de registro</a>
+<!-- ==========================================================================
+     MAPA NACIONAL
+     ========================================================================== -->
+<section id="mapa" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Cobertura territorial</span>
+      <h2>Mapa Nacional AAS</h2>
+      <p>Estados, municipios y parroquias de Venezuela. Filtra, busca y cambia entre vista de mapa y vista satelital.</p>
+    </div>
+    <div class="mapa-panel" data-aos="fade-up">
+      <div class="mapa-toolbar">
+        <div class="buscador-mapa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="buscarMapa" placeholder="Buscar estado, municipio o parroquia…" autocomplete="off">
+          <div id="lista-resultados-mapa"></div>
+        </div>
+        <div class="capas-mapa">
+          <button class="chip-mapa activo" data-capa="estados">Estados</button>
+          <button class="chip-mapa" data-capa="municipios">Municipios / Parroquias</button>
+        </div>
+      </div>
+      <div id="mapa-nacional"></div>
+    </div>
   </div>
 </section>
 
-<!-- ===== Footer ===== -->
+<!-- ==========================================================================
+     REGISTRO DE NECESIDADES
+     ========================================================================== -->
+<section id="registro">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Solicita ayuda</span>
+      <h2>Registro de necesidades</h2>
+      <p>Cuéntanos qué necesita tu familia. Un Líder Focal de Salud de tu zona revisará tu caso.</p>
+    </div>
+
+    <div class="glass form-panel" data-aos="fade-up" style="max-width:920px;margin:0 auto;">
+      <form id="formRegistro" novalidate>
+        <div class="form-grid">
+          <div class="campo">
+            <label>Nombre <span class="req">*</span></label>
+            <input type="text" name="nombre" required>
+            <span class="error-msg">Escribe tu nombre.</span>
+          </div>
+          <div class="campo">
+            <label>Apellido <span class="req">*</span></label>
+            <input type="text" name="apellido" required>
+            <span class="error-msg">Escribe tu apellido.</span>
+          </div>
+          <div class="campo">
+            <label>Cédula <span class="req">*</span></label>
+            <input type="text" name="cedula" placeholder="V-12345678" required pattern="^[VEve]?-?\d{6,9}$">
+            <span class="error-msg">Formato inválido, ej: V-12345678.</span>
+          </div>
+          <div class="campo">
+            <label>Teléfono <span class="req">*</span></label>
+            <input type="tel" name="telefono" placeholder="0412-1234567" required pattern="^0?4\d{2}-?\d{7}$">
+            <span class="error-msg">Formato inválido, ej: 0412-1234567.</span>
+          </div>
+          <div class="campo">
+            <label>Correo electrónico</label>
+            <input type="email" name="correo" placeholder="tucorreo@ejemplo.com">
+            <span class="error-msg">Correo inválido.</span>
+          </div>
+          <div class="campo">
+            <label>Estado <span class="req">*</span></label>
+            <select name="estado" required>
+              <option value="">Selecciona…</option>
+              <option>Amazonas</option><option>Anzoátegui</option><option>Apure</option><option>Aragua</option>
+              <option>Barinas</option><option>Bolívar</option><option>Carabobo</option><option>Cojedes</option>
+              <option>Delta Amacuro</option><option>Distrito Capital</option><option>Falcón</option><option>Guárico</option>
+              <option>La Guaira</option><option>Lara</option><option>Mérida</option><option>Miranda</option>
+              <option>Monagas</option><option>Nueva Esparta</option><option>Portuguesa</option><option>Sucre</option>
+              <option>Táchira</option><option>Trujillo</option><option>Yaracuy</option><option>Zulia</option>
+            </select>
+            <span class="error-msg">Selecciona tu estado.</span>
+          </div>
+          <div class="campo">
+            <label>Municipio / Parroquia <span class="req">*</span></label>
+            <input type="text" name="municipio" required>
+            <span class="error-msg">Indica tu municipio o parroquia.</span>
+          </div>
+          <div class="campo full">
+            <label>Dirección <span class="req">*</span></label>
+            <input type="text" name="direccion" placeholder="Calle, sector, punto de referencia" required>
+            <span class="error-msg">Indica una dirección de referencia.</span>
+          </div>
+
+          <div class="campo full">
+            <label>Tipo de necesidad <span class="req">*</span> <span style="font-weight:400;color:var(--texto-suave);">(selecciona una o varias)</span></label>
+            <div class="grupo-check" id="grupoTipoNecesidad">
+              <label class="opcion-check"><input type="checkbox" name="tipo" value="Enfermedad crónica"> Enfermedad crónica</label>
+              <label class="opcion-check"><input type="checkbox" name="tipo" value="Adulto mayor"> Adulto mayor</label>
+              <label class="opcion-check"><input type="checkbox" name="tipo" value="Niño"> Niño</label>
+              <label class="opcion-check"><input type="checkbox" name="tipo" value="Discapacidad"> Discapacidad</label>
+              <label class="opcion-check"><input type="checkbox" name="tipo" value="Emergencia"> Emergencia</label>
+              <label class="opcion-check"><input type="checkbox" name="tipo" value="Medicamentos"> Medicamentos</label>
+              <label class="opcion-check"><input type="checkbox" name="tipo" value="Visita domiciliaria"> Visita domiciliaria</label>
+            </div>
+            <span class="error-msg" id="errorTipoNecesidad">Selecciona al menos un tipo de necesidad.</span>
+          </div>
+
+          <div class="campo">
+            <label>Especialidad médica requerida</label>
+            <select name="especialidad">
+              <option value="">Selecciona…</option>
+              <option>Medicina General</option><option>Pediatría</option><option>Geriatría</option>
+              <option>Medicina Interna</option><option>Cardiología</option><option>Enfermería</option>
+              <option>Fisioterapia</option><option>Psicología</option><option>Nutrición</option><option>Otra</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label>Prioridad <span class="req">*</span></label>
+            <select name="prioridad" required>
+              <option value="">Selecciona…</option>
+              <option>Baja</option><option>Media</option><option>Alta</option><option>Emergencia</option>
+            </select>
+            <span class="error-msg">Selecciona la prioridad del caso.</span>
+          </div>
+
+          <div class="campo full">
+            <label>Descripción del caso <span class="req">*</span></label>
+            <textarea name="descripcion" required placeholder="Cuéntanos brevemente la situación de salud…"></textarea>
+            <span class="error-msg">Describe brevemente el caso.</span>
+          </div>
+
+          <div class="campo full">
+            <label>Adjuntar fotografía (opcional)</label>
+            <label class="file-drop" for="fotoAdjunta">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+              <span>Haz clic para seleccionar una imagen</span>
+            </label>
+            <input type="file" id="fotoAdjunta" accept="image/*" style="display:none;">
+            <img id="preview-foto" alt="Vista previa">
+          </div>
+        </div>
+
+        <p style="font-size:.78rem;color:var(--texto-suave);margin-bottom:20px;">
+          * Este formulario se sincroniza con el sistema oficial de registro AAS. Al enviarlo, se abrirá el formulario oficial para confirmar tu solicitud.
+        </p>
+        <button type="submit" class="btn btn-primario">Enviar registro</button>
+      </form>
+
+      <div class="exito-panel" id="panelExito">
+        <div class="check-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div>
+        <h3>¡Registro validado!</h3>
+        <p style="margin:10px 0 24px;">Ahora confirma tu solicitud en el formulario oficial de AAS para que un Líder Focal de Salud te contacte.</p>
+        <a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener" class="btn btn-verde">Confirmar en el formulario oficial</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     PANEL DE INDICADORES
+     ========================================================================== -->
+<section id="indicadores" class="dashboard">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Fase piloto</span>
+      <h2>Panel de indicadores</h2>
+      <p>Cifras de la fase piloto del proyecto AAS.</p>
+    </div>
+    <div class="grid-indicadores">
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="0"><div class="num" data-count="1248">0</div><div class="lbl">Pacientes registrados</div></div>
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="60"><div class="num" data-count="3120">0</div><div class="lbl">Consultas realizadas</div></div>
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="120"><div class="num" data-count="1890">0</div><div class="lbl">Visitas domiciliarias</div></div>
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="180"><div class="num" data-count="410">0</div><div class="lbl">Hospitalizaciones evitadas</div></div>
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="240"><div class="num" data-count="38">0</div><div class="lbl">% Ahorro estimado</div></div>
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="300"><div class="num" data-count="24">0</div><div class="lbl">Min. tiempo de respuesta</div></div>
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="360"><div class="num" data-count="96">0</div><div class="lbl">Médicos registrados</div></div>
+      <div class="card-indicador glass" data-aos="fade-up" data-aos-delay="420"><div class="num" data-count="212">0</div><div class="lbl">Líderes Focales</div></div>
+    </div>
+    <p class="nota-ilustrativa">* Cifras ilustrativas de la fase piloto — se actualizarán en tiempo real al conectar el sistema nacional AAS.</p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     GRÁFICOS
+     ========================================================================== -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Analítica</span>
+      <h2>El proyecto en gráficos</h2>
+      <p>Distribución de casos, evolución de la atención y comparación de modelos.</p>
+    </div>
+    <div class="grid-graficos">
+      <div class="glass panel-grafico" data-aos="fade-up"><h4>Casos por tipo de necesidad</h4><canvas id="graficoDonut"></canvas></div>
+      <div class="glass panel-grafico" data-aos="fade-up" data-aos-delay="80"><h4>Consultas mensuales</h4><canvas id="graficoBarras"></canvas></div>
+      <div class="glass panel-grafico" data-aos="fade-up" data-aos-delay="160"><h4>Crecimiento de pacientes atendidos</h4><canvas id="graficoLineas"></canvas></div>
+      <div class="glass panel-grafico" data-aos="fade-up" data-aos-delay="240"><h4>Modelo tradicional vs. AAS</h4><canvas id="graficoRadar"></canvas></div>
+    </div>
+    <p class="nota-ilustrativa" style="color:var(--texto-suave);">* Datos ilustrativos de la fase piloto, con fines de demostración del panel.</p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     AHORRO PRESUPUESTARIO
+     ========================================================================== -->
+<section>
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Impacto fiscal</span>
+      <h2>Ahorro presupuestario</h2>
+      <p>Cada eslabón que se evita en el modelo tradicional se traduce en ahorro para el Estado.</p>
+    </div>
+    <div class="flujo-ahorro" data-aos="fade-up">
+      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg></div><h4>Hotelería médica</h4><p>Menos días-cama ocupados</p></div>
+      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div><h4>Infecciones</h4><p>Menor riesgo intrahospitalario</p></div>
+      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div><h4>Traslados</h4><p>Menos viajes de emergencia</p></div>
+      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13l4 5-4 5H3z"/></svg></div><h4>Combustible</h4><p>Menor uso de ambulancias</p></div>
+      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="nodo-ahorro glass"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6M9 16h6M9 8h6M5 21V3h14v18z"/></svg></div><h4>Burocracia</h4><p>Procesos más ágiles</p></div>
+      <div class="flecha-ahorro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="nodo-ahorro final"><div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4>Ahorro</h4><p>Presupuesto liberado para más cobertura</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     HOSPITAL DEL FUTURO
+     ========================================================================== -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Comparación</span>
+      <h2>El hospital del futuro</h2>
+      <p>Modelo tradicional frente al modelo AAS.</p>
+    </div>
+    <div class="comparativa">
+      <div class="glass panel-comparativo tradicional" data-aos="fade-right">
+        <h3>Modelo tradicional</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Traslado al hospital por cualquier motivo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Espera prolongada en emergencia</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Riesgo de infección intrahospitalaria</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Cama ocupada por paciente estable</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Alto costo por día de hospitalización</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> La familia debe trasladarse y ausentarse</li>
+        </ul>
+      </div>
+      <div class="glass panel-comparativo aas" data-aos="fade-left">
+        <h3>Modelo AAS</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Atención en el propio hogar del paciente</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Triage digital inmediato</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Menor riesgo de infección</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Camas hospitalarias libres para casos críticos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Menor costo por caso atendido</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> La familia acompaña sin trasladarse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     SERVICIO COMUNITARIO
+     ========================================================================== -->
+<section>
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Alianza Estado-Sociedad</span>
+      <h2>Servicio comunitario</h2>
+      <p>AAS se sostiene sobre una red de universidades, voluntarios y líderes comunitarios.</p>
+    </div>
+    <div class="grid-4">
+      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="0">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5zM6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></div>
+        <h3>Universidades de Medicina</h3>
+        <p>Estudiantes que cumplen servicio comunitario en atención domiciliaria.</p>
+      </div>
+      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="80">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-8 11-8 11z"/></svg></div>
+        <h3>Escuelas de Enfermería</h3>
+        <p>Formación práctica junto a los equipos AAS en el terreno.</p>
+      </div>
+      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="160">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Voluntarios</h3>
+        <p>Vecinos que apoyan la logística y el acompañamiento de cada caso.</p>
+      </div>
+      <div class="card-comunitario glass" data-aos="fade-up" data-aos-delay="240">
+        <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21c0-4-4-6-8-6s-8 2-8 6M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></div>
+        <h3>Líderes comunitarios</h3>
+        <p>La base organizativa que conecta al Estado con cada familia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     NOTICIAS
+     ========================================================================== -->
+<section id="noticias" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Actualidad</span>
+      <h2>Noticias AAS</h2>
+      <p>Lo último del proyecto en el terreno.</p>
+    </div>
+    <div class="carrusel-wrap" data-aos="fade-up">
+      <button class="flecha-carrusel prev" id="carruselPrev" aria-label="Anterior">&#8249;</button>
+      <button class="flecha-carrusel next" id="carruselNext" aria-label="Siguiente">&#8250;</button>
+      <div class="carrusel-noticias" id="carruselNoticias">
+        <article class="item-noticia">
+          <div class="media"><img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/AAS.jpg" alt="Presentación del proyecto AAS" loading="lazy"></div>
+          <div class="cuerpo"><span class="tag">Institucional</span><h4>Nace el proyecto AAS</h4><p>La Secretaría Nacional de Salud presenta el modelo de atención domiciliaria para Venezuela.</p></div>
+        </article>
+        <article class="item-noticia">
+          <div class="media"><video muted controls playsinline preload="metadata"><source src="https://github.com/jhonmalorne/ConcertacionAAS/raw/main/Video%20AAS.mp4" type="video/mp4"></video></div>
+          <div class="cuerpo"><span class="tag">Video</span><h4>Conoce el proyecto AAS</h4><p>Un recorrido audiovisual por el modelo de atención avanzada en salud.</p></div>
+        </article>
+        <article class="item-noticia">
+          <div class="media"><img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/foto1.jpeg" alt="Reunión de fundadores AAS" loading="lazy"></div>
+          <div class="cuerpo"><span class="tag">Equipo</span><h4>Encuentro de fundadores AAS</h4><p>El equipo técnico se reúne para definir la hoja de ruta del proyecto.</p></div>
+        </article>
+        <article class="item-noticia">
+          <div class="media"><video muted controls playsinline preload="metadata"><source src="https://github.com/jhonmalorne/ConcertacionAAS/raw/main/video2.mp4" type="video/mp4"></video></div>
+          <div class="cuerpo"><span class="tag">Comunidad</span><h4>AAS en las comunidades</h4><p>Líderes focales y vecinos conversan sobre las necesidades de salud del sector.</p></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     TESTIMONIOS
+     ========================================================================== -->
+<section>
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Voces del proyecto</span>
+      <h2>Testimonios</h2>
+      <p>Historias de pacientes, médicos y enfermeras del modelo AAS.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card-testimonio glass" data-aos="fade-up" data-aos-delay="0">
+        <div class="estrellas">★★★★★</div>
+        <p class="cita">"Me atendieron en mi casa sin tener que hacer fila en el hospital. Se sintió cercano y humano."</p>
+        <div class="autor-testimonio"><div class="avatar-inicial">M</div><div><b>Paciente atendida</b><span>Beneficiaria del piloto AAS</span></div></div>
+      </div>
+      <div class="card-testimonio glass" data-aos="fade-up" data-aos-delay="80">
+        <div class="estrellas">★★★★★</div>
+        <p class="cita">"El triage digital nos permite priorizar los casos realmente urgentes antes de salir a terreno."</p>
+        <div class="autor-testimonio"><div class="avatar-inicial">D</div><div><b>Médico general</b><span>Equipo AAS</span></div></div>
+      </div>
+      <div class="card-testimonio glass" data-aos="fade-up" data-aos-delay="160">
+        <div class="estrellas">★★★★★</div>
+        <p class="cita">"Como enfermera, ver que un paciente se recupera acompañado de su familia hace toda la diferencia."</p>
+        <div class="autor-testimonio"><div class="avatar-inicial">E</div><div><b>Enfermera</b><span>Equipo AAS</span></div></div>
+      </div>
+    </div>
+    <p class="nota-ilustrativa" style="color:var(--texto-suave);">* Testimonios representativos de la fase piloto.</p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     EQUIPO
+     ========================================================================== -->
+<section id="equipo" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Quiénes lo hacen posible</span>
+      <h2>Equipo AAS</h2>
+      <p>El equipo técnico detrás del proyecto, junto a la Secretaría Nacional de Salud.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card-equipo glass" data-aos="fade-up" data-aos-delay="0">
+        <div class="foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <h4>Dr. Abrahan Jiménez</h4>
+        <span class="rol">Secretaría Nacional de Salud</span>
+        <p>Al frente de la Secretaría Nacional de Salud de Concertación Ciudadana.</p>
+      </div>
+      <div class="card-equipo glass" data-aos="fade-up" data-aos-delay="80">
+        <div class="foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h4>Equipo Técnico</h4>
+        <span class="rol">Concertación Ciudadana</span>
+        <p>Diseño, desarrollo y coordinación territorial del proyecto AAS.</p>
+      </div>
+      <div class="card-equipo glass" data-aos="fade-up" data-aos-delay="160">
+        <div class="foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21c0-4-4-6-8-6s-8 2-8 6M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg></div>
+        <h4>Líderes Focales de Salud</h4>
+        <span class="rol">Red comunitaria AAS</span>
+        <p>La primera línea de contacto entre el ciudadano y el sistema AAS.</p>
+      </div>
+    </div>
+    <div class="foto-equipo-grupal" data-aos="fade-up">
+      <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/foto1.jpeg" alt="Reunión de fundadores del proyecto AAS" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     PREGUNTAS FRECUENTES
+     ========================================================================== -->
+<section>
+  <div class="wrap" style="max-width:820px;">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Dudas frecuentes</span>
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div id="listaFAQ" data-aos="fade-up">
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Qué es el proyecto AAS?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-respuesta"><p>AAS (Atención Avanzada en Salud) es un modelo de atención médica domiciliaria impulsado por la Secretaría Nacional de Salud de Concertación Ciudadana, que lleva la atención al hogar del paciente antes de recurrir al hospital.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Quién puede registrarse?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-respuesta"><p>Cualquier ciudadano que necesite atención médica para sí mismo o para un familiar, especialmente adultos mayores, niños, personas con discapacidad o enfermedades crónicas.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Cómo funciona el Líder Focal de Salud?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-respuesta"><p>Es un vecino capacitado que coordina la respuesta en su comunidad: recibe la solicitud, la canaliza hacia el equipo médico y hace seguimiento del caso.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿Qué pasa si mi caso es una emergencia?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-respuesta"><p>El triage digital prioriza automáticamente los casos marcados como emergencia para una respuesta inmediata, y se activa el traslado hospitalario si el caso lo amerita.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta">¿El proyecto AAS ya está disponible en todo el país?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-respuesta"><p>AAS se encuentra en fase piloto y se expande progresivamente junto a la red de líderes focales en cada estado, municipio y parroquia.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     CONTACTO
+     ========================================================================== -->
+<section id="contacto" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Hablemos</span>
+      <h2>Contacto</h2>
+      <p>Escríbenos, síguenos o conoce más sobre Concertación Ciudadana.</p>
+    </div>
+    <div class="grid-contacto">
+      <div class="info-contacto" data-aos="fade-right">
+        <div class="item-contacto">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 0 1 2-2h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5z"/></svg></div>
+          <div><b>Canal de WhatsApp</b><a href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener">César Pérez Vivas — Concertación</a></div>
+        </div>
+        <div class="item-contacto">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
+          <div><b>Instagram</b><a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener">@concertacion.ve</a></div>
+        </div>
+        <div class="item-contacto">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <div><b>Sitio principal</b><a href="https://concertacionciudadana.com/" target="_blank" rel="noopener">concertacionciudadana.com</a></div>
+        </div>
+        <div class="item-contacto">
+          <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <div><b>Presentación del proyecto</b><a href="https://prezi.com/view/Fr0biZsO8dfUtWkTtdk5/?referral_token=1xnDqhlnB3FN" target="_blank" rel="noopener">Ver presentación en Prezi</a></div>
+        </div>
+        <div class="redes-contacto">
+          <a href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 0 1 2-2h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5z"/></svg></a>
+          <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="https://www.threads.com/@concertacioncarabobo" target="_blank" rel="noopener" aria-label="Threads"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10M12 8v8M8 12h8"/></svg></a>
+        </div>
+      </div>
+      <form class="glass form-panel" id="formContacto" data-aos="fade-left" style="padding:30px;">
+        <div class="campo">
+          <label>Nombre <span class="req">*</span></label>
+          <input type="text" name="nombreContacto" required>
+          <span class="error-msg">Escribe tu nombre.</span>
+        </div>
+        <div class="campo">
+          <label>Correo <span class="req">*</span></label>
+          <input type="email" name="correoContacto" required>
+          <span class="error-msg">Correo inválido.</span>
+        </div>
+        <div class="campo">
+          <label>Mensaje <span class="req">*</span></label>
+          <textarea name="mensajeContacto" required placeholder="¿En qué podemos ayudarte?"></textarea>
+          <span class="error-msg">Escribe tu mensaje.</span>
+        </div>
+        <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;">Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
+    <div class="footer-grid">
       <div>
-        <div class="foot-brand">
-          <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/logo%20concertacion%20sin%20fondo.png?raw=true" alt="Concertación Ciudadana">
-          <b>CODERE</b>
+        <div class="footer-brand">
+          <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/logo%20ass%20sin%20fondo.png" alt="AAS" loading="lazy">
+          <b>AAS</b>
         </div>
-        <p style="max-width:280px;font-size:.92rem;line-height:1.6;">Conexión Deportiva y Recreativa es una iniciativa de la Secretaría de Deporte y Recreación de Concertación Ciudadana.</p>
-        <div class="foot-social">
-          <a href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/iconodewhatsapp.png?raw=true" alt="WhatsApp">
-          </a>
-          <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener" aria-label="Instagram">
-            <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/iconoinstagram.png?raw=true" alt="Instagram">
-          </a>
-        </div>
+        <p>Atención Avanzada en Salud. Un proyecto de la Secretaría Nacional de Salud de Concertación Ciudadana, propuesta para el Gobierno de Transición de Venezuela.</p>
+        <img src="https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/ChatGPT%20Image%2017%20may%202026%2016_00_06.png" alt="Orden y Gestión" style="height:44px;margin-top:16px;" loading="lazy">
       </div>
       <div>
-        <h4>Navegación</h4>
+        <h5>Navegación</h5>
         <ul>
-          <li><a href="#noticias">Noticias</a></li>
-          <li><a href="#disciplinas">Disciplinas</a></li>
-          <li><a href="#mapa">Mapa interactivo</a></li>
-          <li><a href="#clubes">Clubes afiliados</a></li>
+          <li><a href="#proyecto">Proyecto</a></li>
+          <li><a href="#modelo">Modelo</a></li>
+          <li><a href="#mapa">Mapa Nacional</a></li>
+          <li><a href="#registro">Registro</a></li>
+          <li><a href="#indicadores">Indicadores</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h5>Concertación</h5>
         <ul>
-          <li>📞 0424-4525765</li>
-          <li><a href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Formulario de registro</a></li>
-          <li><a href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener">Canal de WhatsApp</a></li>
+          <li><a href="https://concertacionciudadana.com/" target="_blank" rel="noopener">Sitio principal</a></li>
+          <li><a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.threads.com/@concertacioncarabobo" target="_blank" rel="noopener">Threads</a></li>
+          <li><a href="https://prezi.com/view/Fr0biZsO8dfUtWkTtdk5/?referral_token=1xnDqhlnB3FN" target="_blank" rel="noopener">Presentación Prezi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="https://www.whatsapp.com/channel/0029VbCf4Y25PO17BzacxG3Y" target="_blank" rel="noopener">Canal de WhatsApp</a></li>
+          <li><a href="https://forms.gle/qB8XScEiUDW73Kgs7" target="_blank" rel="noopener">Formulario oficial de registro</a></li>
         </ul>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 CODERE · Concertación Ciudadana — Secretaría de Deporte y Recreación</span>
+    <div class="footer-bottom">
+      <span>© 2026 AAS · Secretaría Nacional de Salud — Concertación Ciudadana · Orden y Gestión</span>
       <span>Diseño digital auspiciado por Nexus Marketing</span>
     </div>
   </div>
 </footer>
 
-<a class="fab-wa" href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/iconodewhatsapp.png?raw=true" alt="WhatsApp">
-</a>
+<button id="volver-arriba" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ==========================================================================
+     LIBRERÍAS
+     ========================================================================== -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <script>
-/* ===================== Nav mobile ===================== */
-const navBtn = document.getElementById('navBtn');
-const navLinks = document.getElementById('navLinks');
-navBtn.addEventListener('click', ()=> navLinks.classList.toggle('open'));
-function closeNav(){ navLinks.classList.remove('open'); }
+/* ============================================================
+   0. INIT AOS
+   ============================================================ */
+AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
 
-/* ===================== Reveal on scroll ===================== */
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-},{threshold:.15});
-revealEls.forEach(el=>io.observe(el));
+/* ============================================================
+   1. TEMA CLARO / OSCURO
+   ============================================================ */
+const raiz = document.documentElement;
+const toggleTema = document.getElementById('toggleTema');
+const iconoTema = document.getElementById('iconoTema');
+const ICONO_SOL = iconoTema.innerHTML;
+const ICONO_LUNA = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
 
-/* ===================== Scoreboard count-up ===================== */
-const boardNums = document.querySelectorAll('.board-num');
-const boardIO = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const el = e.target;
-      const target = parseInt(el.dataset.count,10);
-      let cur = 0;
-      const step = Math.max(1, Math.round(target/40));
-      const t = setInterval(()=>{
-        cur += step;
-        if(cur >= target){ cur = target; clearInterval(t); }
-        el.textContent = cur;
-      }, 30);
-      boardIO.unobserve(el);
-    }
-  });
-},{threshold:.5});
-boardNums.forEach(el=>boardIO.observe(el));
-
-/* ===================== Noticia con cinta desplazable de fotos/videos ===================== */
-function initMediaSliders(){
-  document.querySelectorAll('.media-slider').forEach(slider=>{
-    const wrap = slider.parentElement;
-    const slides = Array.from(slider.querySelectorAll('.slides'));
-    if(slides.length <= 1) return;
-
-    wrap.style.position = 'relative';
-
-    // Contador tipo "1 / 7"
-    const counter = document.createElement('div');
-    counter.className = 'slider-counter';
-    counter.textContent = `1 / ${slides.length}`;
-    wrap.appendChild(counter);
-
-    // Puntos indicadores
-    const dots = document.createElement('div');
-    dots.className = 'slider-dots';
-    const dotEls = slides.map((_, i)=>{
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', `Ver foto o video ${i + 1} de ${slides.length}`);
-      dot.addEventListener('click', ()=> goTo(i));
-      dots.appendChild(dot);
-      return dot;
-    });
-    wrap.appendChild(dots);
-
-    // Flechas prev/next
-    const prevBtn = document.createElement('button');
-    prevBtn.type = 'button';
-    prevBtn.className = 'slider-arrow slider-arrow-prev';
-    prevBtn.innerHTML = '&#8249;';
-    prevBtn.setAttribute('aria-label', 'Anterior');
-    const nextBtn = document.createElement('button');
-    nextBtn.type = 'button';
-    nextBtn.className = 'slider-arrow slider-arrow-next';
-    nextBtn.innerHTML = '&#8250;';
-    nextBtn.setAttribute('aria-label', 'Siguiente');
-    wrap.appendChild(prevBtn);
-    wrap.appendChild(nextBtn);
-
-    let current = 0;
-    function goTo(i){
-      current = Math.max(0, Math.min(slides.length - 1, i));
-      slides[current].scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
-    }
-    prevBtn.addEventListener('click', ()=> goTo(current - 1));
-    nextBtn.addEventListener('click', ()=> goTo(current + 1));
-
-    // Pausa el video al salir de su slide, y actualiza puntos/contador al desplazar
-    const slideIO = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        const idx = slides.indexOf(entry.target);
-        if(entry.isIntersecting && entry.intersectionRatio > 0.6){
-          current = idx;
-          dotEls.forEach((d,i)=> d.classList.toggle('active', i === idx));
-          counter.textContent = `${idx + 1} / ${slides.length}`;
-        }
-        if(!entry.isIntersecting){
-          const video = entry.target.querySelector('video');
-          if(video && !video.paused) video.pause();
-        }
-      });
-    }, { root:slider, threshold:[0,0.6,1] });
-    slides.forEach(s=>slideIO.observe(s));
-
-    // Arrastrar con el mouse en escritorio (touch ya funciona nativo)
-    let isDown = false, startX = 0, startScroll = 0;
-    slider.addEventListener('mousedown', e=>{
-      isDown = true;
-      slider.classList.add('dragging');
-      startX = e.pageX;
-      startScroll = slider.scrollLeft;
-    });
-    const stopDrag = ()=>{ isDown = false; slider.classList.remove('dragging'); };
-    slider.addEventListener('mouseleave', stopDrag);
-    slider.addEventListener('mouseup', stopDrag);
-    slider.addEventListener('mousemove', e=>{
-      if(!isDown) return;
-      e.preventDefault();
-      slider.scrollLeft = startScroll - (e.pageX - startX);
-    });
-  });
+function aplicarTema(tema){
+  if(tema === 'dark'){ raiz.setAttribute('data-theme','dark'); iconoTema.innerHTML = ICONO_LUNA; }
+  else { raiz.removeAttribute('data-theme'); iconoTema.innerHTML = ICONO_SOL; }
+  localStorage.setItem('aas-tema', tema);
 }
-initMediaSliders();
-
-/* ===================== Clubes afiliados (data) ===================== */
-const clubs = [
-  {
-    id:'club-cerritos',
-    nombre:'Club Voleibol Los Cerritos',
-    tagline:'Desarrollando talento en las comunidades y rescatando talento de alto nivel.',
-    telefono:'04124146837',
-    ubicacion:'Carabobo, Los Guayos',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/club%20voleibol%20los%20cerritos.png?raw=true',
-    lat:10.16922, lng:-67.90890
-  },
-  {
-    id:'club-americas',
-    nombre:'Academia de Voleibol Las Américas',
-    tagline:'Formación de atletas con desarrollo físico, cognitivo, afectivo y mental para un desenvolvimiento de alto nivel en cancha.',
-    telefono:'04244190350',
-    ubicacion:'Barrio América, calle Arvelo entre Av. Díaz Moreno y Montes de Oca, sector La Barraca, Valencia',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Academia%20de%20Voleibol%20las%20Americas.jpeg?raw=true',
-    lat:10.1745, lng:-67.9975
-  },
-  {
-    id:'club-brf',
-    nombre:'Club Deportivo BRF (Bucares Real Fútbol)',
-    tagline:'Escuela formativa y federada: preparación desde base hasta niveles superiores, con participación en torneos municipales, estadales y de desarrollo.',
-    telefono:'04145971390',
-    ubicacion:'Flor Amarillo, Urb. Los Bucares, frente al módulo policial, Valencia, Carabobo',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Club%20Deportivo%20BRF.jpeg?raw=true',
-    lat:10.1552, lng:-68.0058
-  },
-    {
-    id:'Escuela ABC voleibol',
-    nombre:'Escuela ABC voleibol',
-    tagline:'Somos una escuela que enseñamos desde cero, nuestros atletas aprenden no solo el deporte si no también valores, disciplina y respeto. Tenemos ya 5 años, comenzamos con clases personalizadas con tan solo 6 atletas ya participantes algunos de la selección de Carabobo y ahora con un buen número desde iniciación en todas las categorías.',
-    telefono:'04125318699',
-    ubicacion:'Viviendas popular los guayos sector 3 transversal 5. Cancha del sector 3 y 5 ',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/ABC%20Voleibol.jpeg?raw=true',
-    lat:10.17658528421383, lng:-67.93609417379099,
-  },
-   {
-    id:'Estrellas vc',
-    nombre:'Estrellas vc',
-    tagline:'Formar atletas en la disciplina de voleibol para alto rendimiento.',
-    telefono:'04143429223',
-    ubicacion:'Aldea de paraparal, los guayos, Carabobo',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/estrellas%20voleibol%20club.jpg?raw=true',
-    lat:10.18773263912042, lng:-67.91739760674737
-  },
-  {
-    id:'club-sanagustin',
-    nombre:'San Agustín Voleibol Club',
-    tagline:'Enseñamos a niños y niñas de 6 a 20 años la práctica del voleibol junto al respeto y la educación hacia compañeros, entrenadores y padres. Sin excepciones: todos son bienvenidos.',
-    telefono:'04146596664',
-    ubicacion:'Barrio San Agustín, Av. Las Ferias, frente a la estación de metro Las Ferias, Valencia, Carabobo',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/San%20Agustin%20Voleibol%20Club.jpeg?raw=true',
-    lat:10.1678, lng:-68.0018
-  },
-    {
-    id:'Fénix Valencia Voley Club ',
-    nombre:'Fénix Valencia Voley Club ',
-    tagline:'Encargada de Planificar los Entrenamientos . Enseñar Técnicas como la Recepción,  el Saque y el Ataque .Guiar y Motivar a las Atletas para así fomentar el trabajo en equipo',
-    telefono:'04144393856',
-    ubicacion:'Urb. Ricardo Urriera sector 4, Valencia',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Voleibol%20club%20valencia%20original.jpeg?raw=true',
-    lat:10.14326285023158, lng:-68.02321481828517  ,
-  },
-  {
-    id:'club-united',
-    nombre:'United Voleibol Club',
-    tagline:'Academia dedicada a la formación y desarrollo de atletas de alto rendimiento, con proyección a la selección estadal y nacional.',
-    telefono:'04128461881',
-    ubicacion:'Av. Principal, sector La Bocaina 2, Valencia, Carabobo',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/United%20Voleibol%20Club.jpeg?raw=true',
-    lat:10.1402, lng:-67.9948
-  },
-  {
-    id:'club-alianza',
-    nombre:'Alianza Sport Academia',
-    tagline:'Formar atletas en la disciplina de voleibol para alto rendimiento.',
-    telefono:'04144088859',
-    ubicacion:'Cancha cubierta La Castrera, Urbanización La Castrera, Valencia, Carabobo',
-    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Alianza%20Sport.jpg?raw=true',
-    lat:10.1598, lng:-67.9852
-  }
-];
-
-const clubGrid = document.getElementById('clubGrid');
-clubs.forEach(c=>{
-  const waNumber = '58' + c.telefono.replace(/^0/,'');
-  const card = document.createElement('article');
-  card.className = 'club-card';
-  card.id = c.id;
-  card.innerHTML = `
-    <div class="club-logo"><img src="${c.logo}" alt="${c.nombre}" loading="lazy"></div>
-    <div class="club-info">
-      <h3>${c.nombre}</h3>
-      <p class="tagline">${c.tagline}</p>
-      <div class="club-meta">
-        <span><b>📍</b> ${c.ubicacion}</span>
-        <span><b>📞</b> ${c.telefono}</span>
-      </div>
-      <a class="btn btn-navy" href="https://wa.me/${waNumber}" target="_blank" rel="noopener">Contactar por WhatsApp</a>
-    </div>`;
-  clubGrid.appendChild(card);
+const temaGuardado = localStorage.getItem('aas-tema');
+const prefiereOscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+aplicarTema(temaGuardado || (prefiereOscuro ? 'dark' : 'light'));
+toggleTema.addEventListener('click', ()=>{
+  const actual = raiz.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  aplicarTema(actual === 'dark' ? 'light' : 'dark');
 });
 
-/* ===================== Espacios deportivos (canchas, campos, parques, plazas) ===================== */
-const espacios = [
-  {n:'Cancha múltiple Los Cerritos', t:'cancha', lat:10.169220554743173, lng:-67.90890485794485},
-  {n:'Parque Los Jabillos', t:'parque', lat:10.181166662109066, lng:-67.93110013787475},
-  {n:'Plaza Los Guayos', t:'plaza', lat:10.188656181222758, lng:-67.93723971473415},
-  {n:'Parque Las Aguitas sector 3', t:'parque', lat:10.170841076483812, lng:-67.92983024922457},
-  {n:'Campo de Béisbol Infantil Omar Mirabal', t:'campo', lat:10.180981955466082, lng:-67.93610639888222},
-  {n:'Cancha deportiva — Sector Alicia Piedri de Caldera', t:'cancha', lat:10.163323755754716, lng:-67.90372177270959},
-  {n:'Cancha deportiva — San Judas Tadeo', t:'cancha', lat:10.16929394101146, lng:-67.90025670700494},
-  {n:'Cancha deportiva — 15 de Los Guayos', t:'cancha', lat:10.17276831132751, lng:-67.89813549162469},
-  {n:'Cancha deportiva — Urb. Los Cerritos', t:'cancha', lat:10.168765569417815, lng:-67.91348957761987},
-  {n:'Campo de béisbol — Urb. Los Cerritos', t:'campo', lat:10.168598257228092, lng:-67.91100396154935},
-  {n:'Cancha deportiva — Urb. Los Cerritos', t:'cancha', lat:10.169487586529, lng:-67.90845800309651},
-  {n:'Cancha deportiva L.N. Paraparal', t:'cancha', lat:10.169412883704162, lng:-67.90936636497496},
-  {n:'Cancha de básquet Paraparal', t:'cancha', lat:10.169455328108665, lng:-67.90891572296604},
-  {n:'Cancha deportiva Buenaventura', t:'cancha', lat:10.174906505974153, lng:-67.9022374602051},
-  {n:'Cancha deportiva 15 Los Guayos — Buenaventura', t:'cancha', lat:10.174031708524229, lng:-67.89897296018756},
-  {n:'Cancha deportiva — Urb. Parque Residencial Roraima 1 y 2', t:'cancha', lat:10.174162137463265, lng:-67.90512008048132},
-  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.177312574695568, lng:-67.89755427997969},
-  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.176238119442793, lng:-67.8978851588277},
-  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.17650101629557, lng:-67.89898376332366},
-  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.180488030601222, lng:-67.89687596100559},
-  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.18047637866594, lng:-67.89899788220481},
-  {n:'Cancha deportiva — Sector Tacarigua V', t:'cancha', lat:10.178411894170944, lng:-67.91003345654144},
-  {n:'Parque Agua Dorada', t:'parque', lat:10.178422122216805, lng:-67.91566107802208},
-  {n:'Cancha deportiva — Ciudadela Tacarigua IV', t:'cancha', lat:10.182773538585424, lng:-67.90940604116601},
-  {n:'Cancha deportiva — Ciudadela Tacarigua II', t:'cancha', lat:10.187549009717236, lng:-67.91523813785804},
-  {n:'Cancha deportiva — Acceso Bosque Real', t:'cancha', lat:10.192253060475174, lng:-67.9080982398612},
-  {n:'Cancha deportiva — Acceso Bosque Real', t:'cancha', lat:10.191490637265264, lng:-67.90800700044474},
-  {n:'Cancha deportiva — Municipio Los Guayos', t:'cancha', lat:10.09280064983812, lng:-67.90034899750009},
-  {n:'Cancha deportiva — Sector Pirital', t:'cancha', lat:10.104885188368362, lng:-67.89466970660862},
-  {n:'Campo de béisbol Charal', t:'campo', lat:10.106540842298335, lng:-67.90622466311954},
-  {n:'Cancha deportiva — Sector Charal', t:'cancha', lat:10.105962552660237, lng:-67.90579819190974},
-  {n:'Parque — Sector Charal', t:'parque', lat:10.105878053631868, lng:-67.9061924766107},
-  {n:'Cancha deportiva — Sector Cascabel', t:'cancha', lat:10.105843474902763, lng:-67.92221905642634},
-  {n:'Campo de béisbol Argimiro Gabardón — Sector Cascabel', t:'campo', lat:10.106397999436178, lng:-67.92010279350839},
-  {n:'Campo de béisbol Alberto Martínez — La Ensenada', t:'campo', lat:10.1160914618883, lng:-67.919442970069},
-  {n:'Cancha deportiva — Sector Cascabel 2', t:'cancha', lat:10.116510203129634, lng:-67.91919263453312},
-  {n:'Cancha deportiva — Sector Samán Mocho', t:'cancha', lat:10.114965827867502, lng:-67.89260396345175},
-  {n:'Campo de béisbol — Sector Samán Mocho', t:'campo', lat:10.14311782083038, lng:-67.90080079409171},
-  {n:'Cancha deportiva — Isla la Culebra', t:'cancha', lat:10.137178555110724, lng:-67.8769155690897}
-];
+/* ============================================================
+   2. NAV MÓVIL
+   ============================================================ */
+const menuPrincipal = document.getElementById('menuPrincipal');
+document.getElementById('menuBtn').addEventListener('click', ()=> menuPrincipal.classList.toggle('abierto'));
+function cerrarMenu(){ menuPrincipal.classList.remove('abierto'); }
 
-/* ===================== Leaflet map ===================== */
-const typeColor = { club:'#E4453D', cancha:'#4C8DFF', campo:'#E4BB4A', parque:'#3FBF7F', plaza:'#B983FF' };
-const typeIconEmoji = { club:'🏅', cancha:'🏀', campo:'⚾', parque:'🌳', plaza:'🏛️' };
+/* ============================================================
+   3. BOTÓN VOLVER ARRIBA
+   ============================================================ */
+const btnArriba = document.getElementById('volver-arriba');
+window.addEventListener('scroll', ()=>{
+  btnArriba.classList.toggle('visible', window.scrollY > 500);
+});
+btnArriba.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smooth' }));
 
-function makeIcon(type, size){
-  size = size || 30;
-  return L.divIcon({
-    className:'',
-    html:`<div style="
-        width:${size}px;height:${size}px;border-radius:50% 50% 50% 0;
-        background:${typeColor[type]};transform:rotate(-45deg);
-        display:flex;align-items:center;justify-content:center;
-        box-shadow:0 2px 6px rgba(0,0,0,.4);border:2px solid #fff;">
-        <span style="transform:rotate(45deg);font-size:${size*0.5}px;">${typeIconEmoji[type]}</span>
-      </div>`,
-    iconSize:[size,size],
-    iconAnchor:[size/2,size]
+/* ============================================================
+   4. CONTADORES ANIMADOS (GSAP + IntersectionObserver)
+   ============================================================ */
+const contadores = document.querySelectorAll('.card-indicador .num');
+const ioContadores = new IntersectionObserver((entradas)=>{
+  entradas.forEach(entrada=>{
+    if(entrada.isIntersecting){
+      const el = entrada.target;
+      const destino = parseInt(el.dataset.count, 10);
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: destino, duration: 1.8, ease: 'power2.out',
+        onUpdate: ()=> el.textContent = Math.round(obj.val).toLocaleString('es-VE')
+      });
+      ioContadores.unobserve(el);
+    }
   });
+}, { threshold: .4 });
+contadores.forEach(el=> ioContadores.observe(el));
+
+/* ============================================================
+   5. ACORDEÓN FAQ
+   ============================================================ */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const pregunta = item.querySelector('.faq-pregunta');
+  const respuesta = item.querySelector('.faq-respuesta');
+  pregunta.addEventListener('click', ()=>{
+    const yaAbierto = item.classList.contains('abierto');
+    document.querySelectorAll('.faq-item.abierto').forEach(otro=>{
+      otro.classList.remove('abierto');
+      otro.querySelector('.faq-respuesta').style.maxHeight = null;
+    });
+    if(!yaAbierto){
+      item.classList.add('abierto');
+      respuesta.style.maxHeight = respuesta.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ============================================================
+   6. CARRUSEL DE NOTICIAS (cinta desplazable con flechas)
+   ============================================================ */
+const carrusel = document.getElementById('carruselNoticias');
+document.getElementById('carruselPrev').addEventListener('click', ()=> carrusel.scrollBy({ left:-360, behavior:'smooth' }));
+document.getElementById('carruselNext').addEventListener('click', ()=> carrusel.scrollBy({ left:360, behavior:'smooth' }));
+let arrastrando=false, inicioX=0, scrollInicio=0;
+carrusel.addEventListener('mousedown', e=>{ arrastrando=true; carrusel.classList.add('arrastrando'); inicioX=e.pageX; scrollInicio=carrusel.scrollLeft; });
+['mouseup','mouseleave'].forEach(ev=> carrusel.addEventListener(ev, ()=>{ arrastrando=false; carrusel.classList.remove('arrastrando'); }));
+carrusel.addEventListener('mousemove', e=>{ if(!arrastrando) return; e.preventDefault(); carrusel.scrollLeft = scrollInicio - (e.pageX - inicioX); });
+
+/* ============================================================
+   7. VALIDACIÓN DE FORMULARIOS
+   ============================================================ */
+function validarCampo(campoWrap, valido){
+  campoWrap.classList.toggle('invalido', !valido);
+  return valido;
 }
 
-const map = L.map('map', { scrollWheelZoom:false }).setView([10.155, -67.94], 12);
+const formRegistro = document.getElementById('formRegistro');
+formRegistro.addEventListener('submit', function(e){
+  e.preventDefault();
+  let esValido = true;
 
-const normalLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  this.querySelectorAll('.campo').forEach(campo=>{
+    const input = campo.querySelector('input:not([type=checkbox]), select, textarea');
+    if(input && input.hasAttribute('required')){
+      const ok = input.value.trim() !== '' && (!input.pattern || new RegExp(input.pattern).test(input.value.trim()));
+      if(!validarCampo(campo, ok)) esValido = false;
+    } else if(input && input.type === 'email' && input.value.trim() !== ''){
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+      if(!validarCampo(campo, ok)) esValido = false;
+    }
+  });
+
+  const tiposMarcados = this.querySelectorAll('input[name="tipo"]:checked').length > 0;
+  document.getElementById('errorTipoNecesidad').style.display = tiposMarcados ? 'none' : 'block';
+  if(!tiposMarcados) esValido = false;
+
+  if(!esValido){
+    this.querySelector('.campo.invalido, #grupoTipoNecesidad')?.scrollIntoView({ behavior:'smooth', block:'center' });
+    return;
+  }
+
+  formRegistro.style.display = 'none';
+  document.getElementById('panelExito').style.display = 'block';
+  setTimeout(()=> window.open('https://forms.gle/qB8XScEiUDW73Kgs7', '_blank'), 600);
+});
+
+document.getElementById('fotoAdjunta').addEventListener('change', function(){
+  const preview = document.getElementById('preview-foto');
+  if(this.files && this.files[0]){
+    const lector = new FileReader();
+    lector.onload = e=>{ preview.src = e.target.result; preview.style.display = 'block'; };
+    lector.readAsDataURL(this.files[0]);
+  }
+});
+
+const formContacto = document.getElementById('formContacto');
+formContacto.addEventListener('submit', function(e){
+  e.preventDefault();
+  let esValido = true;
+  this.querySelectorAll('.campo').forEach(campo=>{
+    const input = campo.querySelector('input, textarea');
+    let ok = input.value.trim() !== '';
+    if(input.type === 'email') ok = ok && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+    validarCampo(campo, ok);
+    if(!ok) esValido = false;
+  });
+  if(!esValido) return;
+  const nombre = this.nombreContacto.value.trim();
+  const correo = this.correoContacto.value.trim();
+  const mensaje = this.mensajeContacto.value.trim();
+  const asunto = encodeURIComponent('Contacto desde el portal AAS');
+  const cuerpo = encodeURIComponent(`Nombre: ${nombre}\nCorreo: ${correo}\n\n${mensaje}`);
+  window.location.href = `mailto:contacto@concertacionciudadana.com?subject=${asunto}&body=${cuerpo}`;
+});
+
+/* ============================================================
+   8. GRÁFICOS (Chart.js) — se inicializan al entrar en pantalla
+   ============================================================ */
+const coloresGrafico = { azul:'#003B95', azulClaro:'#2D6CDF', verde:'#0F9D6B', verdeClaro:'#34C38F', gris:'#93A2C2' };
+let graficosListos = false;
+function inicializarGraficos(){
+  if(graficosListos) return;
+  graficosListos = true;
+
+  new Chart(document.getElementById('graficoDonut'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Enfermedad crónica','Adulto mayor','Niño','Discapacidad','Emergencia','Medicamentos'],
+      datasets: [{ data:[28,24,14,10,12,12], backgroundColor:[coloresGrafico.azul,coloresGrafico.azulClaro,coloresGrafico.verde,coloresGrafico.verdeClaro,'#E0483E',coloresGrafico.gris], borderWidth:0 }]
+    },
+    options: { plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ family:'Inter', size:11 } } } }, cutout:'62%' }
+  });
+
+  new Chart(document.getElementById('graficoBarras'), {
+    type: 'bar',
+    data: {
+      labels: ['Ene','Feb','Mar','Abr','May','Jun'],
+      datasets: [{ label:'Consultas', data:[180,240,300,360,410,470], backgroundColor:coloresGrafico.azulClaro, borderRadius:8, maxBarThickness:34 }]
+    },
+    options: { plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ color:'rgba(148,162,194,.15)' } }, x:{ grid:{ display:false } } } }
+  });
+
+  new Chart(document.getElementById('graficoLineas'), {
+    type: 'line',
+    data: {
+      labels: ['Ene','Feb','Mar','Abr','May','Jun'],
+      datasets: [{ label:'Pacientes atendidos', data:[120,210,340,510,760,1050], borderColor:coloresGrafico.verde, backgroundColor:'rgba(15,157,107,.15)', fill:true, tension:.4, pointBackgroundColor:coloresGrafico.verde }]
+    },
+    options: { plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ color:'rgba(148,162,194,.15)' } }, x:{ grid:{ display:false } } } }
+  });
+
+  new Chart(document.getElementById('graficoRadar'), {
+    type: 'radar',
+    data: {
+      labels: ['Tiempo de respuesta','Costo por caso','Riesgo de infección','Comodidad del paciente','Disponibilidad de camas','Satisfacción'],
+      datasets: [
+        { label:'Modelo tradicional', data:[3,2,2,3,2,3], borderColor:'#E0483E', backgroundColor:'rgba(224,72,62,.15)' },
+        { label:'Modelo AAS', data:[5,4,5,5,5,5], borderColor:coloresGrafico.verde, backgroundColor:'rgba(15,157,107,.2)' }
+      ]
+    },
+    options: { plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ family:'Inter', size:11 } } } }, scales:{ r:{ min:0, max:5, ticks:{ display:false }, grid:{ color:'rgba(148,162,194,.2)' } } } }
+  });
+}
+const ioGraficos = new IntersectionObserver((entradas)=>{
+  entradas.forEach(entrada=>{ if(entrada.isIntersecting){ inicializarGraficos(); ioGraficos.disconnect(); } });
+}, { threshold:.2 });
+const primerGrafico = document.getElementById('graficoDonut');
+if(primerGrafico) ioGraficos.observe(primerGrafico);
+
+/* ============================================================
+   9. MAPA NACIONAL AAS (Leaflet + GeoJSON)
+   ============================================================ */
+const GEO_BASE = 'https://raw.githubusercontent.com/jhonmalorne/ConcertacionAAS/main/';
+
+const mapaAAS = L.map('mapa-nacional', { scrollWheelZoom:false }).setView([8.0, -66.0], 6);
+
+const capaNormalAAS = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:'&copy; OpenStreetMap contributors', maxZoom:19
-}).addTo(map);
-
-const satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+}).addTo(mapaAAS);
+const capaSatelitalAAS = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
   attribution:'Tiles &copy; Esri', maxZoom:19
 });
+L.control.layers({ 'Mapa': capaNormalAAS, 'Satélite': capaSatelitalAAS }, null, { position:'topright' }).addTo(mapaAAS);
 
-L.control.layers({ 'Mapa normal': normalLayer, 'Vista satelital': satLayer }, null, { position:'topright' }).addTo(map);
+// Clic para activar el zoom con scroll, evitando "atrapar" el scroll de la página
+mapaAAS.on('click', ()=> mapaAAS.scrollWheelZoom.enable());
+mapaAAS.getContainer().addEventListener('mouseleave', ()=> mapaAAS.scrollWheelZoom.disable());
 
-/* Layer groups by type for the filter chips */
-const layerGroups = {
-  club:L.layerGroup().addTo(map),
-  cancha:L.layerGroup().addTo(map),
-  campo:L.layerGroup().addTo(map),
-  parque:L.layerGroup().addTo(map),
-  plaza:L.layerGroup().addTo(map)
-};
+// Genera indicadores ilustrativos deterministas a partir del nombre (fase piloto — no son datos reales)
+function indicadoresDemo(nombre){
+  let hash = 0;
+  for(let i=0;i<nombre.length;i++){ hash = (hash * 31 + nombre.charCodeAt(i)) % 97; }
+  return {
+    lideres: 2 + (hash % 18),
+    casos: 10 + (hash % 120),
+    activos: 3 + (hash % 40),
+    atendidos: 8 + (hash % 90)
+  };
+}
 
-/* Club markers */
-clubs.forEach(c=>{
-  const waNumber = '58' + c.telefono.replace(/^0/,'');
-  const marker = L.marker([c.lat,c.lng], { icon: makeIcon('club',34) });
-  marker.bindPopup(`
-    <div class="popup-card">
-      <span class="p-tag">Club afiliado</span>
-      <h4>${c.nombre}</h4>
-      <p>${c.ubicacion}</p>
-      <a class="wa-link" href="https://wa.me/${waNumber}" target="_blank" rel="noopener">WhatsApp</a>
-      <div style="margin-top:8px;"><a href="#${c.id}" style="font-size:.8rem;color:#003B95;font-weight:600;">Ver ficha completa →</a></div>
-    </div>`);
-  layerGroups.club.addLayer(marker);
-});
+function estiloCapa(color){
+  return { color, weight: 1.4, fillColor: color, fillOpacity: .08 };
+}
 
-/* Facility markers */
-espacios.forEach(e=>{
-  const marker = L.marker([e.lat,e.lng], { icon: makeIcon(e.t,26) });
-  const labelByType = { cancha:'Cancha deportiva', campo:'Campo de béisbol', parque:'Parque', plaza:'Plaza' };
-  marker.bindPopup(`
-    <div class="popup-card">
-      <span class="p-tag">${labelByType[e.t]}</span>
-      <h4>${e.n}</h4>
-      <p>Municipio Los Guayos, Carabobo</p>
-    </div>`);
-  layerGroups[e.t].addLayer(marker);
-});
+let capaEstados, capaMunicipios;
+const capasBuscables = []; // { nombre, layer }
 
-/* Filter chips toggle */
-document.querySelectorAll('.filter-chip').forEach(chip=>{
+function popupHTML(nombre, tipo){
+  const d = indicadoresDemo(nombre);
+  return `
+    <div class="popup-mapa">
+      <span class="p-eyebrow">${tipo}</span>
+      <h4>${nombre}</h4>
+      <div class="indicadores-popup">
+        <div class="indicador-mini"><b>${d.lideres}</b><span>Líderes Focales</span></div>
+        <div class="indicador-mini"><b>${d.casos}</b><span>Casos registrados</span></div>
+        <div class="indicador-mini"><b>${d.activos}</b><span>Casos activos</span></div>
+        <div class="indicador-mini"><b>${d.atendidos}</b><span>Pacientes atendidos</span></div>
+      </div>
+      <p class="nota-demo">* Indicadores ilustrativos de la fase piloto</p>
+    </div>`;
+}
+
+fetch(GEO_BASE + 'geoBoundaries-VEN-ADM1_simplified.geojson')
+  .then(r => r.json())
+  .then(data => {
+    capaEstados = L.geoJSON(data, {
+      style: estiloCapa('#003B95'),
+      onEachFeature: (feature, layer) => {
+        const nombre = feature.properties.shapeName || 'Estado';
+        layer.bindPopup(popupHTML(nombre, 'Estado'));
+        layer.on({
+          mouseover: () => layer.setStyle({ fillOpacity:.22, weight:2.4 }),
+          mouseout: () => layer.setStyle({ fillOpacity:.08, weight:1.4 })
+        });
+        capasBuscables.push({ nombre, layer, tipo:'Estado' });
+      }
+    }).addTo(mapaAAS);
+  })
+  .catch(err => console.error('No se pudo cargar el límite estadal', err));
+
+fetch(GEO_BASE + 'geoBoundaries-VEN-ADM2_simplified.geojson')
+  .then(r => r.json())
+  .then(data => {
+    capaMunicipios = L.geoJSON(data, {
+      style: estiloCapa('#0F9D6B'),
+      onEachFeature: (feature, layer) => {
+        const nombre = feature.properties.shapeName || 'Municipio';
+        layer.bindPopup(popupHTML(nombre, 'Municipio / Parroquia'));
+        layer.on({
+          mouseover: () => layer.setStyle({ fillOpacity:.22, weight:2.4 }),
+          mouseout: () => layer.setStyle({ fillOpacity:.08, weight:1.4 })
+        });
+        capasBuscables.push({ nombre, layer, tipo:'Municipio / Parroquia' });
+      }
+    }); // no se agrega al mapa aún — se activa desde los chips
+  })
+  .catch(err => console.error('No se pudo cargar el límite municipal/parroquial', err));
+
+// Chips de capas
+document.querySelectorAll('.chip-mapa').forEach(chip=>{
   chip.addEventListener('click', ()=>{
-    const type = chip.dataset.type;
-    chip.classList.toggle('active');
-    if(chip.classList.contains('active')){
-      map.addLayer(layerGroups[type]);
+    const capa = chip.dataset.capa;
+    document.querySelectorAll('.chip-mapa').forEach(c=>c.classList.remove('activo'));
+    chip.classList.add('activo');
+    if(capa === 'estados'){
+      if(capaMunicipios) mapaAAS.removeLayer(capaMunicipios);
+      if(capaEstados) capaEstados.addTo(mapaAAS);
     } else {
-      map.removeLayer(layerGroups[type]);
+      if(capaEstados) mapaAAS.removeLayer(capaEstados);
+      if(capaMunicipios) capaMunicipios.addTo(mapaAAS);
     }
   });
 });
 
-/* Boundary GeoJSON — loaded on demand */
-let statesLayer, parishesLayer;
-const GEO_BASE = 'https://raw.githubusercontent.com/jhonmalorne/ConcertacionCODERE/main/';
-
-document.getElementById('toggleStates').addEventListener('change', async function(){
-  if(this.checked){
-    if(!statesLayer){
-      try{
-        const res = await fetch(GEO_BASE + 'geoBoundaries-VEN-ADM1_simplified.geojson');
-        const data = await res.json();
-        statesLayer = L.geoJSON(data, {
-          style: f => {
-            const name = (f.properties.shapeName || '').toLowerCase();
-            const isCarabobo = name.includes('carabobo');
-            return {
-              color: isCarabobo ? '#E4BB4A' : 'rgba(255,255,255,.35)',
-              weight: isCarabobo ? 3 : 1,
-              fillOpacity: isCarabobo ? 0.08 : 0
-            };
-          }
-        });
-      }catch(err){ console.error('No se pudo cargar el límite estadal', err); }
-    }
-    if(statesLayer) statesLayer.addTo(map);
-  } else if(statesLayer){
-    map.removeLayer(statesLayer);
-  }
+// Buscador del mapa
+const inputBuscarMapa = document.getElementById('buscarMapa');
+const listaResultadosMapa = document.getElementById('lista-resultados-mapa');
+inputBuscarMapa.addEventListener('input', ()=>{
+  const q = inputBuscarMapa.value.trim().toLowerCase();
+  listaResultadosMapa.innerHTML = '';
+  if(q.length < 2){ listaResultadosMapa.style.display = 'none'; return; }
+  const coincidencias = capasBuscables.filter(c => c.nombre.toLowerCase().includes(q)).slice(0, 12);
+  if(coincidencias.length === 0){ listaResultadosMapa.style.display = 'none'; return; }
+  coincidencias.forEach(c=>{
+    const btn = document.createElement('button');
+    btn.textContent = `${c.nombre} · ${c.tipo}`;
+    btn.addEventListener('click', ()=>{
+      mapaAAS.fitBounds(c.layer.getBounds(), { maxZoom: 10 });
+      c.layer.openPopup();
+      listaResultadosMapa.style.display = 'none';
+      inputBuscarMapa.value = c.nombre;
+    });
+    listaResultadosMapa.appendChild(btn);
+  });
+  listaResultadosMapa.style.display = 'block';
 });
-
-document.getElementById('toggleParishes').addEventListener('change', async function(){
-  if(this.checked){
-    if(!parishesLayer){
-      try{
-        const res = await fetch(GEO_BASE + 'geoBoundaries-VEN-ADM2_simplified.geojson');
-        const data = await res.json();
-        parishesLayer = L.geoJSON(data, {
-          style: { color:'rgba(255,255,255,.25)', weight:1, fillOpacity:0 }
-        });
-      }catch(err){ console.error('No se pudo cargar el límite parroquial', err); }
-    }
-    if(parishesLayer) parishesLayer.addTo(map);
-  } else if(parishesLayer){
-    map.removeLayer(parishesLayer);
-  }
+document.addEventListener('click', (e)=>{
+  if(!e.target.closest('.buscador-mapa')) listaResultadosMapa.style.display = 'none';
 });
 </script>
 </body>
