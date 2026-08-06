@@ -1,689 +1,1173 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Los Guayos · Educación · Comunidad educativa</title>
-    <!-- Font Awesome 6 (gratis) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Inter + Open Sans (versátil) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', 'Open Sans', sans-serif;
-            background-color: #f8fafd;
-            color: #1d2b3f;
-            line-height: 1.5;
-        }
-        /* contenedor general */
-        .page {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 20px 40px -15px rgba(0,30,60,0.1);
-            border-radius: 2rem 2rem 0 0;
-            overflow: hidden;
-        }
-        /* header con logo y botón volver */
-        .header-educacion {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2.5rem;
-            background: linear-gradient(98deg, #f0f7fc 0%, #ffffff 80%);
-            border-bottom: 3px solid #bbd5e8;
-        }
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-        }
-        .logo-main {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #0f3b5e;
-            letter-spacing: -0.5px;
-        }
-        .logo-main span {
-            color: #4c9f70;
-            font-weight: 400;
-        }
-        .subtitulo-area {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #256c4b;
-            background: #e2f0e9;
-            display: inline-block;
-            padding: 0.2rem 1.5rem;
-            border-radius: 40px;
-            margin-top: 0.5rem;
-            border: 1px solid #b7dbc9;
-        }
-        .btn-volver {
-            background-color: #ffffffd9;
-            backdrop-filter: blur(4px);
-            border: 1px solid #b2c9de;
-            border-radius: 50px;
-            padding: 0.7rem 1.8rem;
-            font-weight: 600;
-            color: #1d4468;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.2s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
-        }
-        .btn-volver i {
-            font-size: 1rem;
-        }
-        .btn-volver:hover {
-            background-color: #ffffff;
-            border-color: #7fa3c2;
-            transform: scale(1.02);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODERE | Conexión Deportiva y Recreativa — Concertación Ciudadana</title>
+<meta name="description" content="CODERE conecta clubes deportivos, parques y espacios recreativos en un solo mapa digital. Una iniciativa de la Secretaría de Deporte y Recreación de Concertación Ciudadana.">
 
-        /* HERO con imagen educativa */
-        .hero-educacion {
-            position: relative;
-            background: linear-gradient(105deg, #112b44d9, #183f5cd9), url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center 35%;
-            padding: 5rem 3rem;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .hero-texto {
-            max-width: 600px;
-        }
-        .hero-etiqueta {
-            background: #f5b041cc;
-            padding: 0.4rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 1.2rem;
-            backdrop-filter: blur(2px);
-            border: 1px solid #ffd58c;
-        }
-        .hero-texto h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        .hero-texto p {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 2rem;
-        }
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            background: #ffffff20;
-            backdrop-filter: blur(8px);
-            padding: 1.5rem 2.5rem;
-            border-radius: 3rem;
-            border: 1px solid #ffffff70;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-num {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #ffecb3;
-        }
-        .stat-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 
-        /* sección de proyectos destacados */
-        .proyectos-seccion {
-            padding: 3.5rem 2.5rem;
-            background: #ffffff;
-        }
-        .seccion-titulo {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #153e5a;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .seccion-titulo i {
-            color: #479f6b;
-            background: #def3e6;
-            padding: 0.5rem;
-            border-radius: 50%;
-        }
-        .proyectos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .proyecto-card {
-            background: #f6fafe;
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: 0 8px 18px -6px rgba(0,60,90,0.1);
-            transition: all 0.25s;
-            border: 1px solid #d3e4f2;
-        }
-        .proyecto-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 28px -8px #1e4f6e33;
-        }
-        .proyecto-img {
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-        }
-        .proyecto-content {
-            padding: 1.5rem;
-        }
-        .proyecto-tag {
-            background: #a1c9e7;
-            color: #153e5a;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.25rem 1rem;
-            border-radius: 30px;
-            display: inline-block;
-            margin-bottom: 0.8rem;
-        }
-        .proyecto-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-        .proyecto-content p {
-            color: #355e7a;
-            margin-bottom: 1rem;
-        }
-        .btn-apoyar {
-            background: none;
-            border: 1.5px solid #30755b;
-            color: #30755b;
-            border-radius: 40px;
-            padding: 0.4rem 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .btn-apoyar:hover {
-            background: #30755b;
-            color: white;
-        }
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-        /* FORO - similar al anterior pero con identidad educativa */
-        .foro-educacion {
-            background: #e6f2fa;
-            padding: 3rem 2.5rem;
-            border-radius: 3rem 3rem 0 0;
-            margin-top: 1rem;
-        }
-        .foro-header {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 2rem;
-        }
-        .foro-pregunta {
-            background: white;
-            border-radius: 60px;
-            padding: 1.3rem 2.2rem;
-            font-size: 1.3rem;
-            font-weight: 500;
-            border-left: 8px solid #287955;
-            box-shadow: 0 10px 20px rgba(0, 50, 70, 0.1);
-            margin-bottom: 1.5rem;
-        }
-        .foro-pregunta i {
-            color: #287955;
-            margin-right: 0.8rem;
-        }
-        .foro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.7fr;
-            gap: 2rem;
-        }
-        @media (max-width: 780px) {
-            .foro-grid { grid-template-columns: 1fr; }
-        }
-        .form-opinion {
-            background: white;
-            border-radius: 2.2rem;
-            padding: 2rem;
-            box-shadow: 0 12px 28px -10px #1a4863;
-        }
-        .form-opinion h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            color: #0b3f31;
-        }
-        .grupo {
-            margin-bottom: 1.4rem;
-        }
-        .grupo label {
-            font-weight: 600;
-            color: #1e4a6b;
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-        .grupo input, .grupo textarea, .grupo select {
-            width: 100%;
-            padding: 0.9rem 1.5rem;
-            border: 1.5px solid #c6dcee;
-            border-radius: 50px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: 0.2s;
-        }
-        .grupo textarea {
-            border-radius: 30px;
-            resize: vertical;
-        }
-        .grupo input:focus, .grupo textarea:focus {
-            border-color: #2b7553;
-            outline: none;
-            box-shadow: 0 0 0 4px #2b755330;
-        }
-        .check-interes {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin: 1.4rem 0;
-            background: #e8f2f9;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-        }
-        .check-interes input {
-            width: 1.3rem;
-            height: 1.3rem;
-            accent-color: #2d6f4b;
-        }
-        .btn-enviar {
-            background: #1d5b3e;
-            border: none;
-            color: white;
-            padding: 1rem;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            width: 100%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            transition: 0.2s;
-        }
-        .btn-enviar:hover {
-            background: #0f422d;
-            transform: scale(1.02);
-        }
-        .opiniones-list {
-            background: white;
-            border-radius: 2.2rem;
-            padding: 2rem;
-            max-height: 550px;
-            overflow-y: auto;
-            box-shadow: 0 12px 28px -10px #1a4863;
-        }
-        .opinion-item {
-            background: #f1f9ff;
-            border-radius: 1.8rem;
-            padding: 1.5rem;
-            margin-bottom: 1.2rem;
-            border-left: 6px solid #34986b;
-        }
-        .opinion-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .opinion-nombre {
-            font-weight: 700;
-            color: #143550;
-        }
-        .opinion-sector {
-            background: #cdddec;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .opinion-texto {
-            font-size: 1rem;
-            margin: 0.8rem 0;
-        }
-        .opinion-interes {
-            background: #feebc8;
-            color: #8d5f00;
-            padding: 0.2rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .opinion-timestamp {
-            font-size: 0.7rem;
-            color: #6a7e99;
-            text-align: right;
-            margin-top: 0.5rem;
-        }
-        .whatsapp-educacion {
-            margin-top: 2.5rem;
-            display: flex;
-            justify-content: center;
-        }
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            padding: 1.1rem 3rem;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.3rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 8px 16px #25d36680;
-            transition: 0.15s;
-        }
-        .btn-whatsapp:hover {
-            background: #1da959;
-            transform: scale(1.03);
-        }
-        .footer-educacion {
-            background: #112f44;
-            color: #b3d0e8;
-            padding: 2rem 2.5rem;
-            text-align: center;
-            border-radius: 2rem 2rem 0 0;
-        }
-    </style>
+<style>
+  :root{
+    --navy:#001B3D;
+    --navy-2:#00204a;
+    --blue:#003B95;
+    --blue-light:#1C5FC7;
+    --gold:#C49A22;
+    --gold-light:#E4BB4A;
+    --paper:#F6F7FB;
+    --paper-2:#ECEFF6;
+    --ink:#0E1526;
+    --ink-soft:#4B5670;
+    --line:rgba(255,255,255,.14);
+    --line-dark:rgba(14,21,38,.10);
+    --radius:14px;
+    --shadow:0 10px 30px rgba(0,20,60,.14);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Barlow',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    margin:0;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    color:var(--gold);
+  }
+  section{padding:76px 0;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 26px;
+    border-radius:999px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    font-size:.92rem;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-gold{background:var(--gold);color:var(--navy);}
+  .btn-gold:hover{background:var(--gold-light);box-shadow:0 8px 20px rgba(196,154,34,.35);}
+  .btn-outline{border-color:rgba(255,255,255,.55);color:#fff;}
+  .btn-outline:hover{background:rgba(255,255,255,.1);}
+  .btn-navy{background:var(--blue);color:#fff;}
+  .btn-navy:hover{background:var(--blue-light);}
+
+  /* ===== Top strip ===== */
+  .topstrip{
+    background:var(--navy);
+    color:rgba(255,255,255,.75);
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.85rem;
+    letter-spacing:.03em;
+  }
+  .topstrip .wrap{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:7px 24px;gap:12px;flex-wrap:wrap;
+  }
+  .topstrip .social{display:flex;gap:16px;align-items:center;}
+  .topstrip a:hover{color:var(--gold-light);}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:500;
+    background:var(--blue);
+    box-shadow:0 2px 18px rgba(0,10,40,.25);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 24px;max-width:var(--maxw);margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:42px;width:auto;}
+  .brand .name{color:#fff;line-height:1.05;}
+  .brand .name b{font-family:'Oswald';font-size:1.35rem;letter-spacing:.03em;}
+  .brand .name span{display:block;font-family:'Barlow Condensed';font-size:.68rem;letter-spacing:.12em;color:var(--gold-light);text-transform:uppercase;}
+  nav.links{display:flex;gap:26px;align-items:center;}
+  nav.links a{
+    color:rgba(255,255,255,.88);
+    font-family:'Barlow Condensed';
+    font-weight:600;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    font-size:.92rem;
+  }
+  nav.links a:hover{color:var(--gold-light);}
+  .navbtn{display:none;background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;}
+
+  @media(max-width:880px){
+    nav.links{
+      position:fixed;top:0;right:-100%;height:100vh;width:78%;max-width:320px;
+      background:var(--navy);flex-direction:column;justify-content:center;
+      transition:right .3s ease;gap:28px;
+    }
+    nav.links.open{right:0;}
+    .navbtn{display:block;}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:flex;align-items:center;
+    background:
+      linear-gradient(180deg, rgba(0,20,55,.55) 0%, rgba(0,15,45,.72) 45%, var(--navy) 100%),
+      url('https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/banner%20web%20deporte.jpg?raw=true') center/cover no-repeat;
+    color:#fff;
+  }
+  .hero .wrap{padding-top:70px;padding-bottom:60px;}
+  .hero .eyebrow{color:var(--gold-light);}
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.4rem);
+    line-height:.98;
+    margin:14px 0 18px;
+  }
+  .hero h1 em{font-style:normal;color:var(--gold-light);}
+  .hero p.lead{
+    max-width:640px;font-size:1.14rem;line-height:1.55;
+    color:rgba(255,255,255,.88);margin-bottom:32px;
+  }
+  .hero .ctas{display:flex;gap:16px;flex-wrap:wrap;}
+
+  /* ===== Scoreboard (signature element) ===== */
+  .scoreboard{
+    background:var(--navy);
+    border-top:1px solid var(--line);
+    border-bottom:4px solid var(--gold);
+  }
+  .board-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:0;
+  }
+  .board-tile{
+    padding:30px 18px;text-align:center;
+    border-right:1px solid var(--line);
+    position:relative;
+    background-image:radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.4px);
+    background-size:9px 9px;
+  }
+  .board-tile:last-child{border-right:none;}
+  .board-num{
+    font-family:'Oswald';font-weight:700;
+    font-size:clamp(2rem,4.4vw,3.1rem);
+    color:var(--gold-light);
+    letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;
+    text-shadow:0 0 18px rgba(228,187,74,.35);
+  }
+  .board-label{
+    margin-top:6px;
+    font-family:'Barlow Condensed';
+    font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    font-size:.78rem;color:rgba(255,255,255,.65);
+  }
+  @media(max-width:700px){
+    .board-grid{grid-template-columns:repeat(2,1fr);}
+    .board-tile{border-bottom:1px solid var(--line);}
+  }
+
+  /* ===== Section headers ===== */
+  .sec-head{max-width:640px;margin-bottom:40px;}
+  .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:8px;color:var(--navy);}
+  .sec-head p{color:var(--ink-soft);font-size:1.02rem;line-height:1.55;margin-top:12px;}
+  .sec-head.on-dark h2{color:#fff;}
+  .sec-head.on-dark p{color:rgba(255,255,255,.72);}
+
+  /* ===== About ===== */
+  .about{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+  }
+  .about-copy h2{color:var(--navy);font-size:clamp(1.9rem,3.4vw,2.5rem);margin-bottom:16px;}
+  .about-copy p{color:var(--ink-soft);line-height:1.65;margin-bottom:14px;}
+  .about-media{
+    border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+    border:1px solid var(--line-dark);
+  }
+  @media(max-width:860px){.about{grid-template-columns:1fr;}}
+
+  /* ===== Noticias ===== */
+  .noticias{background:var(--paper-2);}
+  .news-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .news-card{
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow);border:1px solid var(--line-dark);
+    display:flex;flex-direction:column;
+  }
+  .news-card .img-wrap{aspect-ratio:16/10;overflow:hidden;background:var(--navy);position:relative;}
+  .news-card .img-wrap img{width:100%;height:100%;object-fit:cover;}
+  .news-body{padding:22px 24px 26px;}
+  .news-tag{
+    display:inline-block;background:var(--gold);color:var(--navy);
+    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;font-size:.72rem;padding:4px 10px;border-radius:999px;
+    margin-bottom:12px;
+  }
+  .news-body h3{font-size:1.28rem;color:var(--navy);margin-bottom:10px;line-height:1.2;}
+  .news-body p{color:var(--ink-soft);font-size:.96rem;line-height:1.55;}
+  @media(max-width:800px){.news-grid{grid-template-columns:1fr;}}
+
+  /* ===== Noticia: cinta desplazable de fotos y videos ===== */
+  .media-slider{
+    display:flex;
+    width:100%;
+    height:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    scrollbar-color:var(--gold-light) transparent;
+    cursor:grab;
+    background:var(--navy);
+  }
+  .media-slider.dragging{cursor:grabbing;scroll-snap-type:none;}
+  .media-slider::-webkit-scrollbar{height:6px;}
+  .media-slider::-webkit-scrollbar-thumb{background:var(--gold-light);border-radius:999px;}
+  .media-slider::-webkit-scrollbar-track{background:transparent;}
+  .media-slider .slides{
+    flex:0 0 100%;
+    width:100%;
+    height:100%;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    position:relative;
+  }
+  .media-slider .slides img,
+  .media-slider .slides video{
+    width:100%;height:100%;object-fit:cover;display:block;background:#000;
+  }
+  .slider-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:36px;height:36px;border-radius:50%;border:none;
+    background:rgba(0,27,61,.55);color:#fff;font-size:1.3rem;line-height:1;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    z-index:5;transition:background .15s ease;
+  }
+  .slider-arrow:hover{background:var(--gold);color:var(--navy);}
+  .slider-arrow-prev{left:8px;}
+  .slider-arrow-next{right:8px;}
+  .slider-dots{
+    position:absolute;left:0;right:0;bottom:10px;z-index:5;
+    display:flex;justify-content:center;gap:6px;pointer-events:none;
+  }
+  .slider-dot{
+    width:7px;height:7px;border-radius:50%;border:none;
+    background:rgba(255,255,255,.5);cursor:pointer;padding:0;
+    pointer-events:auto;transition:background .15s ease, transform .15s ease;
+  }
+  .slider-dot.active{background:var(--gold-light);transform:scale(1.3);}
+  .slider-counter{
+    position:absolute;top:10px;right:10px;z-index:5;
+    background:rgba(0,27,61,.6);color:#fff;
+    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.04em;
+    font-size:.76rem;padding:4px 10px;border-radius:999px;
+    pointer-events:none;
+  }
+  @media(max-width:600px){
+    .slider-arrow{width:30px;height:30px;font-size:1.1rem;}
+  }
+
+  /* ===== Disciplinas ===== */
+  .disc-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .disc-cat{
+    background:#fff;border-radius:var(--radius);padding:24px 22px;
+    border:1px solid var(--line-dark);box-shadow:var(--shadow);
+  }
+  .disc-cat h3{
+    font-size:1.02rem;color:var(--blue);margin-bottom:14px;
+    padding-bottom:12px;border-bottom:2px solid var(--paper-2);
+  }
+  .chip-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-family:'Barlow Condensed';font-weight:600;font-size:.86rem;
+    background:var(--paper-2);color:var(--ink);
+    padding:6px 12px;border-radius:8px;letter-spacing:.01em;
+  }
+  @media(max-width:980px){.disc-cats{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.disc-cats{grid-template-columns:1fr;}}
+
+  /* ===== Mapa ===== */
+  .mapa{background:var(--navy);color:#fff;}
+  .map-toolbar{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;align-items:center;justify-content:space-between;
+  }
+  .filter-chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .filter-chip{
+    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.03em;
+    text-transform:uppercase;font-size:.82rem;
+    padding:8px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.3);
+    background:transparent;color:#fff;cursor:pointer;transition:all .15s ease;
+    display:flex;align-items:center;gap:7px;
+  }
+  .filter-chip .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .filter-chip.active{background:rgba(255,255,255,.14);border-color:var(--gold-light);}
+  .filter-chip:hover{border-color:var(--gold-light);}
+  #map{
+    height:560px;width:100%;border-radius:var(--radius);
+    border:2px solid rgba(255,255,255,.15);box-shadow:var(--shadow);
+  }
+  .map-legend{
+    margin-top:16px;display:flex;flex-wrap:wrap;gap:18px;
+    font-family:'Barlow Condensed';font-size:.86rem;color:rgba(255,255,255,.75);
+  }
+  .map-legend span{display:inline-flex;align-items:center;gap:7px;}
+  .map-legend .dot{width:10px;height:10px;border-radius:50%;}
+  .layer-toggles{display:flex;gap:14px;flex-wrap:wrap;font-family:'Barlow Condensed';font-size:.85rem;color:rgba(255,255,255,.75);margin-top:12px;}
+  .layer-toggles label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+
+  /* Leaflet popup theming */
+  .leaflet-popup-content-wrapper{border-radius:10px;}
+  .popup-card{font-family:'Barlow',sans-serif;min-width:190px;}
+  .popup-card .p-tag{
+    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;font-size:.68rem;color:var(--blue);
+  }
+  .popup-card h4{font-family:'Oswald';font-size:1rem;margin:4px 0 6px;color:var(--ink);text-transform:none;}
+  .popup-card p{margin:0 0 8px;font-size:.85rem;color:var(--ink-soft);line-height:1.4;}
+  .popup-card a.wa-link{
+    display:inline-block;font-family:'Barlow Condensed';font-weight:700;
+    font-size:.8rem;color:#fff;background:#1EA952;padding:6px 12px;border-radius:999px;
+  }
+
+  /* ===== Clubes ===== */
+  .club-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .club-card{
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    border:1px solid var(--line-dark);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;
+  }
+  .club-logo{aspect-ratio:4/3;background:var(--paper-2);overflow:hidden;}
+  .club-logo img{width:100%;height:100%;object-fit:cover;}
+  .club-info{padding:20px 20px 22px;flex:1;display:flex;flex-direction:column;}
+  .club-info h3{font-size:1.12rem;color:var(--navy);margin-bottom:8px;line-height:1.2;}
+  .club-info p.tagline{color:var(--ink-soft);font-size:.92rem;line-height:1.5;margin-bottom:14px;flex:1;}
+  .club-meta{
+    font-family:'Barlow Condensed';font-size:.86rem;color:var(--ink-soft);
+    display:flex;flex-direction:column;gap:4px;margin-bottom:14px;
+  }
+  .club-meta b{color:var(--ink);}
+  .club-card .btn{width:100%;justify-content:center;}
+  @media(max-width:980px){.club-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:640px){.club-grid{grid-template-columns:1fr;}}
+
+  /* ===== CTA Registro ===== */
+  .cta-registro{
+    background:linear-gradient(120deg,var(--blue) 0%,var(--blue-light) 100%);
+    color:#fff;text-align:center;
+  }
+  .cta-registro h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;}
+  .cta-registro p{max-width:560px;margin:0 auto 28px;color:rgba(255,255,255,.9);line-height:1.55;}
+
+  /* ===== Footer ===== */
+  footer{background:var(--navy);color:rgba(255,255,255,.7);padding-top:56px;}
+  .foot-grid{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;
+    padding-bottom:36px;border-bottom:1px solid var(--line);
+  }
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .foot-brand img{height:44px;}
+  .foot-brand b{font-family:'Oswald';color:#fff;font-size:1.2rem;}
+  footer h4{
+    font-family:'Barlow Condensed';color:var(--gold-light);
+    letter-spacing:.1em;font-size:.82rem;text-transform:uppercase;margin-bottom:14px;
+  }
+  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:.94rem;}
+  footer a:hover{color:var(--gold-light);}
+  .foot-social{display:flex;gap:14px;margin-top:6px;}
+  .foot-social a{
+    width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;transition:background .15s;
+  }
+  .foot-social a:hover{background:var(--gold);}
+  .foot-social img{width:20px;height:20px;}
+  .foot-bottom{
+    padding:20px 0 30px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:.82rem;color:rgba(255,255,255,.5);font-family:'Barlow Condensed';letter-spacing:.02em;
+  }
+  @media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.foot-grid{grid-template-columns:1fr;}}
+
+  /* Floating WhatsApp */
+  .fab-wa{
+    position:fixed;right:22px;bottom:22px;z-index:600;
+    width:60px;height:60px;border-radius:50%;background:#1EA952;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.35);
+    transition:transform .15s ease;
+  }
+  .fab-wa:hover{transform:scale(1.08);}
+  .fab-wa img{width:32px;height:32px;}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
 <body>
-<div class="page">
-    <!-- HEADER con volver -->
-    <div class="header-educacion">
-        <div class="logo-area">
-            <div class="logo-main">LOS GUAYOS <span>◉</span></div>
-            <div class="subtitulo-area">Área Educación</div>
-        </div>
-        <a href="https://losguayosdigital.com/" class="btn-volver" id="btnVolver">
-            <i class="fas fa-arrow-left"></i> Volver al inicio
-        </a>
+
+<!-- ===== Top strip ===== -->
+<div class="topstrip">
+  <div class="wrap">
+    <span>📞 Atención CODERE: 0424-4525765</span>
+    <div class="social">
+      <a href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener">Canal de WhatsApp</a>
+      <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener" style="color:#E4BB4A;">Registrar mi club →</a>
     </div>
-
-    <!-- HERO con imagen inspiradora (educación) -->
-    <div class="hero-educacion">
-        <div class="hero-texto">
-            <span class="hero-etiqueta"><i class="fas fa-chalkboard-teacher"></i>  Comunidad que educa</span>
-            <h1>La educación es la esperanza de Los Guayos</h1>
-            <p>Cada escuela, cada docente y cada niño construye el futuro del municipio. Aquí visibilizamos, organizamos y fortalecemos el tejido educativo.</p>
-            <!-- mini estadísticas ficticias para dar fuerza visual -->
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-num">24</div>
-                    <div class="stat-label">escuelas</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">158</div>
-                    <div class="stat-label">docentes</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-num">3.2k</div>
-                    <div class="stat-label">estudiantes</div>
-                </div>
-            </div>
-        </div>
-        <!-- elemento decorativo opcional: imagen pequeña flotante no la ponemos para no recargar -->
-    </div>
-
-    <!-- PROYECTOS DESTACADOS / INICIATIVAS (para reclutar apoyo) -->
-    <div class="proyectos-seccion">
-        <div class="seccion-titulo">
-            <i class="fas fa-lightbulb"></i> Proyectos educativos activos
-        </div>
-        <p style="color: #386282; margin-bottom: 1rem;">Conoce las iniciativas que necesitan tu apoyo. ¡Elige una y sé parte del cambio!</p>
-        <div class="proyectos-grid">
-            <div class="proyecto-card">
-                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&auto=format&fit=crop');"></div>
-                <div class="proyecto-content">
-                    <span class="proyecto-tag">REFUERZO ESCOLAR</span>
-                    <h3>Manos a la obra</h3>
-                    <p>Voluntarios apoyan tareas en comunidades. Se buscan facilitadores y donantes de útiles.</p>
-                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
-                </div>
-            </div>
-            <div class="proyecto-card">
-                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&auto=format&fit=crop');"></div>
-                <div class="proyecto-content">
-                    <span class="proyecto-tag">BIBLIOTECA COMUNITARIA</span>
-                    <h3>Lectura Viva</h3>
-                    <p>Creación de un espacio de lectura en la Casa Comunal. Necesitamos libros y narradores.</p>
-                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
-                </div>
-            </div>
-            <div class="proyecto-card">
-                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop');"></div>
-                <div class="proyecto-content">
-                    <span class="proyecto-tag">FORMACIÓN DOCENTE</span>
-                    <h3>Maestros al día</h3>
-                    <p>Talleres para educadores sobre nuevas metodologías. Convocatoria abierta a facilitadores.</p>
-                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
-                </div>
-            </div>
-            <div class="proyecto-card">
-                <div class="proyecto-img" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef1887f3a4?w=600&auto=format&fit=crop');"></div>
-                <div class="proyecto-content">
-                    <span class="proyecto-tag">HUERTO ESCOLAR</span>
-                    <h3>Sembrando aprendizaje</h3>
-                    <p>Proyecto agroecológico en 3 escuelas. Se buscan agrónomos voluntarios y semillas.</p>
-                    <button class="btn-apoyar" onclick="alert('Gracias por tu interés. Te contactaremos vía WhatsApp');"><i class="fas fa-heart"></i> Quiero apoyar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FORO DE OPINIÓN SEMANAL (educación) con reclutamiento -->
-    <div class="foro-educacion">
-        <div class="foro-header">
-            <div class="foro-pregunta">
-                <i class="fas fa-question-circle"></i> 
-                <strong>Pregunta de la semana:</strong> “Efecto de la situación actual política, económica y social en la educación de los niños de Los Guayos”
-            </div>
-        </div>
-
-        <div class="foro-grid">
-            <!-- FORMULARIO DE OPINIÓN -->
-            <div class="form-opinion">
-                <h3><i class="fas fa-pencil-alt"></i> Deja tu opinión</h3>
-                <form id="opinionFormEducacion">
-                    <div class="grupo">
-                        <label>Nombre completo</label>
-                        <input type="text" id="nombreEdu" placeholder="Ej. Carmen Ortega" required>
-                    </div>
-                    <div class="grupo">
-                        <label>Sector / comunidad</label>
-                        <input type="text" id="sectorEdu" placeholder="Ej. Barrio San José, Urbanización Los Mangos" required>
-                    </div>
-                    <div class="grupo">
-                        <label>Opinión (objetiva y responsable)</label>
-                        <textarea id="opinionEdu" rows="4" placeholder="Comparte tu punto de vista..." required></textarea>
-                    </div>
-                    <div class="check-interes">
-                        <input type="checkbox" id="interesLiderarEdu">
-                        <label for="interesLiderarEdu" style="font-weight: 500;">✅ Quiero apoyar proyectos educativos o liderar iniciativas (me pueden contactar)</label>
-                    </div>
-                    <button type="submit" class="btn-enviar"><i class="fas fa-paper-plane"></i> Enviar opinión</button>
-                </form>
-                <p style="margin-top: 1.2rem; font-size:0.85rem; color:#2a5777;"><i class="fas fa-shield-alt"></i> Todas las opiniones son visibles y ayudan a construir comunidad.</p>
-            </div>
-
-            <!-- LISTA DE OPINIONES EN VIVO -->
-            <div class="opiniones-list">
-                <h3 style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;"><i class="fas fa-comments"></i> Voces de la comunidad</h3>
-                <div id="opinionesContainerEducacion">
-                    <!-- dinámico con JS -->
-                    <div style="text-align:center; color:#577e9c;">Cargando opiniones...</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTÓN WHATSAPP PARA RECLUTAR DIRECTAMENTE (además del checkbox) -->
-        <div class="whatsapp-educacion">
-            <a href="https://wa.me/584244525765?text=Hola%2C%20quiero%20apoyar%20proyectos%20educativos%20en%20Los%20Guayos%20Digital" target="_blank" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i>  ¿Quieres liderar? ¡Escríbenos!
-            </a>
-        </div>
-    </div>
-
-    <!-- FOOTER alusivo -->
-    <div class="footer-educacion">
-        <p><i class="fas fa-school"></i> Los Guayos Digital · Área Educación · Construyendo futuro desde las aulas y las comunidades.</p>
-        <p style="margin-top: 0.8rem; font-size:0.9rem;">Con el apoyo de la ciudadanía organizada · #EducaciónParaTodos</p>
-    </div>
+  </div>
 </div>
 
+<!-- ===== Header ===== -->
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/logo%20concertacion%20sin%20fondo.png?raw=true" alt="Logo Concertación Ciudadana">
+      <div class="name">
+        <b>CODERE</b>
+        <span>Conexión Deportiva y Recreativa</span>
+      </div>
+    </div>
+    <nav class="links" id="navLinks">
+      <a href="#inicio" onclick="closeNav()">Inicio</a>
+      <a href="#noticias" onclick="closeNav()">Noticias</a>
+      <a href="#disciplinas" onclick="closeNav()">Disciplinas</a>
+      <a href="#mapa" onclick="closeNav()">Mapa</a>
+      <a href="#clubes" onclick="closeNav()">Clubes afiliados</a>
+      <a class="btn btn-gold" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Registrarme</a>
+    </nav>
+    <button class="navbtn" id="navBtn" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <span class="eyebrow">Secretaría de Deporte y Recreación · Concertación Ciudadana</span>
+    <h1>Un solo mapa<br>para el <em>deporte</em><br>de nuestra gente</h1>
+    <p class="lead">CODERE conecta a los clubes deportivos, academias, parques y canchas en un directorio digital único: ubícalos en el mapa, conoce su ficha y contáctalos directamente por WhatsApp.</p>
+    <div class="ctas">
+      <a class="btn btn-gold" href="#mapa">Ver mapa interactivo</a>
+      <a class="btn btn-outline" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Registrar mi club</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Scoreboard ===== -->
+<div class="scoreboard">
+  <div class="wrap board-grid">
+    <div class="board-tile">
+      <div class="board-num" data-count="6">0</div>
+      <div class="board-label">Clubes afiliados</div>
+    </div>
+    <div class="board-tile">
+      <div class="board-num" data-count="20">0</div>
+      <div class="board-label">Disciplinas registradas</div>
+    </div>
+    <div class="board-tile">
+      <div class="board-num" data-count="39">0</div>
+      <div class="board-label">Espacios en el mapa</div>
+    </div>
+    <div class="board-tile">
+      <div class="board-num" data-count="1">0</div>
+      <div class="board-label">Municipio piloto: Los Guayos</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Sobre CODERE ===== -->
+<section id="sobre">
+  <div class="wrap about reveal">
+    <div class="about-copy">
+      <span class="eyebrow">¿Qué es CODERE?</span>
+      <h2>Una alternativa gremial para el deporte comunitario</h2>
+      <p>CODERE (Conexión Deportiva y Recreativa) nace desde la Secretaría de Deporte y Recreación de Concertación Ciudadana como un registro gremial de clubes deportivos, pensado para organizar eventos y actividades, y para impulsar una fórmula de gestión de mantenimiento y sustentación de parques que permita recortar gasto presupuestario en los espacios públicos.</p>
+      <p>Aquí encontrarás el directorio de clubes afiliados, los parques y canchas de tu comunidad, y un mapa interactivo que iremos ampliando junto a los liderazgos focales en cada municipio.</p>
+      <a class="btn btn-navy" href="#clubes">Ver clubes afiliados</a>
+    </div>
+    <div class="about-media">
+      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/imagenhomeconcertacion.png?raw=true" alt="Concertación Ciudadana">
+    </div>
+  </div>
+</section>
+
+<!-- ===== Noticias ===== -->
+<section class="noticias" id="noticias">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Al día</span>
+      <h2>Noticias CODERE</h2>
+      <p>Lo último del gremio deportivo y recreativo.</p>
+    </div>
+    <div class="news-grid reveal">
+      <article class="news-card">
+        <div class="img-wrap">
+          <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/banner%20web%20deporte.jpg?raw=true" alt="Nace CODERE">
+        </div>
+        <div class="news-body">
+          <span class="news-tag">Institucional</span>
+          <h3>Nace CODERE como alternativa gremial deportiva</h3>
+          <p>Arranca el registro de clubes deportivos para la organización de eventos y actividades, junto a una fórmula de gestión para el mantenimiento y sustentación de parques que permita recortar el gasto presupuestario en los espacios públicos.</p>
+        </div>
+      </article>
+      <article class="news-card">
+  <div class="img-wrap media-slider">
+    <div class="slides active">
+      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/entrenadores%20pintando%20la%20cancha.jpeg?raw=true" alt="Entrenadores pintando la cancha múltiple de Los Cerritos">
+    </div>
+    <div class="slides">
+      <video muted controls playsinline preload="metadata">
+        <source src="https://github.com/jhonmalorne/ConcertacionCODERE/raw/main/equipo%20organizador%20de%20actividad.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slides">
+      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/galones%20de%20pintura%20donados.jpeg?raw=true" alt="Galones de pintura donados por Febeca y Quimicolor">
+    </div>
+    <div class="slides">
+      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/joven%20pintando.jpeg?raw=true" alt="Joven de la comunidad pintando la cancha">
+    </div>
+    <div class="slides">
+      <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/joven%20pintando2.jpeg?raw=true" alt="Joven de la comunidad pintando la cancha">
+    </div>
+    <div class="slides">
+      <video muted controls playsinline preload="metadata">
+        <source src="https://github.com/jhonmalorne/ConcertacionCODERE/raw/main/palabras%20del%20padre.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slides">
+      <video muted controls playsinline preload="metadata">
+        <source src="https://github.com/jhonmalorne/ConcertacionCODERE/raw/main/recibiendo%20p%C3%ADntura.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div class="news-body">
+      <span class="news-tag">Institucional</span>
+      <h3>
+      Comunidad organizada recupera la Cancha Múltiple de Los Cerritos
+      </h3>
+      <p>
+      De la mano con la empresa privada, como
+      <strong>Febeca</strong> y <strong>Quimicolor</strong>,
+      la comunidad organizada junto a sus clubes deportivos de la
+      Urb. Los Cerritos logró recuperar espacios deportivos como la
+      Cancha Múltiple de la urbanización, para así impulsar el deporte
+      de niños y adolescentes en las comunidades.
+      <strong>Juntos somos más. Orden y Gestión.</strong>
+      </p>
+  </div>
+</article>
+      <article class="news-card">
+        <div class="img-wrap">
+          <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Voleibol%20femenino.png?raw=true" alt="Triunfo de voleibol Los Guayos">
+        </div>
+        <div class="news-body">
+          <span class="news-tag">Resultados</span>
+          <h3>Triunfo de voleibol femenino en Los Guayos con Miguel Aristimuño</h3>
+          <p>El voleibol femenino de Los Guayos celebra una nueva victoria bajo la conducción de Miguel Aristimuño, reflejo del talento que se forma día a día en las canchas de nuestros clubes afiliados.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Disciplinas ===== -->
+<section id="disciplinas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Directorio</span>
+      <h2>Disciplinas deportivas</h2>
+      <p>Estas son las disciplinas que hoy conviven en CODERE. La lista crece con cada nuevo registro recibido por el formulario de afiliación.</p>
+    </div>
+    <div class="disc-cats reveal">
+      <div class="disc-cat">
+        <h3>Deportes de conjunto</h3>
+        <div class="chip-list">
+          <span class="chip">Fútbol campo</span>
+          <span class="chip">Futsal</span>
+          <span class="chip">Baloncesto</span>
+          <span class="chip">Voleibol cancha</span>
+          <span class="chip">Voleibol playa</span>
+          <span class="chip">Béisbol / Kickingball</span>
+          <span class="chip">Softbol</span>
+        </div>
+      </div>
+      <div class="disc-cat">
+        <h3>Deportes de combate</h3>
+        <div class="chip-list">
+          <span class="chip">Boxeo</span>
+          <span class="chip">Karate-do</span>
+          <span class="chip">Taekwondo</span>
+          <span class="chip">Judo</span>
+          <span class="chip">Esgrima</span>
+          <span class="chip">Lucha olímpica</span>
+        </div>
+      </div>
+      <div class="disc-cat">
+        <h3>Fuerza y resistencia</h3>
+        <div class="chip-list">
+          <span class="chip">Atletismo</span>
+          <span class="chip">Ciclismo ruta</span>
+          <span class="chip">Ciclismo montaña</span>
+          <span class="chip">BMX</span>
+          <span class="chip">Halterofilia</span>
+          <span class="chip">Crossfit / funcional</span>
+          <span class="chip">Natación</span>
+        </div>
+      </div>
+      <div class="disc-cat">
+        <h3>Precisión y otros</h3>
+        <div class="chip-list">
+          <span class="chip">Tenis de mesa</span>
+          <span class="chip">Tenis de campo</span>
+          <span class="chip">Ajedrez</span>
+          <span class="chip">Gimnasia artística</span>
+          <span class="chip">Gimnasia rítmica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mapa ===== -->
+<section class="mapa" id="mapa">
+  <div class="wrap">
+    <div class="sec-head on-dark reveal">
+      <span class="eyebrow">Mapa digital</span>
+      <h2>Clubes, parques y canchas cerca de ti</h2>
+      <p>Explora en vista normal o satelital. Filtra por tipo de espacio y toca cada punto para ver su ficha.</p>
+    </div>
+
+    <div class="map-toolbar reveal">
+      <div class="filter-chips" id="filterChips">
+        <button class="filter-chip active" data-type="club"><span class="dot" style="background:#E4453D"></span>Clubes</button>
+        <button class="filter-chip active" data-type="cancha"><span class="dot" style="background:#4C8DFF"></span>Canchas</button>
+        <button class="filter-chip active" data-type="campo"><span class="dot" style="background:#E4BB4A"></span>Campos de béisbol</button>
+        <button class="filter-chip active" data-type="parque"><span class="dot" style="background:#3FBF7F"></span>Parques</button>
+        <button class="filter-chip active" data-type="plaza"><span class="dot" style="background:#B983FF"></span>Plazas</button>
+      </div>
+    </div>
+
+    <div id="map" class="reveal"></div>
+
+    <div class="layer-toggles reveal">
+      <label><input type="checkbox" id="toggleStates"> Ver límites estadales</label>
+      <label><input type="checkbox" id="toggleParishes"> Ver límites parroquiales</label>
+    </div>
+
+    <div class="map-legend reveal">
+      <span><i class="dot" style="background:#E4453D"></i>Club afiliado</span>
+      <span><i class="dot" style="background:#4C8DFF"></i>Cancha deportiva</span>
+      <span><i class="dot" style="background:#E4BB4A"></i>Campo de béisbol</span>
+      <span><i class="dot" style="background:#3FBF7F"></i>Parque</span>
+      <span><i class="dot" style="background:#B983FF"></i>Plaza</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Clubes afiliados ===== -->
+<section id="clubes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Ficha de afiliados</span>
+      <h2>Clubes afiliados a CODERE</h2>
+      <p>Conoce a los clubes registrados y contáctalos directamente por WhatsApp.</p>
+    </div>
+    <div class="club-grid reveal" id="clubGrid"></div>
+    <div style="text-align:center;margin-top:36px;">
+      <p style="color:var(--ink-soft);margin-bottom:16px;">¿Tienes un club deportivo y aún no apareces aquí?</p>
+      <a class="btn btn-navy" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Registrar mi club en CODERE</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA Registro ===== -->
+<section class="cta-registro">
+  <div class="wrap reveal">
+    <span class="eyebrow" style="color:#fff;opacity:.85;">Únete al gremio</span>
+    <h2>Haz que tu club aparezca en el mapa de CODERE</h2>
+    <p>Completa el formulario de registro y tu club pasará a formar parte del directorio oficial de afiliados, visible para toda la comunidad.</p>
+    <a class="btn btn-gold" href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Ir al formulario de registro</a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/logo%20concertacion%20sin%20fondo.png?raw=true" alt="Concertación Ciudadana">
+          <b>CODERE</b>
+        </div>
+        <p style="max-width:280px;font-size:.92rem;line-height:1.6;">Conexión Deportiva y Recreativa es una iniciativa de la Secretaría de Deporte y Recreación de Concertación Ciudadana.</p>
+        <div class="foot-social">
+          <a href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/iconodewhatsapp.png?raw=true" alt="WhatsApp">
+          </a>
+          <a href="https://www.instagram.com/concertacion.ve/" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/iconoinstagram.png?raw=true" alt="Instagram">
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#noticias">Noticias</a></li>
+          <li><a href="#disciplinas">Disciplinas</a></li>
+          <li><a href="#mapa">Mapa interactivo</a></li>
+          <li><a href="#clubes">Clubes afiliados</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>📞 0424-4525765</li>
+          <li><a href="https://forms.gle/LyKUJUGdG8oGWAHj8" target="_blank" rel="noopener">Formulario de registro</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener">Canal de WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CODERE · Concertación Ciudadana — Secretaría de Deporte y Recreación</span>
+      <span>Diseño digital auspiciado por Nexus Marketing</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab-wa" href="https://whatsapp.com/channel/0029VbCN9F9Bqbr6yvRiYF3L" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <img src="https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/iconodewhatsapp.png?raw=true" alt="WhatsApp">
+</a>
+
 <script>
-    (function() {
-        // ---------- FORO CON PERSISTENCIA LOCAL (clave específica educación) ----------
-        const STORAGE_EDU = 'losguayos_foro_educacion';
-        let opiniones = [];
+/* ===================== Nav mobile ===================== */
+const navBtn = document.getElementById('navBtn');
+const navLinks = document.getElementById('navLinks');
+navBtn.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+function closeNav(){ navLinks.classList.remove('open'); }
 
-        // Elementos del formulario educación
-        const formEdu = document.getElementById('opinionFormEducacion');
-        const inputNombre = document.getElementById('nombreEdu');
-        const inputSector = document.getElementById('sectorEdu');
-        const textareaOpinion = document.getElementById('opinionEdu');
-        const chkInteres = document.getElementById('interesLiderarEdu');
-        const containerOpiniones = document.getElementById('opinionesContainerEducacion');
+/* ===================== Reveal on scroll ===================== */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.15});
+revealEls.forEach(el=>io.observe(el));
 
-        // Cargar o inicializar con datos de ejemplo (para que no esté vacío)
-        function cargarOpiniones() {
-            try {
-                const stored = localStorage.getItem(STORAGE_EDU);
-                if (stored) {
-                    opiniones = JSON.parse(stored);
-                } else {
-                    // opiniones de ejemplo relacionadas con educación
-                    opiniones = [
-                        { nombre: "Mireya Rojas", sector: "Comunidad Los Naranjos", opinion: "Los niños pierden motivación por falta de materiales. Los maestros hacen lo que pueden, pero necesitamos apoyo psicológico también.", interes: true, timestamp: Date.now() - 172800000 },
-                        { nombre: "Jesús Quintero", sector: "Sector Centro", opinion: "La crisis económica limita el acceso a internet. Muchos estudiantes no pueden conectar con las tareas digitales.", interes: false, timestamp: Date.now() - 86400000 },
-                        { nombre: "Fabiola Marcano", sector: "Barrio San Antonio", opinion: "Los valores se están perdiendo, la familia desestructurada afecta el rendimiento escolar. Hace falta escuela para padres.", interes: true, timestamp: Date.now() - 3600000 }
-                    ];
-                }
-                // ordenar más reciente primero
-                opiniones.sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
-            } catch (e) {
-                opiniones = [];
-            }
-            renderOpiniones();
+/* ===================== Scoreboard count-up ===================== */
+const boardNums = document.querySelectorAll('.board-num');
+const boardIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el = e.target;
+      const target = parseInt(el.dataset.count,10);
+      let cur = 0;
+      const step = Math.max(1, Math.round(target/40));
+      const t = setInterval(()=>{
+        cur += step;
+        if(cur >= target){ cur = target; clearInterval(t); }
+        el.textContent = cur;
+      }, 30);
+      boardIO.unobserve(el);
+    }
+  });
+},{threshold:.5});
+boardNums.forEach(el=>boardIO.observe(el));
+
+/* ===================== Noticia con cinta desplazable de fotos/videos ===================== */
+function initMediaSliders(){
+  document.querySelectorAll('.media-slider').forEach(slider=>{
+    const wrap = slider.parentElement;
+    const slides = Array.from(slider.querySelectorAll('.slides'));
+    if(slides.length <= 1) return;
+
+    wrap.style.position = 'relative';
+
+    // Contador tipo "1 / 7"
+    const counter = document.createElement('div');
+    counter.className = 'slider-counter';
+    counter.textContent = `1 / ${slides.length}`;
+    wrap.appendChild(counter);
+
+    // Puntos indicadores
+    const dots = document.createElement('div');
+    dots.className = 'slider-dots';
+    const dotEls = slides.map((_, i)=>{
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Ver foto o video ${i + 1} de ${slides.length}`);
+      dot.addEventListener('click', ()=> goTo(i));
+      dots.appendChild(dot);
+      return dot;
+    });
+    wrap.appendChild(dots);
+
+    // Flechas prev/next
+    const prevBtn = document.createElement('button');
+    prevBtn.type = 'button';
+    prevBtn.className = 'slider-arrow slider-arrow-prev';
+    prevBtn.innerHTML = '&#8249;';
+    prevBtn.setAttribute('aria-label', 'Anterior');
+    const nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.className = 'slider-arrow slider-arrow-next';
+    nextBtn.innerHTML = '&#8250;';
+    nextBtn.setAttribute('aria-label', 'Siguiente');
+    wrap.appendChild(prevBtn);
+    wrap.appendChild(nextBtn);
+
+    let current = 0;
+    function goTo(i){
+      current = Math.max(0, Math.min(slides.length - 1, i));
+      slides[current].scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
+    }
+    prevBtn.addEventListener('click', ()=> goTo(current - 1));
+    nextBtn.addEventListener('click', ()=> goTo(current + 1));
+
+    // Pausa el video al salir de su slide, y actualiza puntos/contador al desplazar
+    const slideIO = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const idx = slides.indexOf(entry.target);
+        if(entry.isIntersecting && entry.intersectionRatio > 0.6){
+          current = idx;
+          dotEls.forEach((d,i)=> d.classList.toggle('active', i === idx));
+          counter.textContent = `${idx + 1} / ${slides.length}`;
         }
-
-        function guardarOpiniones() {
-            localStorage.setItem(STORAGE_EDU, JSON.stringify(opiniones));
+        if(!entry.isIntersecting){
+          const video = entry.target.querySelector('video');
+          if(video && !video.paused) video.pause();
         }
+      });
+    }, { root:slider, threshold:[0,0.6,1] });
+    slides.forEach(s=>slideIO.observe(s));
 
-        function escapeHTML(str) {
-            return String(str).replace(/[&<>"]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                if (m === '"') return '&quot;';
-                return m;
-            });
-        }
+    // Arrastrar con el mouse en escritorio (touch ya funciona nativo)
+    let isDown = false, startX = 0, startScroll = 0;
+    slider.addEventListener('mousedown', e=>{
+      isDown = true;
+      slider.classList.add('dragging');
+      startX = e.pageX;
+      startScroll = slider.scrollLeft;
+    });
+    const stopDrag = ()=>{ isDown = false; slider.classList.remove('dragging'); };
+    slider.addEventListener('mouseleave', stopDrag);
+    slider.addEventListener('mouseup', stopDrag);
+    slider.addEventListener('mousemove', e=>{
+      if(!isDown) return;
+      e.preventDefault();
+      slider.scrollLeft = startScroll - (e.pageX - startX);
+    });
+  });
+}
+initMediaSliders();
 
-        function renderOpiniones() {
-            if (!containerOpiniones) return;
-            if (opiniones.length === 0) {
-                containerOpiniones.innerHTML = '<div class="vacío-msg" style="padding:2rem; text-align:center;">💬 Aún no hay opiniones. ¡Sé el primero en comentar!</div>';
-                return;
-            }
-            let html = '';
-            opiniones.forEach(op => {
-                const fecha = op.timestamp ? new Date(op.timestamp).toLocaleString('es-VE', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) : 'fecha reciente';
-                const badgeInteres = op.interes ? '<span class="opinion-interes"><i class="fas fa-hand-holding-heart"></i> Interesado en apoyar/liderar</span>' : '';
-                html += `
-                    <div class="opinion-item">
-                        <div class="opinion-header">
-                            <span class="opinion-nombre"><i class="fas fa-user"></i> ${escapeHTML(op.nombre)}</span>
-                            <span class="opinion-sector">${escapeHTML(op.sector)}</span>
-                        </div>
-                        <div class="opinion-texto">“${escapeHTML(op.opinion)}”</div>
-                        ${badgeInteres}
-                        <div class="opinion-timestamp"><i class="far fa-calendar-alt"></i> ${fecha}</div>
-                    </div>
-                `;
-            });
-            containerOpiniones.innerHTML = html;
-        }
+/* ===================== Clubes afiliados (data) ===================== */
+const clubs = [
+  {
+    id:'club-cerritos',
+    nombre:'Club Voleibol Los Cerritos',
+    tagline:'Desarrollando talento en las comunidades y rescatando talento de alto nivel.',
+    telefono:'04124146837',
+    ubicacion:'Carabobo, Los Guayos',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/club%20voleibol%20los%20cerritos.png?raw=true',
+    lat:10.16922, lng:-67.90890
+  },
+  {
+    id:'club-americas',
+    nombre:'Academia de Voleibol Las Américas',
+    tagline:'Formación de atletas con desarrollo físico, cognitivo, afectivo y mental para un desenvolvimiento de alto nivel en cancha.',
+    telefono:'04244190350',
+    ubicacion:'Barrio América, calle Arvelo entre Av. Díaz Moreno y Montes de Oca, sector La Barraca, Valencia',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Academia%20de%20Voleibol%20las%20Americas.jpeg?raw=true',
+    lat:10.1745, lng:-67.9975
+  },
+  {
+    id:'club-brf',
+    nombre:'Club Deportivo BRF (Bucares Real Fútbol)',
+    tagline:'Escuela formativa y federada: preparación desde base hasta niveles superiores, con participación en torneos municipales, estadales y de desarrollo.',
+    telefono:'04145971390',
+    ubicacion:'Flor Amarillo, Urb. Los Bucares, frente al módulo policial, Valencia, Carabobo',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Club%20Deportivo%20BRF.jpeg?raw=true',
+    lat:10.1552, lng:-68.0058
+  },
+    {
+    id:'Escuela ABC voleibol',
+    nombre:'Escuela ABC voleibol',
+    tagline:'Somos una escuela que enseñamos desde cero, nuestros atletas aprenden no solo el deporte si no también valores, disciplina y respeto. Tenemos ya 5 años, comenzamos con clases personalizadas con tan solo 6 atletas ya participantes algunos de la selección de Carabobo y ahora con un buen número desde iniciación en todas las categorías.',
+    telefono:'04125318699',
+    ubicacion:'Viviendas popular los guayos sector 3 transversal 5. Cancha del sector 3 y 5 ',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/ABC%20Voleibol.jpeg?raw=true',
+    lat:10.17658528421383, lng:-67.93609417379099,
+  },
+   {
+    id:'Estrellas vc',
+    nombre:'Estrellas vc',
+    tagline:'Formar atletas en la disciplina de voleibol para alto rendimiento.',
+    telefono:'04143429223',
+    ubicacion:'Aldea de paraparal, los guayos, Carabobo',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/estrellas%20voleibol%20club.jpg?raw=true',
+    lat:10.18773263912042, lng:-67.91739760674737
+  },
+  {
+    id:'club-sanagustin',
+    nombre:'San Agustín Voleibol Club',
+    tagline:'Enseñamos a niños y niñas de 6 a 20 años la práctica del voleibol junto al respeto y la educación hacia compañeros, entrenadores y padres. Sin excepciones: todos son bienvenidos.',
+    telefono:'04146596664',
+    ubicacion:'Barrio San Agustín, Av. Las Ferias, frente a la estación de metro Las Ferias, Valencia, Carabobo',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/San%20Agustin%20Voleibol%20Club.jpeg?raw=true',
+    lat:10.1678, lng:-68.0018
+  },
+    {
+    id:'Fénix Valencia Voley Club ',
+    nombre:'Fénix Valencia Voley Club ',
+    tagline:'Encargada de Planificar los Entrenamientos . Enseñar Técnicas como la Recepción,  el Saque y el Ataque .Guiar y Motivar a las Atletas para así fomentar el trabajo en equipo',
+    telefono:'04144393856',
+    ubicacion:'Urb. Ricardo Urriera sector 4, Valencia',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Voleibol%20club%20valencia%20original.jpeg?raw=true',
+    lat:10.14326285023158, lng:-68.02321481828517  ,
+  },
+  {
+    id:'club-united',
+    nombre:'United Voleibol Club',
+    tagline:'Academia dedicada a la formación y desarrollo de atletas de alto rendimiento, con proyección a la selección estadal y nacional.',
+    telefono:'04128461881',
+    ubicacion:'Av. Principal, sector La Bocaina 2, Valencia, Carabobo',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/United%20Voleibol%20Club.jpeg?raw=true',
+    lat:10.1402, lng:-67.9948
+  },
+  {
+    id:'club-alianza',
+    nombre:'Alianza Sport Academia',
+    tagline:'Formar atletas en la disciplina de voleibol para alto rendimiento.',
+    telefono:'04144088859',
+    ubicacion:'Cancha cubierta La Castrera, Urbanización La Castrera, Valencia, Carabobo',
+    logo:'https://github.com/jhonmalorne/ConcertacionCODERE/blob/main/Alianza%20Sport.jpg?raw=true',
+    lat:10.1598, lng:-67.9852
+  }
+];
 
-        // Envío del formulario
-        formEdu.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nombre = inputNombre.value.trim();
-            const sector = inputSector.value.trim();
-            const opinionText = textareaOpinion.value.trim();
-            if (!nombre || !sector || !opinionText) {
-                alert('Por favor completa todos los campos (nombre, sector y opinión).');
-                return;
-            }
-            const nueva = {
-                nombre: nombre,
-                sector: sector,
-                opinion: opinionText,
-                interes: chkInteres.checked,
-                timestamp: Date.now()
+const clubGrid = document.getElementById('clubGrid');
+clubs.forEach(c=>{
+  const waNumber = '58' + c.telefono.replace(/^0/,'');
+  const card = document.createElement('article');
+  card.className = 'club-card';
+  card.id = c.id;
+  card.innerHTML = `
+    <div class="club-logo"><img src="${c.logo}" alt="${c.nombre}" loading="lazy"></div>
+    <div class="club-info">
+      <h3>${c.nombre}</h3>
+      <p class="tagline">${c.tagline}</p>
+      <div class="club-meta">
+        <span><b>📍</b> ${c.ubicacion}</span>
+        <span><b>📞</b> ${c.telefono}</span>
+      </div>
+      <a class="btn btn-navy" href="https://wa.me/${waNumber}" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+    </div>`;
+  clubGrid.appendChild(card);
+});
+
+/* ===================== Espacios deportivos (canchas, campos, parques, plazas) ===================== */
+const espacios = [
+  {n:'Cancha múltiple Los Cerritos', t:'cancha', lat:10.169220554743173, lng:-67.90890485794485},
+  {n:'Parque Los Jabillos', t:'parque', lat:10.181166662109066, lng:-67.93110013787475},
+  {n:'Plaza Los Guayos', t:'plaza', lat:10.188656181222758, lng:-67.93723971473415},
+  {n:'Parque Las Aguitas sector 3', t:'parque', lat:10.170841076483812, lng:-67.92983024922457},
+  {n:'Campo de Béisbol Infantil Omar Mirabal', t:'campo', lat:10.180981955466082, lng:-67.93610639888222},
+  {n:'Cancha deportiva — Sector Alicia Piedri de Caldera', t:'cancha', lat:10.163323755754716, lng:-67.90372177270959},
+  {n:'Cancha deportiva — San Judas Tadeo', t:'cancha', lat:10.16929394101146, lng:-67.90025670700494},
+  {n:'Cancha deportiva — 15 de Los Guayos', t:'cancha', lat:10.17276831132751, lng:-67.89813549162469},
+  {n:'Cancha deportiva — Urb. Los Cerritos', t:'cancha', lat:10.168765569417815, lng:-67.91348957761987},
+  {n:'Campo de béisbol — Urb. Los Cerritos', t:'campo', lat:10.168598257228092, lng:-67.91100396154935},
+  {n:'Cancha deportiva — Urb. Los Cerritos', t:'cancha', lat:10.169487586529, lng:-67.90845800309651},
+  {n:'Cancha deportiva L.N. Paraparal', t:'cancha', lat:10.169412883704162, lng:-67.90936636497496},
+  {n:'Cancha de básquet Paraparal', t:'cancha', lat:10.169455328108665, lng:-67.90891572296604},
+  {n:'Cancha deportiva Buenaventura', t:'cancha', lat:10.174906505974153, lng:-67.9022374602051},
+  {n:'Cancha deportiva 15 Los Guayos — Buenaventura', t:'cancha', lat:10.174031708524229, lng:-67.89897296018756},
+  {n:'Cancha deportiva — Urb. Parque Residencial Roraima 1 y 2', t:'cancha', lat:10.174162137463265, lng:-67.90512008048132},
+  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.177312574695568, lng:-67.89755427997969},
+  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.176238119442793, lng:-67.8978851588277},
+  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.17650101629557, lng:-67.89898376332366},
+  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.180488030601222, lng:-67.89687596100559},
+  {n:'Cancha deportiva — 15 Los Guayos', t:'cancha', lat:10.18047637866594, lng:-67.89899788220481},
+  {n:'Cancha deportiva — Sector Tacarigua V', t:'cancha', lat:10.178411894170944, lng:-67.91003345654144},
+  {n:'Parque Agua Dorada', t:'parque', lat:10.178422122216805, lng:-67.91566107802208},
+  {n:'Cancha deportiva — Ciudadela Tacarigua IV', t:'cancha', lat:10.182773538585424, lng:-67.90940604116601},
+  {n:'Cancha deportiva — Ciudadela Tacarigua II', t:'cancha', lat:10.187549009717236, lng:-67.91523813785804},
+  {n:'Cancha deportiva — Acceso Bosque Real', t:'cancha', lat:10.192253060475174, lng:-67.9080982398612},
+  {n:'Cancha deportiva — Acceso Bosque Real', t:'cancha', lat:10.191490637265264, lng:-67.90800700044474},
+  {n:'Cancha deportiva — Municipio Los Guayos', t:'cancha', lat:10.09280064983812, lng:-67.90034899750009},
+  {n:'Cancha deportiva — Sector Pirital', t:'cancha', lat:10.104885188368362, lng:-67.89466970660862},
+  {n:'Campo de béisbol Charal', t:'campo', lat:10.106540842298335, lng:-67.90622466311954},
+  {n:'Cancha deportiva — Sector Charal', t:'cancha', lat:10.105962552660237, lng:-67.90579819190974},
+  {n:'Parque — Sector Charal', t:'parque', lat:10.105878053631868, lng:-67.9061924766107},
+  {n:'Cancha deportiva — Sector Cascabel', t:'cancha', lat:10.105843474902763, lng:-67.92221905642634},
+  {n:'Campo de béisbol Argimiro Gabardón — Sector Cascabel', t:'campo', lat:10.106397999436178, lng:-67.92010279350839},
+  {n:'Campo de béisbol Alberto Martínez — La Ensenada', t:'campo', lat:10.1160914618883, lng:-67.919442970069},
+  {n:'Cancha deportiva — Sector Cascabel 2', t:'cancha', lat:10.116510203129634, lng:-67.91919263453312},
+  {n:'Cancha deportiva — Sector Samán Mocho', t:'cancha', lat:10.114965827867502, lng:-67.89260396345175},
+  {n:'Campo de béisbol — Sector Samán Mocho', t:'campo', lat:10.14311782083038, lng:-67.90080079409171},
+  {n:'Cancha deportiva — Isla la Culebra', t:'cancha', lat:10.137178555110724, lng:-67.8769155690897}
+];
+
+/* ===================== Leaflet map ===================== */
+const typeColor = { club:'#E4453D', cancha:'#4C8DFF', campo:'#E4BB4A', parque:'#3FBF7F', plaza:'#B983FF' };
+const typeIconEmoji = { club:'🏅', cancha:'🏀', campo:'⚾', parque:'🌳', plaza:'🏛️' };
+
+function makeIcon(type, size){
+  size = size || 30;
+  return L.divIcon({
+    className:'',
+    html:`<div style="
+        width:${size}px;height:${size}px;border-radius:50% 50% 50% 0;
+        background:${typeColor[type]};transform:rotate(-45deg);
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:0 2px 6px rgba(0,0,0,.4);border:2px solid #fff;">
+        <span style="transform:rotate(45deg);font-size:${size*0.5}px;">${typeIconEmoji[type]}</span>
+      </div>`,
+    iconSize:[size,size],
+    iconAnchor:[size/2,size]
+  });
+}
+
+const map = L.map('map', { scrollWheelZoom:false }).setView([10.155, -67.94], 12);
+
+const normalLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'&copy; OpenStreetMap contributors', maxZoom:19
+}).addTo(map);
+
+const satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution:'Tiles &copy; Esri', maxZoom:19
+});
+
+L.control.layers({ 'Mapa normal': normalLayer, 'Vista satelital': satLayer }, null, { position:'topright' }).addTo(map);
+
+/* Layer groups by type for the filter chips */
+const layerGroups = {
+  club:L.layerGroup().addTo(map),
+  cancha:L.layerGroup().addTo(map),
+  campo:L.layerGroup().addTo(map),
+  parque:L.layerGroup().addTo(map),
+  plaza:L.layerGroup().addTo(map)
+};
+
+/* Club markers */
+clubs.forEach(c=>{
+  const waNumber = '58' + c.telefono.replace(/^0/,'');
+  const marker = L.marker([c.lat,c.lng], { icon: makeIcon('club',34) });
+  marker.bindPopup(`
+    <div class="popup-card">
+      <span class="p-tag">Club afiliado</span>
+      <h4>${c.nombre}</h4>
+      <p>${c.ubicacion}</p>
+      <a class="wa-link" href="https://wa.me/${waNumber}" target="_blank" rel="noopener">WhatsApp</a>
+      <div style="margin-top:8px;"><a href="#${c.id}" style="font-size:.8rem;color:#003B95;font-weight:600;">Ver ficha completa →</a></div>
+    </div>`);
+  layerGroups.club.addLayer(marker);
+});
+
+/* Facility markers */
+espacios.forEach(e=>{
+  const marker = L.marker([e.lat,e.lng], { icon: makeIcon(e.t,26) });
+  const labelByType = { cancha:'Cancha deportiva', campo:'Campo de béisbol', parque:'Parque', plaza:'Plaza' };
+  marker.bindPopup(`
+    <div class="popup-card">
+      <span class="p-tag">${labelByType[e.t]}</span>
+      <h4>${e.n}</h4>
+      <p>Municipio Los Guayos, Carabobo</p>
+    </div>`);
+  layerGroups[e.t].addLayer(marker);
+});
+
+/* Filter chips toggle */
+document.querySelectorAll('.filter-chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    const type = chip.dataset.type;
+    chip.classList.toggle('active');
+    if(chip.classList.contains('active')){
+      map.addLayer(layerGroups[type]);
+    } else {
+      map.removeLayer(layerGroups[type]);
+    }
+  });
+});
+
+/* Boundary GeoJSON — loaded on demand */
+let statesLayer, parishesLayer;
+const GEO_BASE = 'https://raw.githubusercontent.com/jhonmalorne/ConcertacionCODERE/main/';
+
+document.getElementById('toggleStates').addEventListener('change', async function(){
+  if(this.checked){
+    if(!statesLayer){
+      try{
+        const res = await fetch(GEO_BASE + 'geoBoundaries-VEN-ADM1_simplified.geojson');
+        const data = await res.json();
+        statesLayer = L.geoJSON(data, {
+          style: f => {
+            const name = (f.properties.shapeName || '').toLowerCase();
+            const isCarabobo = name.includes('carabobo');
+            return {
+              color: isCarabobo ? '#E4BB4A' : 'rgba(255,255,255,.35)',
+              weight: isCarabobo ? 3 : 1,
+              fillOpacity: isCarabobo ? 0.08 : 0
             };
-            opiniones.unshift(nueva);
-            if (opiniones.length > 50) opiniones.pop(); // mantener límite
-            guardarOpiniones();
-            renderOpiniones();
-            formEdu.reset();
-            inputNombre.focus();
+          }
         });
+      }catch(err){ console.error('No se pudo cargar el límite estadal', err); }
+    }
+    if(statesLayer) statesLayer.addTo(map);
+  } else if(statesLayer){
+    map.removeLayer(statesLayer);
+  }
+});
 
-        // Inicializar
-        cargarOpiniones();
-
-        // Escuchar cambios en localStorage (entre pestañas)
-        window.addEventListener('storage', function(e) {
-            if (e.key === STORAGE_EDU) cargarOpiniones();
+document.getElementById('toggleParishes').addEventListener('change', async function(){
+  if(this.checked){
+    if(!parishesLayer){
+      try{
+        const res = await fetch(GEO_BASE + 'geoBoundaries-VEN-ADM2_simplified.geojson');
+        const data = await res.json();
+        parishesLayer = L.geoJSON(data, {
+          style: { color:'rgba(255,255,255,.25)', weight:1, fillOpacity:0 }
         });
-
-        // Botones de "Quiero apoyar" en proyectos (simulan interés y abren WhatsApp con mensaje predefinido)
-        document.querySelectorAll('.btn-apoyar').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const proyecto = this.closest('.proyecto-card')?.querySelector('h3')?.innerText || 'proyecto educativo';
-                const mensaje = `Hola, me interesa apoyar el proyecto "${proyecto}" en Los Guayos. ¿Cómo puedo colaborar?`;
-                window.open(`https://wa.me/584244525765?text=${encodeURIComponent(mensaje)}`, '_blank');
-            });
-        });
-    })();
+      }catch(err){ console.error('No se pudo cargar el límite parroquial', err); }
+    }
+    if(parishesLayer) parishesLayer.addTo(map);
+  } else if(parishesLayer){
+    map.removeLayer(parishesLayer);
+  }
+});
 </script>
 </body>
 </html>
